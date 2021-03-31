@@ -7,7 +7,7 @@ Projeto do IFSP
 #### Arquivo de texto (.pdf) especificando os princípios de design utilizados no projeto.
 
 ## AOO
-#### :heavy_exclamation_mark: Lista dos requisitos funcionais, não funcionais e de negócio.(Revisar o atual do semestre passado.)
+#### :heavy_exclamation_mark: Lista dos requisitos funcionais, não funcionais e de negócio. (Revisar o atual do semestre passado.)
 #### :heavy_exclamation_mark: 1. Diagrama de caso de uso (Revisar o atual do semestre passado.)
   1. Descrição de 4 casos de uso relevantes no projeto
   1. Protótipo de tela de 4 casos de uso relevantes do projeto
@@ -19,7 +19,7 @@ Projeto do IFSP
 #### Revisão
 
 ## BD
-#### :heavy_exclamation_mark: DER ou MER (imagem ou pdf);
+#### :heavy_exclamation_mark: DER ou MER (imagem ou pdf) (Revisar o atual do semestre passado.)
 #### Scripts de criação do banco de dados
 #### Procedures/Funções
 #### Visões
