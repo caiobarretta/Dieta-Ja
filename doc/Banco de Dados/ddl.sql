@@ -95,7 +95,7 @@ CREATE TABLE Usuario (
     CONSTRAINT PK_Usuario
     PRIMARY KEY (ID_Usuario));
     
-/*Adiciona referências estrangerias nas tabelas necessárias */
+/*Adiciona referências estrangeiras nas tabelas necessárias */
 ALTER TABLE DietaJa.PorcaoDeAlimentoDiasdaSemana ADD CONSTRAINT FK_Rel_Porc_Dia_DiasdaSemana 
 FOREIGN KEY (ID_DiaSemana) REFERENCES DietaJa.DiaDaSemana (ID_DiaSemana);
 
