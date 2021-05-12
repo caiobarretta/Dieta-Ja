@@ -1,8 +1,8 @@
 package core.interfaces.service;
 
-import core.entities.PorcaoDeAlimento;
+import core.entities.Perfil;
 import core.interfaces.service.base.IService;
 
-public interface IPerfilService extends IService<PorcaoDeAlimento> {
+public interface IPerfilService extends IService<Perfil> {
 
 }

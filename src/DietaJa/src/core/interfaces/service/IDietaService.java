@@ -1,8 +1,8 @@
 package core.interfaces.service;
 
-import core.entities.DiaDaSemana;
+import core.entities.Dieta;
 import core.interfaces.service.base.IService;
 
-public interface IDietaService extends IService<DiaDaSemana>{
+public interface IDietaService extends IService<Dieta>{
 
 }

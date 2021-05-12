@@ -6,5 +6,5 @@ import core.entities.Refeicao;
 import core.interfaces.repository.base.IRepository;
 
 public interface IRefeicoesRepository extends IRepository<Refeicao> {
-	List<Refeicao> RetornaRefeicoesPeloIdDaProcaoDeAlimento(int id);
+	List<Refeicao> retornaRefeicoesPeloIdDaProcaoDeAlimento(int id);
 }

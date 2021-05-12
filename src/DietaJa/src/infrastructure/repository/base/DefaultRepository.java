@@ -36,7 +36,7 @@ public abstract class DefaultRepository<TEntity extends Entity> implements IRepo
         throw new UnsupportedOperationException("Implementar");
     }
 
-    public List<TEntity> Search(TEntity entity, String search)
+    public List<TEntity> search(TEntity entity, String search)
     {
     	//TODO : Implementar
         throw new UnsupportedOperationException("Implementar");
