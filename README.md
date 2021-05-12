@@ -24,14 +24,14 @@ Projeto do IFSP
 
 ## BD
 #### :heavy_exclamation_mark: DER ou MER (imagem ou pdf) (Revisar o atual do semestre passado.)
-#### Scripts de criação do banco de dados
+#### Scripts de criação do banco de dados :white_check_mark:
 #### Procedures/Funções
 #### Visões
 #### Cursores
 #### Controle de Acesso
 #### Funções de agregação 
 #### Triggers (Extra)
-#### Todos os scripts .sql utilizados no trabalho.
+#### Todos os scripts .sql utilizados no trabalho. :white_check_mark:
 #### Revisão
 
 ## LP3
