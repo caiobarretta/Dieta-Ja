@@ -1,0 +1,4 @@
+UC: Consultar Sugestão de Dieta
+
+1. O paciente de poder visualizar a dieta que o nutricionista associou a ele.
+	1.1 Assim que o paciente abrir o sistema ele deve ter acesso a dieta facilmente.

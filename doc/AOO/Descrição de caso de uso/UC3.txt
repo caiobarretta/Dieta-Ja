@@ -1,0 +1,4 @@
+UC: Visualizar Relatório Consumo diário de alimento
+
+1. O nutricionista visualizar relatórios no sistema.
+	1.1 O relatório deve conter informações sobre o Consumo diário de alimento.
