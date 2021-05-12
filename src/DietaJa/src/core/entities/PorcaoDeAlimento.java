@@ -9,14 +9,12 @@ public class PorcaoDeAlimento extends Entity {
 	
 	public PorcaoDeAlimento() {
 		PorcaoDeAlimentoDiasdaSemanas =  new ArrayList<PorcaoDeAlimentoDiasdaSemana>();
-		PorcaoDeAlimentoDieta = new ArrayList<PorcaoDeAlimentoDieta>();
-		PorcaoDeAlimentoRegistroDeAtividades = new ArrayList<PorcaoDeAlimentoRegistroDeAtividade>();
+		PorcaoDeAlimentoDietas = new ArrayList<PorcaoDeAlimentoDieta>();
 		RefeicaoPorcaoDeAlimentos = new ArrayList<RefeicaoPorcaoDeAlimento>();
 	}
 
 	protected List<PorcaoDeAlimentoDiasdaSemana> PorcaoDeAlimentoDiasdaSemanas;
 	protected List<PorcaoDeAlimentoDieta> PorcaoDeAlimentoDietas;
-	protected List<PorcaoDeAlimentoRegistroDeAtividade> PorcaoDeAlimentoRegistroDeAtividades;
 	protected List<RefeicaoPorcaoDeAlimento> RefeicaoPorcaoDeAlimentos;
 	
 	public List<PorcaoDeAlimentoDiasdaSemana> getPorcaoDeAlimentoDiasdaSemanas() {
@@ -30,13 +28,6 @@ public class PorcaoDeAlimento extends Entity {
 	}
 	public void setPorcaoDeAlimentoDietas(List<PorcaoDeAlimentoDieta> porcaoDeAlimentoDietas) {
 		PorcaoDeAlimentoDietas = porcaoDeAlimentoDietas;
-	}
-	public List<PorcaoDeAlimentoRegistroDeAtividade> getPorcaoDeAlimentoRegistroDeAtividades() {
-		return PorcaoDeAlimentoRegistroDeAtividades;
-	}
-	public void setPorcaoDeAlimentoRegistroDeAtividades(
-			List<PorcaoDeAlimentoRegistroDeAtividade> porcaoDeAlimentoRegistroDeAtividades) {
-		PorcaoDeAlimentoRegistroDeAtividades = porcaoDeAlimentoRegistroDeAtividades;
 	}
 	public List<RefeicaoPorcaoDeAlimento> getRefeicaoPorcaoDeAlimentos() {
 		return RefeicaoPorcaoDeAlimentos;

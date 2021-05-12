@@ -7,6 +7,8 @@ import core.entities.base.Entity;
 
 public class DiaDaSemana extends Entity {
 	
+	protected List<PorcaoDeAlimentoDiasdaSemana> PorcaoDeAlimentoDiasdaSemanas;
+	
 	public DiaDaSemana() {
 		setPorcaoDeAlimentoDiasdaSemanas(new ArrayList<PorcaoDeAlimentoDiasdaSemana>());
 	}
@@ -19,5 +21,5 @@ public class DiaDaSemana extends Entity {
 		PorcaoDeAlimentoDiasdaSemanas = porcaoDeAlimentoDiasdaSemanas;
 	}
 
-	protected List<PorcaoDeAlimentoDiasdaSemana> PorcaoDeAlimentoDiasdaSemanas;
+	
 }
