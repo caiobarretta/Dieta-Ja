@@ -226,7 +226,7 @@
 									"font": "Arial;13;0",
 									"left": 455,
 									"top": 500.5,
-									"width": 186,
+									"width": 186.97900390625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF3QMaBT6YsEpc="
@@ -2119,7 +2119,7 @@
 									"font": "Arial;13;0",
 									"left": 741,
 									"top": 428.5,
-									"width": 99,
+									"width": 100.32080078125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF3QNUZWMmc1LI="
@@ -2413,7 +2413,7 @@
 									"font": "Arial;13;0",
 									"left": 743.5,
 									"top": 332.5,
-									"width": 190,
+									"width": 190.60986328125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF3QNWQAcvXB4Q="
@@ -2710,7 +2710,7 @@
 									"font": "Arial;13;0",
 									"left": 793.5,
 									"top": 252.5,
-									"width": 122,
+									"width": 122.7216796875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF3QNaSMdHuaj8="
@@ -3004,7 +3004,7 @@
 									"font": "Arial;13;0",
 									"left": 785,
 									"top": 508.5,
-									"width": 195,
+									"width": 196.36083984375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF3QNkZ+deSE9s="
@@ -3298,7 +3298,7 @@
 									"font": "Arial;13;0",
 									"left": 280,
 									"top": 676.5,
-									"width": 308,
+									"width": 308.822265625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF3QNqAV9ySnhg="
@@ -4315,7 +4315,7 @@
 									"font": "Arial;13;0",
 									"left": 423.5,
 									"top": 564.5,
-									"width": 304,
+									"width": 305.4453125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF3QNnYh9lfUzc="
@@ -5443,7 +5443,7 @@
 									"font": "Arial;13;0",
 									"left": 440,
 									"top": 172.5,
-									"width": 153,
+									"width": 153.76171875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF4qTJNu+Hi37I="
@@ -10988,7 +10988,7 @@
 											"top": 1580,
 											"width": 532.66845703125,
 											"height": 13,
-											"text": "#AssociarPorcaoAlimentoDieta(listIdProcaoAlimento: List<int>, iD_Dieta: int): void",
+											"text": "#AssociarPorcaoAlimentoDieta(listIdProcaoAlimento: List<int>, DietaID: int): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -11005,7 +11005,7 @@
 											"top": 1595,
 											"width": 532.66845703125,
 											"height": 13,
-											"text": "#RetornaPorcaoDeAlimentoPeloIdDaDieta(int id): List<PorcaoDeAlimento>",
+											"text": "#RetornaPorcaoDeAlimentoPeloIdDaDieta(id: int): List<PorcaoDeAlimento>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -11810,7 +11810,7 @@
 											"top": 1294,
 											"width": 140.6689453125,
 											"height": 13,
-											"text": "IService"
+											"text": "IRepository"
 										},
 										{
 											"_type": "LabelView",
@@ -12083,7 +12083,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1184,
+									"left": 1185,
 									"top": 1176,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -12104,7 +12104,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 1170,
+									"left": 1171,
 									"top": 1181,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -12125,7 +12125,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 1211,
+									"left": 1214,
 									"top": 1165,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -12144,7 +12144,7 @@
 								"$ref": "AAAAAAF4qdSl1YechgI="
 							},
 							"lineStyle": 1,
-							"points": "1228:1255;1168:1100",
+							"points": "1229:1255;1171:1100",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF4qdhtZpxM+A0="
@@ -12238,7 +12238,7 @@
 								"$ref": "AAAAAAF4qdSl1YechgI="
 							},
 							"lineStyle": 1,
-							"points": "1260:1255;1376:1103",
+							"points": "1260:1255;1377:1103",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF4qdkKDKLSq6w="
@@ -14993,7 +14993,7 @@
 											"font": "Arial;13;0",
 											"left": 981,
 											"top": 999,
-											"width": 316.3466796875,
+											"width": 323.5703125,
 											"height": 13,
 											"text": "«interface»"
 										},
@@ -15006,7 +15006,7 @@
 											"font": "Arial;13;1",
 											"left": 981,
 											"top": 1014,
-											"width": 316.3466796875,
+											"width": 323.5703125,
 											"height": 13,
 											"text": "IReadRepository"
 										},
@@ -15041,7 +15041,7 @@
 									"font": "Arial;13;0",
 									"left": 976,
 									"top": 994,
-									"width": 326.3466796875,
+									"width": 333.5703125,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF4qdeDB5WOjns="
@@ -15094,9 +15094,9 @@
 											"font": "Arial;13;0",
 											"left": 981,
 											"top": 1037,
-											"width": 316.3466796875,
+											"width": 323.5703125,
 											"height": 13,
-											"text": "#Get(int take = 0, int skip = 0): List<TEntity>",
+											"text": "+Get(take: int, skip: int): List<TEntity>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15111,9 +15111,9 @@
 											"font": "Arial;13;0",
 											"left": 981,
 											"top": 1052,
-											"width": 316.3466796875,
+											"width": 323.5703125,
 											"height": 13,
-											"text": "+Get(int id): TEntity",
+											"text": "+Get(id: int): TEntity",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15128,9 +15128,9 @@
 											"font": "Arial;13;0",
 											"left": 981,
 											"top": 1067,
-											"width": 316.3466796875,
+											"width": 323.5703125,
 											"height": 13,
-											"text": "#Get(TEntity entity): TEntity",
+											"text": "+Get(entity: TEntity): TEntity",
 											"horizontalAlignment": 0
 										},
 										{
@@ -15145,16 +15145,16 @@
 											"font": "Arial;13;0",
 											"left": 981,
 											"top": 1082,
-											"width": 316.3466796875,
+											"width": 323.5703125,
 											"height": 13,
-											"text": "#Search(TEntity entity, string search): List<TEntity>",
+											"text": "+Search(entity: TEntity, search: string): List<TEntity>",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 976,
 									"top": 1032,
-									"width": 326.3466796875,
+									"width": 333.5703125,
 									"height": 68
 								},
 								{
@@ -15193,7 +15193,7 @@
 												"$ref": "AAAAAAF4qdfPSZcdhkE="
 											},
 											"font": "Arial;13;0",
-											"left": 1226.15673828125,
+											"left": 1233.38037109375,
 											"top": 981,
 											"width": 80.18994140625,
 											"height": 13,
@@ -15202,7 +15202,7 @@
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 1221.15673828125,
+									"left": 1228.38037109375,
 									"top": 976,
 									"width": 90.18994140625,
 									"height": 23
@@ -15215,7 +15215,7 @@
 							"containerChangeable": true,
 							"left": 976,
 							"top": 976,
-							"width": 336.3466796875,
+							"width": 343.5703125,
 							"height": 124,
 							"nameCompartment": {
 								"$ref": "AAAAAAF4qdeDB5WNrJk="
@@ -16636,7 +16636,7 @@
 											"font": "Arial;13;0",
 											"left": 1325,
 											"top": 1007,
-											"width": 184.37890625,
+											"width": 187.99072265625,
 											"height": 13,
 											"text": "«interface»"
 										},
@@ -16649,7 +16649,7 @@
 											"font": "Arial;13;1",
 											"left": 1325,
 											"top": 1022,
-											"width": 184.37890625,
+											"width": 187.99072265625,
 											"height": 13,
 											"text": "IAlterRepository"
 										},
@@ -16684,7 +16684,7 @@
 									"font": "Arial;13;0",
 									"left": 1320,
 									"top": 1002,
-									"width": 194.37890625,
+									"width": 197.99072265625,
 									"height": 38,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF4qdi7W6Bnwm4="
@@ -16731,7 +16731,7 @@
 									"font": "Arial;13;0",
 									"left": 1320,
 									"top": 1040,
-									"width": 194.37890625,
+									"width": 197.99072265625,
 									"height": 10
 								},
 								{
@@ -16756,9 +16756,9 @@
 											"font": "Arial;13;0",
 											"left": 1325,
 											"top": 1055,
-											"width": 184.37890625,
+											"width": 187.99072265625,
 											"height": 13,
-											"text": "#Add(TEntity entity): void",
+											"text": "+Add(entity: TEntity): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -16773,9 +16773,9 @@
 											"font": "Arial;13;0",
 											"left": 1325,
 											"top": 1070,
-											"width": 184.37890625,
+											"width": 187.99072265625,
 											"height": 13,
-											"text": "#Update(TEntity entity): void",
+											"text": "+Update(entity: TEntity): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -16790,16 +16790,16 @@
 											"font": "Arial;13;0",
 											"left": 1325,
 											"top": 1085,
-											"width": 184.37890625,
+											"width": 187.99072265625,
 											"height": 13,
-											"text": "#Delete(TEntity entity): void",
+											"text": "+Delete(entity: TEntity): void",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1320,
 									"top": 1050,
-									"width": 194.37890625,
+									"width": 197.99072265625,
 									"height": 53
 								},
 								{
@@ -16838,7 +16838,7 @@
 												"$ref": "AAAAAAF4qdkncqQwF+0="
 											},
 											"font": "Arial;13;0",
-											"left": 1438.18896484375,
+											"left": 1441.80078125,
 											"top": 989,
 											"width": 80.18994140625,
 											"height": 13,
@@ -16847,7 +16847,7 @@
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 1433.18896484375,
+									"left": 1436.80078125,
 									"top": 984,
 									"width": 90.18994140625,
 									"height": 23
@@ -16860,7 +16860,7 @@
 							"containerChangeable": true,
 							"left": 1320,
 							"top": 984,
-							"width": 204.37890625,
+							"width": 207.99072265625,
 							"height": 119,
 							"nameCompartment": {
 								"$ref": "AAAAAAF4qdi7W6BmhKc="
@@ -24071,7 +24071,8 @@
 														"$ref": "AAAAAAF4qZA/cFVONYo="
 													},
 													"name": "UsuarioID",
-													"visibility": "protected"
+													"visibility": "protected",
+													"type": ""
 												},
 												{
 													"_type": "UMLAttribute",
@@ -25105,7 +25106,7 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qbm4NSiDQrk="
 											},
-											"name": "IService",
+											"name": "IRepository",
 											"ownedElements": [
 												{
 													"_type": "UMLGeneralization",
@@ -25517,7 +25518,7 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qfPodSoJItg="
 											},
-											"name": "iD_Dieta",
+											"name": "DietaID",
 											"type": "int"
 										},
 										{
@@ -25546,8 +25547,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qfoMbTBGnEk="
 											},
-											"name": "int id",
-											"type": ""
+											"name": "id",
+											"type": "int"
 										},
 										{
 											"_type": "UMLParameter",
@@ -26058,7 +26059,6 @@
 										"$ref": "AAAAAAF4qdeDBpWKO1k="
 									},
 									"name": "Get",
-									"visibility": "protected",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -26066,9 +26066,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qeWbKuVbT2A="
 											},
-											"name": "int take",
-											"type": "",
-											"defaultValue": "0"
+											"name": "take",
+											"type": "int"
 										},
 										{
 											"_type": "UMLParameter",
@@ -26076,9 +26075,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qeWbKuVbT2A="
 											},
-											"name": "int skip",
-											"type": "",
-											"defaultValue": "0"
+											"name": "skip",
+											"type": "int"
 										},
 										{
 											"_type": "UMLParameter",
@@ -26105,8 +26103,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qeZqDelz6zY="
 											},
-											"name": "int id",
-											"type": ""
+											"name": "id",
+											"type": "int"
 										},
 										{
 											"_type": "UMLParameter",
@@ -26126,7 +26124,6 @@
 										"$ref": "AAAAAAF4qdeDBpWKO1k="
 									},
 									"name": "Get",
-									"visibility": "protected",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -26134,8 +26131,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qebHFet4Mjw="
 											},
-											"name": "TEntity entity",
-											"type": ""
+											"name": "entity",
+											"type": "TEntity"
 										},
 										{
 											"_type": "UMLParameter",
@@ -26155,7 +26152,6 @@
 										"$ref": "AAAAAAF4qdeDBpWKO1k="
 									},
 									"name": "Search",
-									"visibility": "protected",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -26163,8 +26159,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qee05OzrSiM="
 											},
-											"name": "TEntity entity",
-											"type": ""
+											"name": "entity",
+											"type": "TEntity"
 										},
 										{
 											"_type": "UMLParameter",
@@ -26172,8 +26168,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qee05OzrSiM="
 											},
-											"name": "string search",
-											"type": ""
+											"name": "search",
+											"type": "string"
 										},
 										{
 											"_type": "UMLParameter",
@@ -26226,7 +26222,6 @@
 										"$ref": "AAAAAAF4qdi7W6Bjy7Y="
 									},
 									"name": "Add",
-									"visibility": "protected",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -26234,8 +26229,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qeFmCciSPno="
 											},
-											"name": "TEntity entity",
-											"type": ""
+											"name": "entity",
+											"type": "TEntity"
 										},
 										{
 											"_type": "UMLParameter",
@@ -26255,7 +26250,6 @@
 										"$ref": "AAAAAAF4qdi7W6Bjy7Y="
 									},
 									"name": "Update",
-									"visibility": "protected",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -26263,8 +26257,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qeIKNcrGNyI="
 											},
-											"name": "TEntity entity",
-											"type": ""
+											"name": "entity",
+											"type": "TEntity"
 										},
 										{
 											"_type": "UMLParameter",
@@ -26284,7 +26278,6 @@
 										"$ref": "AAAAAAF4qdi7W6Bjy7Y="
 									},
 									"name": "Delete",
-									"visibility": "protected",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
@@ -26292,8 +26285,8 @@
 											"_parent": {
 												"$ref": "AAAAAAF4qeMgdtHkJEU="
 											},
-											"name": "TEntity entity",
-											"type": ""
+											"name": "entity",
+											"type": "TEntity"
 										},
 										{
 											"_type": "UMLParameter",
