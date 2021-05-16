@@ -3,41 +3,37 @@ package services.base;
 import java.util.List;
 
 import core.entities.base.Entity;
+import core.interfaces.repository.base.IRepository;
 import core.interfaces.service.base.IService;
 
 public abstract class DefaultService<TEntity extends Entity> implements IService<TEntity> {
 	
-	public void add(TEntity entity) {
-		//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+	protected final IRepository<TEntity> _repo;
+	 public DefaultService(IRepository<TEntity> repo) {
+		 _repo =  repo;
+	 }
+	
+	public Integer add(TEntity entity) {
+		return _repo.add(entity);
 	}
 
-    public void delete(TEntity entity) {
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+    public Integer delete(Integer id) {
+    	return _repo.delete(id);
     }
 
-    public List<TEntity> get(int take, int skip){
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+    public List<TEntity> get(Integer take, Integer skip){
+    	return _repo.get(take, skip);
     }
-    public TEntity get(int id) {
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
-    }
-
-    public TEntity get(TEntity entity) {
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+    
+    public TEntity get(Integer id) {
+    	return _repo.get(id);
     }
 
-    public List<TEntity> search(TEntity entity, String search){
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+    public List<TEntity> search(String search){
+    	return _repo.search(search);
     }
 
-    public void update(TEntity entity) {
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+    public Integer update(TEntity entity) {
+    	return _repo.update(entity);
     }
 }

@@ -6,7 +6,7 @@ import core.entities.PorcaoDeAlimento;
 import core.interfaces.repository.base.IRepository;
 
 public interface IPorcaoDeAlimentoRepository extends IRepository<PorcaoDeAlimento> {
-	void associarPorcaoRefeicoes(List<Integer> listIdRefeicao, int porcaoDeAlimentoID);
-    void associarPorcaoAlimentoDieta(List<Integer> listIdProcaoAlimento, int dietaID);
-    List<PorcaoDeAlimento> retornaPorcaoDeAlimentoPeloIdDaDieta(int id);
+	Integer associarPorcaoRefeicoes(List<Integer> listIdRefeicao, Integer porcaoDeAlimentoID);
+	Integer associarPorcaoAlimentoDieta(List<Integer> listIdProcaoAlimento, Integer dietaID);
+    List<PorcaoDeAlimento> retornaPorcaoDeAlimentoPeloIdDaDieta(Integer id);
 }

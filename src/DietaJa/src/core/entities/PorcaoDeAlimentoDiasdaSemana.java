@@ -1,25 +1,25 @@
 package core.entities;
 
 public class PorcaoDeAlimentoDiasdaSemana {
-	protected int ID;
-	protected int DiaSemanaID;
-	protected int PorcaoAlimentoID;
-	public int getID() {
+	protected Integer ID;
+	protected Integer DiaSemanaID;
+	protected Integer PorcaoAlimentoID;
+	public Integer getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void setID(Integer iD) {
 		ID = iD;
 	}
-	public int getDiaSemanaID() {
+	public Integer getDiaSemanaID() {
 		return DiaSemanaID;
 	}
-	public void setDiaSemanaID(int diaSemanaID) {
+	public void setDiaSemanaID(Integer diaSemanaID) {
 		DiaSemanaID = diaSemanaID;
 	}
-	public int getPorcaoAlimentoID() {
+	public Integer getPorcaoAlimentoID() {
 		return PorcaoAlimentoID;
 	}
-	public void setPorcaoAlimentoID(int porcaoAlimentoID) {
+	public void setPorcaoAlimentoID(Integer porcaoAlimentoID) {
 		PorcaoAlimentoID = porcaoAlimentoID;
 	}
 	

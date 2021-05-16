@@ -1,8 +1,8 @@
 package core.interfaces.repository;
 
-import core.entities.DiaDaSemana;
+import core.entities.Dieta;
 import core.interfaces.repository.base.IRepository;
 
-public interface IDietaRepository extends IRepository<DiaDaSemana>{
+public interface IDietaRepository extends IRepository<Dieta>{
 	
 }

@@ -4,25 +4,20 @@ import java.util.Date;
 
 import core.entities.base.Entity;
 
-public class RegistroDeAtividade extends Entity {
-	protected int RegistroDeAtividadeID;
+public class RegistroDeAtividade {
+	protected Integer RegistroDeAtividadeID;
 	protected Date Registro;
 	protected String Sentimento;
-	protected int UsuarioID;
-	protected int DietaID;
-	protected int RefeicaoID;
-	protected int PorcaoDeAlimentoID;
-	protected int DiaDaSemanaID;
-	protected Usuario Usuario;
-	protected Dieta Dieta;
-	protected Refeicao Refeicao;
-	protected PorcaoDeAlimento PorcaoDeAlimento;
-	protected DiaDaSemana DiaDaSemana;
+	protected Integer UsuarioID;
+	protected Integer DietaID;
+	protected RefeicaoEnum Refeicao;
+	protected Integer PorcaoDeAlimentoID;
+	protected DiaDaSemanaEnum DiaDaSemana;
 	
-	public int getRegistroDeAtividadeID() {
+	public Integer getRegistroDeAtividadeID() {
 		return RegistroDeAtividadeID;
 	}
-	public void setRegistroDeAtividadeID(int registroDeAtividadeID) {
+	public void setRegistroDeAtividadeID(Integer registroDeAtividadeID) {
 		RegistroDeAtividadeID = registroDeAtividadeID;
 	}
 	public Date getRegistro() {
@@ -37,65 +32,34 @@ public class RegistroDeAtividade extends Entity {
 	public void setSentimento(String sentimento) {
 		Sentimento = sentimento;
 	}
-	public int getUsuarioID() {
+	public Integer getUsuarioID() {
 		return UsuarioID;
 	}
-	public void setUsuarioID(int usuarioID) {
+	public void setUsuarioID(Integer usuarioID) {
 		UsuarioID = usuarioID;
 	}
-	public Usuario getUsuario() {
-		return Usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		Usuario = usuario;
-	}
-	public int getDietaID() {
+	public Integer getDietaID() {
 		return DietaID;
 	}
-	public void setDietaID(int dietaID) {
+	public void setDietaID(Integer dietaID) {
 		DietaID = dietaID;
 	}
-	public int getRefeicaoID() {
-		return RefeicaoID;
-	}
-	public void setRefeicaoID(int refeicaoID) {
-		RefeicaoID = refeicaoID;
-	}
-	public int getPorcaoDeAlimentoID() {
-		return PorcaoDeAlimentoID;
-	}
-	public void setPorcaoDeAlimentoID(int porcaoDeAlimentoID) {
-		PorcaoDeAlimentoID = porcaoDeAlimentoID;
-	}
-	public int getDiaDaSemanaID() {
-		return DiaDaSemanaID;
-	}
-	public void setDiaDaSemanaID(int diaDaSemanaID) {
-		DiaDaSemanaID = diaDaSemanaID;
-	}
-	public Dieta getDieta() {
-		return Dieta;
-	}
-	public void setDieta(Dieta dieta) {
-		Dieta = dieta;
-	}
-	public Refeicao getRefeicao() {
+	public RefeicaoEnum getRefeicaoID() {
 		return Refeicao;
 	}
-	public void setRefeicao(Refeicao refeicao) {
+	public void setRefeicaoID(RefeicaoEnum refeicao) {
 		Refeicao = refeicao;
 	}
-	public PorcaoDeAlimento getPorcaoDeAlimento() {
-		return PorcaoDeAlimento;
+	public Integer getPorcaoDeAlimentoID() {
+		return PorcaoDeAlimentoID;
 	}
-	public void setPorcaoDeAlimento(PorcaoDeAlimento porcaoDeAlimento) {
-		PorcaoDeAlimento = porcaoDeAlimento;
+	public void setPorcaoDeAlimentoID(Integer porcaoDeAlimentoID) {
+		PorcaoDeAlimentoID = porcaoDeAlimentoID;
 	}
-	public DiaDaSemana getDiaDaSemana() {
+	public DiaDaSemanaEnum getDiaDaSemanaID() {
 		return DiaDaSemana;
 	}
-	public void setDiaDaSemana(DiaDaSemana diaDaSemana) {
+	public void setDiaDaSemanaID(DiaDaSemanaEnum diaDaSemana) {
 		DiaDaSemana = diaDaSemana;
 	}
-	
 }

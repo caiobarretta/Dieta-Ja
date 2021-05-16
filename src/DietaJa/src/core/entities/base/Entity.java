@@ -1,15 +1,15 @@
 package core.entities.base;
 
 public abstract class Entity {
-	protected int ID;
+	protected Integer ID;
 	protected String Descricao;
     protected String Nome;
     protected boolean Ativo;
     
-    public int getID() {
+    public Integer getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void setID(Integer iD) {
 		ID = iD;
 	}
 	public String getDescricao() {

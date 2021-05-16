@@ -4,19 +4,23 @@ import java.util.List;
 
 import core.entities.PorcaoDeAlimento;
 import core.entities.RegistroDeAtividade;
-import core.interfaces.repository.IRefeicoesRepository;
+import core.interfaces.dao.IRegistroDeAtividadeDAO;
+import core.interfaces.dao.base.IDAO;
 import core.interfaces.repository.IRegistroDeAtividadeRepository;
 import infrastructure.repository.base.DefaultRepository;
 
-public class RegistroDeAtividadeRepository extends DefaultRepository<RegistroDeAtividade> implements IRegistroDeAtividadeRepository {
+public class RegistroDeAtividadeRepository implements IRegistroDeAtividadeRepository {
 	
-	public void associarPorcaoRegistroDeAlimentos(List<Integer> lstIdPorcaoDeAlimento, int id){
-		//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+	protected final IRegistroDeAtividadeDAO _idao;
+	public RegistroDeAtividadeRepository(IRegistroDeAtividadeDAO dao) {
+		this._idao = dao;
+	}
+	
+	public Integer associarPorcaoRegistroDeAlimentos(List<Integer> lstIdPorcaoDeAlimento, Integer id){
+		return this._idao.associarPorcaoRegistroDeAlimentos(lstIdPorcaoDeAlimento, id);
     }
 
-    public List<PorcaoDeAlimento> retornaProcaoDeAlimentoPeloRegistroDeAtividade(int id){
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+    public List<PorcaoDeAlimento> retornaProcaoDeAlimentoPeloRegistroDeAtividade(Integer id){
+    	return this._idao.retornaProcaoDeAlimentoPeloRegistroDeAtividade(id);
     }
 }

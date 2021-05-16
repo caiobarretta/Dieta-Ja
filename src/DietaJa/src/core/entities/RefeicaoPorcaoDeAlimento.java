@@ -1,41 +1,27 @@
 package core.entities;
 
 public class RefeicaoPorcaoDeAlimento {
-	protected int ID;
-	protected int RefeicaoID;
-	protected int PorcAlimentoID;
-	protected PorcaoDeAlimento PorcAlimento;
-	protected Refeicao Refeicao;
+	protected Integer ID;
+	protected RefeicaoEnum Refeicao;
+	protected Integer PorcAlimentoID;
 	
-	public int getID() {
+	public Integer getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void setID(Integer iD) {
 		ID = iD;
 	}
-	public int getRefeicaoID() {
-		return RefeicaoID;
-	}
-	public void setRefeicaoID(int refeicaoID) {
-		RefeicaoID = refeicaoID;
-	}
-	public int getPorcAlimentoID() {
-		return PorcAlimentoID;
-	}
-	public void setPorcAlimentoID(int porcAlimentoID) {
-		PorcAlimentoID = porcAlimentoID;
-	}
-	public PorcaoDeAlimento getPorcAlimento() {
-		return PorcAlimento;
-	}
-	public void setPorcAlimento(PorcaoDeAlimento porcAlimento) {
-		PorcAlimento = porcAlimento;
-	}
-	public Refeicao getRefeicao() {
+	public RefeicaoEnum getRefeicaoID() {
 		return Refeicao;
 	}
-	public void setRefeicao(Refeicao refeicao) {
+	public void setRefeicaoID(RefeicaoEnum refeicao) {
 		Refeicao = refeicao;
+	}
+	public Integer getPorcAlimentoID() {
+		return PorcAlimentoID;
+	}
+	public void setPorcAlimentoID(Integer porcAlimentoID) {
+		PorcAlimentoID = porcAlimentoID;
 	}
 	
 }

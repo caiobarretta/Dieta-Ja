@@ -2,49 +2,34 @@ package infrastructure.repository.base;
 
 import java.util.List;
 import core.entities.base.Entity;
+import core.interfaces.dao.base.IDAO;
 import core.interfaces.repository.base.IRepository;
 
 public abstract class DefaultRepository<TEntity extends Entity> implements IRepository<TEntity>{
 
-	public void add(TEntity entity)
-    {
-        //TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+	public Integer add(TEntity entity){
+		return this.getDAO().add(entity);
     }
 
-    public void delete(TEntity entity)
-    {
-        //TODO : Implementar
-    	throw new UnsupportedOperationException("Implementar");
+    public Integer delete(Integer id){
+    	return this.getDAO().delete(id);
     }
 
-    public List<TEntity> get(int take, int skip)
-    {
-    	//TODO : Implementar
-    	throw new UnsupportedOperationException("Implementar");
+    public List<TEntity> get(Integer take, Integer skip){
+    	return this.getDAO().get(take, skip);
     }
 
-    public TEntity get(int id)
-    {
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+    public TEntity get(Integer id){
+    	return this.getDAO().get(id);
     }
 
-    public TEntity get(TEntity entity)
-    {
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+    public List<TEntity> search(String search){
+    	return this.getDAO().search(search);
     }
 
-    public List<TEntity> search(TEntity entity, String search)
-    {
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+    public Integer update(TEntity entity){
+    	return getDAO().update(entity);
     }
-
-    public void update(TEntity entity)
-    {
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
-    }
+    
+    public abstract IDAO<TEntity> getDAO();
 }

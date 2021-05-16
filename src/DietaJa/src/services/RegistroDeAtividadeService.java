@@ -4,18 +4,22 @@ import java.util.List;
 
 import core.entities.PorcaoDeAlimento;
 import core.entities.RegistroDeAtividade;
+import core.interfaces.repository.IRegistroDeAtividadeRepository;
 import core.interfaces.service.IRegistroDeAtividadeService;
 import services.base.DefaultService;
 
-public class RegistroDeAtividadeService extends DefaultService<RegistroDeAtividade> implements IRegistroDeAtividadeService{
+public class RegistroDeAtividadeService implements IRegistroDeAtividadeService{
 	
-	public List<PorcaoDeAlimento> RetornaProcaoDeAlimentoPeloRegistroDeAtividade(int id){
-		//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+	protected final IRegistroDeAtividadeRepository _repo;
+	public RegistroDeAtividadeService(IRegistroDeAtividadeRepository repo) {
+		this._repo = repo;
 	}
 
-    public void AssociarPorcaoRegistroDeAlimentos(List<Integer> lstIdPorcaoDeAlimento, int id) {
-    	//TODO : Implementar
-        throw new UnsupportedOperationException("Implementar");
+	public List<PorcaoDeAlimento> retornaProcaoDeAlimentoPeloRegistroDeAtividade(Integer id){
+		return this._repo.retornaProcaoDeAlimentoPeloRegistroDeAtividade(id);
+	}
+
+    public Integer associarPorcaoRegistroDeAlimentos(List<Integer> lstIdPorcaoDeAlimento, Integer id) {
+    	return this._repo.associarPorcaoRegistroDeAlimentos(lstIdPorcaoDeAlimento, id);
     }
 }
