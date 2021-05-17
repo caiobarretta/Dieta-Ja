@@ -93,13 +93,26 @@ VALUES (1, 1, 4, "2021-04-21", 6, "Fim do dia, consegui finalizar o dia bem.", 1
 
 INSERT INTO DietaJa.RegistroDeAtividade (ID_Dieta, ID_PorcaoAlimento, ID_Usuario, Registro, 
 Refeicao, Comentarios, Sentimento, DiaDaSemana) 
-VALUES (1, 5, 4, "2021-04-21", 5, "Consegui fazer o jantar certinho vamos para a ceia.", 2, 1);
+VALUES (1, 5, 4, "2021-04-22", 3, "Consegui fazer o jantar certinho vamos para a ceia.", 2, 1);
 
 INSERT INTO DietaJa.RegistroDeAtividade (ID_Dieta, ID_PorcaoAlimento, ID_Usuario, Registro, 
 Refeicao, Comentarios, Sentimento, DiaDaSemana) 
-VALUES (1, 3, 4, "2021-04-21", 6, "Fim do dia, consegui finalizar o dia bem.", 1, 1);
+VALUES (1, 3, 4, "2021-04-22", 2, "Fim do dia, consegui finalizar o dia bem.", 1, 1);
+
+INSERT INTO DietaJa.RegistroDeAtividade (ID_Dieta, ID_PorcaoAlimento, ID_Usuario, Registro, 
+Refeicao, Comentarios, Sentimento, DiaDaSemana) 
+VALUES (1, 5, 4, "2021-04-22", 3, "Consegui fazer o jantar certinho vamos para a ceia.", 2, 1);
+
+INSERT INTO DietaJa.RegistroDeAtividade (ID_Dieta, ID_PorcaoAlimento, ID_Usuario, Registro, 
+Refeicao, Comentarios, Sentimento, DiaDaSemana) 
+VALUES (1, 2, 4, "2021-04-23", 2, "Fim do dia, consegui finalizar o dia bem.", 3, 2);
+
+INSERT INTO DietaJa.RegistroDeAtividade (ID_Dieta, ID_PorcaoAlimento, ID_Usuario, Registro, 
+Refeicao, Comentarios, Sentimento, DiaDaSemana) 
+VALUES (1, 4, 4, "2021-04-25", 3, "Finalizei o jantar e me sinto bem .", 3, 2);
+
+INSERT INTO DietaJa.RegistroDeAtividade (ID_Dieta, ID_PorcaoAlimento, ID_Usuario, Registro, 
+Refeicao, Comentarios, Sentimento, DiaDaSemana) 
+VALUES (1, 1, 4, "2021-04-25", 2, "Estou tentando finalizar o processo corretamente.", 5, 2);
 
 -- Construir mais casos de teste para popular o BD
-
-
-

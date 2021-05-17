@@ -9,14 +9,14 @@ SELECT * FROM DietaJa.RegistroDeAtividade AS ra WHERE ID_Usuario IN
 (SELECT ID_Usuario FROM DietaJa.Usuario as usr WHERE TipoUsuario = 3) 
 AND Registro BETWEEN "2021-04-01" AND "2021-06-30";
 
--- 
+-- Consulta Porção de Alimento e sua descrição correlacionando ao tipo de dieta e a descrição da dieta
 SELECT porc.Nome AS "Porção", porc.Descricao, dieta.Nome AS "Dieta", dieta.Descricao AS "Descricao Dieta"
 FROM PorcaoDeAlimento AS porc
 INNER JOIN PorcaoDeAlimentoDieta AS porcDieta 
 	ON porc.ID_PorcaoAlimento = porcDieta.ID_PorcaoDeAlimentoDieta
 INNER JOIN Dieta AS dieta ON porcDieta.ID_Dieta = dieta.ID_Dieta;
 
--- Porcao de Alimento para o Paciente x Dieta x PorcaoDeAlimentoDiasDaSemana;
+-- Consulta Porção de Alimento para o Paciente x Dieta x PorcaoDeAlimentoDiasDaSemana;
 SELECT dieta.Nome AS "Dieta", porc.Nome AS "Porção", 
 CASE
 	WHEN porcDias.DiaDaSemana = 1 THEN "Segunda-Feira"
@@ -34,11 +34,41 @@ INNER JOIN Dieta AS dieta ON porcDieta.ID_Dieta = dieta.ID_Dieta
 INNER JOIN PorcaoDeAlimentoDiasDaSemana as porcDias
 	ON porc.ID_PorcaoAlimento = porcDias.ID_PorcaoAlimento;
 
--- Contar quantos usuários estão ativos na plataforma x usuários totais plataforma
--- SELECT COUNT(Tab1.Ativo), COUNT(Tab2.Ativo) AS "Usuários Ativos" FROM DietaJa.Usuario AS Tab1, 
--- DietaJa.Usuario AS Tab2 WHERE Tab1.Ativo = true;
+-- Consulta quais usuários estão ativos ou inativos na plataforma;
+SELECT tab1.Nome,
+CASE
+	WHEN tab1.Ativo = true THEN "Ativo"
+    WHEN tab1.Ativo = false THEN "Inativo"
+    WHEN tab2.Ativo = true THEN "Ativo"
+    WHEN tab2.Ativo = false THEN "Inativo"
+END AS "Ativo/Inativo"
+FROM DietaJa.Usuario tab1
+JOIN DietaJa.Usuario tab2 ON tab1.ID_Usuario = tab2.ID_Usuario
+ORDER BY Nome;
 
--- VIEW:
+-- Consulta relação entre Sentimento e a Refeição sendo realizada pelo usuário - este item poderá ser futuramente uma view.
+SELECT 
+CASE
+	WHEN ra.Sentimento = 1 THEN "Muito Satisfeito"
+    WHEN ra.Sentimento = 2 THEN "Satisfeito"
+    WHEN ra.Sentimento = 3 THEN "Razoavelmente satisfeito"
+    WHEN ra.Sentimento = 4 THEN "Um pouco insatisfeito"
+    WHEN ra.Sentimento = 5 THEN "Insatisfeito"
+    WHEN ra.Sentimento = 6 THEN "Totalmente insatisfeito"
+END AS "Sentimento",
+CASE
+	WHEN ra.Refeicao = 1 THEN "Café da manhã"
+    WHEN ra.Refeicao = 2 THEN "Brunch"
+    WHEN ra.Refeicao = 3 THEN "Almoço"
+    WHEN ra.Refeicao = 4 THEN "Lanche"
+    WHEN ra.Refeicao = 5 THEN "Jantar"
+    WHEN ra.Refeicao = 6 THEN "Ceia"
+END AS "Refeição"
+FROM DietaJa.RegistroDeAtividade ra
+JOIN DietaJa.Usuario usr ON ra.ID_Usuario = usr.ID_Usuario
+GROUP BY Refeicao, Sentimento;
+
+-- VIEW de registros de atividades dos usuários:
 CREATE VIEW view_registroDeAtividadesDosUsuarios AS
 SELECT usr.Nome AS "Usuário", dieta.Nome AS "Dieta", porc.Nome, registro.comentarios AS "Comentários",
 CASE
