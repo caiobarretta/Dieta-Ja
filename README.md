@@ -2,7 +2,7 @@
 Projeto do IFSP
 
 ## AOO
-#### :heavy_exclamation_mark: Lista dos requisitos funcionais, não funcionais e de negócio. (Revisar o atual do semestre passado.)
+#### :heavy_exclamation_mark: Lista dos requisitos funcionais, não funcionais e de negócio. () :white_check_mark:
 #### :heavy_exclamation_mark: 1. Diagrama de caso de uso (Revisar o atual do semestre passado.)
   1. Descrição de 4 casos de uso relevantes no projeto
   1. Protótipo de tela de 4 casos de uso relevantes do projeto
