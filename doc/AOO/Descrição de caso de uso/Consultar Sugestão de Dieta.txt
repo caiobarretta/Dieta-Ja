@@ -1,0 +1,5 @@
+UC: Consultar Sugestão de Dieta
+
+1. O paciente de poder visualizar a dieta que o nutricionista associou a ele.
+	1.1 Assim que o paciente abrir o sistema ele deve ter acesso a dieta facilmente na tela inicial.
+	1.2 A dieta associada ao paciente deve conter a visualização das Porção de Alimento e dias da semana associados.

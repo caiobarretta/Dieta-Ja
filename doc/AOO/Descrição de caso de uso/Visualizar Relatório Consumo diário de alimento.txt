@@ -1,0 +1,6 @@
+UC: Visualizar Relatório Consumo diário de alimento
+
+1. O nutricionista deve conseguir visualizar relatório Consumo diário de alimento no sistema.
+	1.1 O relatório deve conter informações sobre o Consumo diário de alimento dos pacientes ativos no sistema.
+2. O paciente deve conseguir visualizar relatório Consumo diário de alimento no sistema.
+	2.1 O relatório deve conter informações sobre o Consumo diário de alimento somente do paciente em questão.

@@ -1,5 +1,0 @@
-UC: Cadastrar Registro Consumo diário de alimento
-
-1. O nutricionista deseja que o paciente registre diariamente como está sendo a experiência da dieta recomendada.
-2. Os dados devem ser disponibilizados na forma de relatório.
-3. Os dados do relatório devem conter usuário, dieta, refeição, porção de alimento e de dia da semana.

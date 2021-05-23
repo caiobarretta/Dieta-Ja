@@ -1,0 +1,6 @@
+UC: Cadastrar Registro Consumo diário de alimento
+
+1. O pode paciente registrar diariamente como está sendo a experiência da dieta recomendada.
+	1.1 O paciente pode registrar o sentimento de satisfação conforme a dieta passada pelo nutricionista.
+	1.2 O registro tem como base dias da semana, refeição realizadas.
+
