@@ -5,7 +5,7 @@
 1. Lista dos requisitos funcionais :white_check_mark:
 2. Versão inicial do diagrama dos casos de uso que serão implementados (primeira iteração). :white_check_mark:
 3. Detalhamento de 4 casos de uso importantes para o projeto e suas respectivas descrições. :white_check_mark:
-4. Diagrama de classes (a mesma versão que está sendo pedida em linguagem de programação III também precisa ser entregue aqui).
+4. Diagrama de classes (a mesma versão que está sendo pedida em linguagem de programação III também precisa ser entregue aqui). :white_check_mark:
 5. 2 diagramas de atividades relevantes no projeto
 6. 2 diagramas de sequência
 7. Revisão
