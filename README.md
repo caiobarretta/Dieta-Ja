@@ -1,8 +1,7 @@
-# Dieta-Ja
-Projeto do IFSP
+# DietaJá - Projeto do IFSP
 
 ## 1. Entrega Parcial - Maio/21
-## AOO
+### AOO
 1. Lista dos requisitos funcionais :white_check_mark:
 2. Versão inicial do diagrama dos casos de uso que serão implementados (primeira iteração). :white_check_mark:
 3. Detalhamento de 4 casos de uso importantes para o projeto e suas respectivas descrições.
@@ -11,7 +10,7 @@ Projeto do IFSP
 6. 2 diagramas de sequência
 7. Revisão
 
-## BD
+### BD
 1. ER ou MER (imagem ou pdf) :white_check_mark:
 2. Scripts de criação do banco de dados :white_check_mark:
 3. Consultas simples
@@ -24,7 +23,7 @@ Projeto do IFSP
 10. Todos os scripts .sql utilizados no trabalho. :white_check_mark:
 11. Revisão
 
-## LP3
+### LP3
 1. Implementar protótipos UI Desktop Java
 2. Implementar classes do diagrama 
 3. Implementar persistência de banco
@@ -32,8 +31,8 @@ Projeto do IFSP
 5. Revisão
 6. Teste De usuário.
 
-# Entrega Final
-##  IHC
+## Entrega Final
+###  IHC
 1.  Protótipo das telas da aplicação (Revisar o atual do semestre passado.)
 2. Propostas de evolução das interfaces.
 3. Arquivo de texto (.pdf) especificando os princípios de design utilizados no projeto.
@@ -43,7 +42,7 @@ Projeto do IFSP
 7. Arquivo de texto (.pdf) especificando os princípios de design
 utilizados no projeto.
 
-## Slides da apresentação
+### Slides da apresentação
 - AOO
 - IHC
 - BD
