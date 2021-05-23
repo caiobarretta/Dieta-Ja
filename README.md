@@ -32,7 +32,6 @@
 6. Teste De usuário.
 - Até agora vimos os principais conceitos da programação orientada a objetos. Abaixo, listamos os principais conceitos abordados:
 - Representação de classes, com atributos e métodos. Instanciação de objetos. Controle acesso, através dos modificadores public, private e protected. Herança. Interfaces. Polimorfismo. Agora chegou a hora de aplicar esses conceitos no projeto interdisciplinar!
-
 A atividade consiste em elaborar um diagrama UML que represente os relacionamentos entre as classes definidas no projeto. Além disso, requeremos também a implementação inicial do projeto, ou seja, a implementação parcial. Neste contexto, vocês terão que submeter, juntamente com o diagrama de classes, os arquivos .java que representam a aplicação desenvolvida até o momento.
 
 ## Entrega Final
