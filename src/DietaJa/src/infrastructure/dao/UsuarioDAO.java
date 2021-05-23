@@ -14,6 +14,7 @@ import core.entities.Usuario;
 import core.interfaces.dao.IUsuarioDAO;
 import infrastructure.dao.base.DAOConnection;
 import infrastructure.dao.base.DefaultDAO;
+import infrastructure.dao.helper.HelperHashMap;
 
 public class UsuarioDAO extends DefaultDAO<Usuario> implements IUsuarioDAO{
 
@@ -60,8 +61,14 @@ public class UsuarioDAO extends DefaultDAO<Usuario> implements IUsuarioDAO{
 
 	@Override
 	public boolean isUsuario(String usuario, String senha, Integer CodigoUsuario) {
-		// TODO Auto-generated method stub
-		return false;
+		String query = "SELECT * FROM Usuario WHERE usuario = ? and senha = ?";
+		var map = HelperHashMap.criarHashMapComNStringsSequenciais(usuario, senha);
+		var lst = super.executeQuery(query, map);
+		if(lst.isEmpty())
+			return false;
+		var usr = lst.get(0);
+		CodigoUsuario = usr.getID();
+		return true;
 	}
 
 	@Override

@@ -4,18 +4,24 @@ import java.sql.Connection;
 
 import core.interfaces.dao.IDietaDAO;
 import core.interfaces.dao.IPorcaoDeAlimentoDAO;
+import core.interfaces.dao.IUsuarioDAO;
 import core.interfaces.repository.IDietaRepository;
 import core.interfaces.repository.IPorcaoDeAlimentoRepository;
+import core.interfaces.repository.IUsuarioRepository;
 import core.interfaces.service.IDietaService;
 import core.interfaces.service.IPorcaoDeAlimentoService;
+import core.interfaces.service.IUsuarioService;
 import core.ioc.Container;
 import infrastructure.dao.DietaDAO;
 import infrastructure.dao.PorcaoDeAlimentoDAO;
+import infrastructure.dao.UsuarioDAO;
 import infrastructure.dao.base.DAOConnection;
 import infrastructure.repository.DietaRepository;
 import infrastructure.repository.PorcaoDeAlimentoRepository;
+import infrastructure.repository.UsuarioRepository;
 import services.DietaService;
 import services.PorcaoDeAlimentoService;
+import services.UsuarioService;
 
 class Config {
 	
@@ -35,6 +41,7 @@ class Config {
 	private static void getAllContainerConfig(Container container, Connection conn) {
 		dietaContainerConfig(container, conn);
 		porcaoDeAlimentoContainerConfig(container, conn);
+		usuarioContainerConfig(container, conn);
 	}
 
 	private static void dietaContainerConfig(Container container, Connection conn) {
@@ -53,6 +60,15 @@ class Config {
 	    container.register(IPorcaoDeAlimentoRepository.class, porcaoDeAlimentoRepositoryRegister);
 	    var porcaoDeAlimentoServiceRegister = new PorcaoDeAlimentoService(new PorcaoDeAlimentoRepository(new PorcaoDeAlimentoDAO(conn)));
 	    container.register(IPorcaoDeAlimentoService.class, porcaoDeAlimentoServiceRegister);
+	}
+	
+	private static void usuarioContainerConfig(Container container, Connection conn) {
+		var usuarioDAORegister = new UsuarioDAO(conn);
+		container.register(IUsuarioDAO.class, usuarioDAORegister);
+		var usuarioRepositoryRegister = new UsuarioRepository(new UsuarioDAO(conn));
+		container.register(IUsuarioRepository.class, usuarioRepositoryRegister);
+		var usuarioServiceRegister = new UsuarioService(new UsuarioRepository(new UsuarioDAO(conn)));
+		container.register(IUsuarioService.class, usuarioServiceRegister);
 	}
 
 }

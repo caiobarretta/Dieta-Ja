@@ -10,6 +10,7 @@ public class AllTestsIntegracao {
 		//$JUnit-BEGIN$
 		suite.addTestSuite(DietaServiceTest.class);
 		suite.addTestSuite(PorcaoDeAlimentoServiceTest.class);
+		suite.addTestSuite(UsuarioServiceTest.class);
 		//$JUnit-END$
 		return suite;
 	}

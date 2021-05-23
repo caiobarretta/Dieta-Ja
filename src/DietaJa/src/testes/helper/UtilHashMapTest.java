@@ -11,7 +11,6 @@ public class UtilHashMapTest extends TestCase{
 		int counter = 0;
 		for(var m: map.entrySet()) {
 			counter++;
-			System.out.println(m.getKey() + ":" + m.getValue());
 		}
 		if(counter < length)
 			fail("Tamanho do map menor que deveria");
@@ -25,7 +24,6 @@ public class UtilHashMapTest extends TestCase{
 		for(var m: map.entrySet()) {
 			if(!values[index].equals(m.getValue()) )
 				fail(String.format("na posição index:%d o valor é: %s e deveria ser: %s",index, m.getValue().toString(), values[index].toString()));
-			System.out.println(m.getKey() + ":" + m.getValue());
 			index++;
 		}
 	}
