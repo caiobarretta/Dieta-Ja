@@ -1,0 +1,5 @@
+UC: Cadastrar porção de alimentos <<include>> Associar Refeição
+
+UC: Cadastrar Dieta <<include>> Associar Porção de Alimento
+
+UC: Consultar Sugestão de Dieta <<include>> Consultar Porção de Alimento
