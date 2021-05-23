@@ -1,5 +1,6 @@
 package core.entities.base;
 
+//Classe base para herança das entidades.
 public abstract class Entity {
 	protected Integer ID;
 	protected String Descricao;

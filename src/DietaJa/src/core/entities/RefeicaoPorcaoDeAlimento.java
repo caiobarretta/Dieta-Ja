@@ -1,5 +1,7 @@
 package core.entities;
 
+
+//Classe que representa uma associação entre Refeição e Porção de Alimento
 public class RefeicaoPorcaoDeAlimento {
 	protected Integer ID;
 	protected RefeicaoEnum Refeicao;

@@ -1,5 +1,6 @@
 package core.entities;
 
+//Classe que representa uma associação de Porção de alimento com Dias da Semana
 public class PorcaoDeAlimentoDiasdaSemana {
 	protected Integer ID;
 	protected Integer DiaSemanaID;

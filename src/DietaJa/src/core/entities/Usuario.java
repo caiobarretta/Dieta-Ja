@@ -2,6 +2,7 @@ package core.entities;
 
 import core.entities.base.Entity;
 
+//Classe que representa uma entidade usuário
 public class Usuario extends Entity {
 	protected String Login;
 	protected String Senha;

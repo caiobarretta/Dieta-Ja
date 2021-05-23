@@ -4,6 +4,7 @@ import java.util.Date;
 
 import core.entities.base.Entity;
 
+//Classe que representa um registro de atividade.
 public class RegistroDeAtividade {
 	protected Integer RegistroDeAtividadeID;
 	protected Date Registro;

@@ -3,6 +3,7 @@ package core.entities;
 import java.util.HashMap;
 import java.util.Map;
 
+//Classe que representa um Tipo de usuário
 public enum TipoUsuarioEnum {
 	Administrador(1, "Administrador"),
 	Nutricionista(2, "Nutricionista"),
