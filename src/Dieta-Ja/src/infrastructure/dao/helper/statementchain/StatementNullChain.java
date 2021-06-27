@@ -2,6 +2,7 @@ package infrastructure.dao.helper.statementchain;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import core.exception.InvalidTypeException;
 
@@ -18,7 +19,7 @@ public class StatementNullChain extends StatementBaseChain{
 	public void verificaStatement(PreparedStatement statement, int index, Object value)
 			throws InvalidTypeException, SQLException {
 		if(value == null) {
-			statement.setString(index, null);
+			statement.setNull(index, Types.INTEGER);
 			return;
 		}
 		super.getNext().verificaStatement(statement, index, value);

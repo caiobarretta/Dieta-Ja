@@ -12,8 +12,8 @@ public class UsuarioRepository extends DefaultRepository<Usuario> implements IUs
 	public UsuarioRepository(IUsuarioDAO dao) {
 		this._idao = dao;
 	}
-	public boolean isUsuario(String usuario, String senha, Integer CodigoUsuario){
-		return this._idao.isUsuario(usuario, senha, CodigoUsuario);
+	public Integer getLoginUsuario(String usuario, String senha){
+		return this._idao.getLoginUsuario(usuario, senha);
     }
 
 	@Override

@@ -44,15 +44,22 @@ public class DietaServiceTest extends TestCase{
 	
 	public void testDadoUmaDietaValidaQuandoOServicoAdicionarNoBDDevePersistirOsDados() {
 		dieta.setNome(uuid.toString());
+		dieta.setDescricao(uuid.toString());
+		dieta.setAtivo(true);
 		int rows = dietaService.add(dieta);
 		if(rows <= 0) 
-			fail("A quantidade de linhas inseridas no banco n√£o pode ser menor ou igual a zero.");
+			fail("A quantidade de linhas inseridas no banco n„o pode ser menor ou igual a zero.");
 	}
 	
 	public void testDadoUmaPesquisaDeDietaInvalidaQuandoOServicoDePesquisaEChamadoDeveRetornaUmaListaVazia() {
-		List<Dieta> retorno = dietaService.search("");
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(UUID.randomUUID().toString());
+		sb.append(UUID.randomUUID().toString());
+		
+		List<Dieta> retorno = dietaService.search(sb.toString());
 		if(!retorno.isEmpty())
-			fail("Uma pesquisa invalida n√£o pode retornar valor");
+			fail("Uma pesquisa invalida n„o pode retornar valor");
 	}
 	
 	public void testDadoUmaDietaValidaAoconverterEntityParaHashMapComIDNaUltimaPosicaoDeveRetornaUmaMapValido() {
@@ -91,15 +98,18 @@ public class DietaServiceTest extends TestCase{
 	
 	public void testDadoUmIDValidoQuandoServiceDeRetornarDietaEChamadoDeveRetornaUmaDietaValida() {
 		Integer id = 1;
-		System.out.printf("testDadoUmIDValidoQuandoServiceDeRetornarDietaEChamadoDeveRetornaUmaDietaValida\n");
 		Dieta dietaDB = dietaService.get(id);
-		System.out.printf("dietaDB.getID(): %d", dietaDB.getID());
 		assertEquals(dietaDB.getID(), id);
 	}
 	
 	public void testDadoUmaPaginacaoValidaServiceDeRetornoDietaPaginadaEChamdoDeveRetornaUmaListaDeDietaValid() {
-		List<Dieta> dietas = dietaService.get(10, 0);
-		assertEquals(dietas.isEmpty(), false);
+		dieta.setNome("Dieta Teste");
+		dieta.setDescricao("Dieta Teste");
+		dietaService.add(dieta);
+		
+		List<Dieta> dietas = dietaService.get(0, 10);
+		if(dietas.size() <= 0)
+			fail("A listagem n„o encontrou valores no banco de dados.");
 	}
 
 }

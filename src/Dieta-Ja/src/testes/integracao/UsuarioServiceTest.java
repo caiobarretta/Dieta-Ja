@@ -24,7 +24,9 @@ public class UsuarioServiceTest extends TestCase {
 	private UsuarioDAO usuarioDao;
 	private UsuarioService usuarioService;
 	private UsuarioRepository usuarioRepository;
-	public void setUp() throws Exception {
+	
+	@Override
+	protected void setUp() throws Exception {
 		usuario = new Usuario();
 		uuid = UUID.randomUUID();
 		container = new Startup(DAOConnectionTest.getConnection()).getContainer();
@@ -32,12 +34,16 @@ public class UsuarioServiceTest extends TestCase {
 		usuarioRepository = (UsuarioRepository)container.resolveSingleton(IUsuarioRepository.class);
 		usuarioService = (UsuarioService)container.resolveSingleton(IUsuarioService.class);
 	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		usuarioDao.closeConn();
+	}
 
 	public void testIsUsuario() {
-		Integer codigoUsuario = 0;
-		boolean isUsr = usuarioService.isUsuario("Teste", "1234", codigoUsuario);
-		if(codigoUsuario == 0 || !isUsr)
-			fail("Servi√ßo usu√°rio n√£o est√° retornando c√≥digo de usu√°rio ou n√£o est√° achando login.");
+		int codigoUsuario = usuarioService.getLoginUsuario("Teste login", "1234");
+		if(codigoUsuario == 0)
+			fail("ServiÁo usu·rio n„o est· retornando cÛdigo de usu·rio ou n„o est· achando login.");
 	}
 
 	public void testAdd() {
@@ -47,46 +53,60 @@ public class UsuarioServiceTest extends TestCase {
 		usuario.setSenha("1234");
 		usuario.setTipoUsuario(TipoUsuarioEnum.Paciente);
 		usuario.setAtivo(true);
+		usuario.setDietaID(1);
 		Integer rows = usuarioService.add(usuario);
 		if(rows != 1)
-			fail("O servi√ßo de usu√°rio est√° inserindo eroneamento um usu√°rio.");
+			fail("O serviÁo de usu·rio est· inserindo eroneamento um usu·rio.");
 	}
 
 	public void testDelete() {
 		Integer rows = usuarioService.delete(1);
 		if(rows != 1)
-			fail("O servi√ßo de usu√°rio est√° deletando eroneamento um usu√°rio.");
+			fail("O serviÁo de usu·rio est· deletando eroneamento um usu·rio.");
 	}
 
 	public void testGetIntegerInteger() {
-		List<Usuario> lst = usuarioService.get(10, 0);
+		List<Usuario> lst = usuarioService.get(0, 10);
 		if(lst.isEmpty())
-			fail("O servi√ßo de usu√°rio n√£o est√° p√°ginando eroneamento um usu√°rio.");
+			fail("O serviÁo de usu·rio n„o est· p·ginando eroneamento um usu·rio.");
 	}
 
 	public void testGetInteger() {
-		Usuario usr = usuarioService.get(1);
+		usuario.setNome(uuid.toString());
+		usuario.setDescricao("Teste Desc");
+		usuario.setLogin("Teste login");
+		usuario.setSenha("1234");
+		usuario.setTipoUsuario(TipoUsuarioEnum.Paciente);
+		usuario.setAtivo(true);
+		usuario.setDietaID(1);
+		Integer rows = usuarioService.add(usuario);
+		
+		List<Usuario> lst = usuarioService.search(uuid.toString());
+		Usuario usrSearch = lst.get(0);
+		
+		Usuario usr = usuarioService.get(usrSearch.getID());
 		if(usr == null)
-			fail("O servi√ßo de usu√°rio n√£o retornando usu√°rio pesquisado por id");
+			fail("O serviÁo de usu·rio n„o retornando usu·rio pesquisado por id");
 	}
 
 	public void testSearch() {
 		List<Usuario> lst = usuarioService.search("");
 		if(lst.isEmpty())
-			fail("O servi√ßo de usu√°rio n√£o retornando usu√°rio pesquisado por nome");
+			fail("O serviÁo de usu·rio n„o retornando usu·rio pesquisado por nome");
 	}
 
 	public void testUpdate() {
 		usuario.setAtivo(true);
-		usuario.setDescricao("Descri√ß√£o");
+		usuario.setDescricao("DescriÁ„o");
 		usuario.setID(1);
 		usuario.setLogin("Login");
 		usuario.setNome("Nome");
 		usuario.setSenha("1234");
+		usuario.setDietaID(1);
 		usuario.setTipoUsuario(TipoUsuarioEnum.Paciente);
 		Integer rows = usuarioService.update(usuario);
 		if(rows != 1)
-			fail("O servi√ßo de usu√°rio n√£o atualizar usu√°rio pesquisado por nome");
+			fail("O serviÁo de usu·rio n„o atualizar usu·rio pesquisado por nome");
 	}
 
 }

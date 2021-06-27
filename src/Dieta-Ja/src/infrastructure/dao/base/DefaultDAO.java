@@ -20,18 +20,8 @@ public abstract class DefaultDAO<TEntity extends Entity> extends BaseDAO<TEntity
 	
 	protected TEntity get(String query, Integer id) {
 		Map<Integer, Object> map = HelperHashMap.criarHashMapComNInteirosSequenciais(id);
-		if(this.executeQuery(query, map).size() > 0 ){
-			System.out.printf("DefaultDAO.get\n");
-			List<TEntity> retorno = super.executeQuery(query, map);
-			System.out.printf("DefaultDAO.get retorno->size:%d\n", retorno.size());
-			for (TEntity tEntity : retorno) {
-				System.out.printf("DefaultDAO.get retorno->ID:%d\n", tEntity.getID());
-				System.out.printf("DefaultDAO.get retorno->Nome:%s\n", tEntity.getNome());
-			}
-			TEntity retornoUnico = retorno.get(id);
-			System.out.printf("DefaultDAO.get retornoUnico->%d\n", retornoUnico.getID());
-			return retornoUnico;
-		}
+		if(this.executeQuery(query, map).size() > 0 )
+			return  super.executeQuery(query, map).get(0);
 		return null;
 	}
 	
@@ -43,7 +33,8 @@ public abstract class DefaultDAO<TEntity extends Entity> extends BaseDAO<TEntity
 	
 	protected Integer add(String query, TEntity entity) {
 		Map<Integer, Object> map = this.converterEntityParaHashMapSemID(entity);
-		return super.executeUpdate(query, map);
+		Integer retorno = super.executeUpdate(query, map);
+		return retorno;
 	}
 	
 	protected Integer update(String query, TEntity entity) {

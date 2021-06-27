@@ -13,7 +13,7 @@ public class UsuarioService extends DefaultService<Usuario> implements IUsuarioS
 		this._repo = repo;
 	}
 
-	public boolean isUsuario(String usuario, String senha, Integer CodigoUsuario){
-		return this._repo.isUsuario(usuario, senha, CodigoUsuario);
+	public Integer getLoginUsuario(String usuario, String senha){
+		return this._repo.getLoginUsuario(usuario, senha);
     }
 }

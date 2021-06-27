@@ -43,32 +43,30 @@ public class UsuarioDAO extends DefaultDAO<Usuario> implements IUsuarioDAO{
 
 	@Override
 	public Integer add(Usuario entity) {
-		String query = "INSERT INTO Usuario (Nome, Descricao, Ativo, DietaID, Login, Perfil, Senha) values (?, ?, ?, ?, ? ,? , ?);";
+		String query = "INSERT INTO Usuario (Nome, Descricao, Ativo, Id_Dieta, Login, TipoUsuario, Senha) values (?, ?, ?, ?, ? ,? ,?);";
 		return super.add(query, entity);
 	}
 
 	@Override
 	public Integer update(Usuario entity) {
-		String query = "UPDATE Usuario SET Nome = ?, Descricao = ?, Ativo = ?, DietaID = ?, Login = ?, Perfil = ?, Senha = ? WHERE Id_Usuario = ?;";
+		String query = "UPDATE Usuario SET Nome = ?, Descricao = ?, Ativo = ?, ID_Dieta = ?, Login = ?, TipoUsuario = ?, Senha = ? WHERE Id_Usuario = ?;";
 		return super.update(query, entity);
 	}
 
 	@Override
 	public Integer delete(Integer id) {
-		String query = "UPDATE PorcaoDeAlimento SET Ativo = 0 WHERE Id_Usuario = ?;";
+		String query = "UPDATE Usuario SET Ativo = 0 WHERE Id_Usuario = ?;";
 		return super.delete(query, id);
 	}
 
 	@Override
-	public boolean isUsuario(String usuario, String senha, Integer CodigoUsuario) {
-		String query = "SELECT * FROM Usuario WHERE usuario = ? and senha = ?";
+	public Integer getLoginUsuario(String usuario, String senha) {
+		String query = "SELECT * FROM Usuario WHERE login = ? and senha = ?";
 		Map<Integer, Object> map = HelperHashMap.criarHashMapComNStringsSequenciais(usuario, senha);
 		List<Usuario> lst = super.executeQuery(query, map);
 		if(lst.isEmpty())
-			return false;
-		Usuario usr = lst.get(0);
-		CodigoUsuario = usr.getID();
-		return true;
+			return 0;
+		return lst.get(0).getID();
 	}
 
 	@Override

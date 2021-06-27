@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import core.entities.Dieta;
 import core.entities.base.Entity;
@@ -40,7 +41,7 @@ public abstract class BaseDAO<TEntity extends Entity> {
         Statement statement = null; 
         List<TEntity> result = null;
          
-        try {           
+        try {
         	connection = this.conn;
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
@@ -77,7 +78,6 @@ public abstract class BaseDAO<TEntity extends Entity> {
 		PreparedStatement preparedStatement = null;
         int rows = 0;
         try {
-        	//insert into  table values (?, ?, ?, ? , ?, ?)
         	connection = this.conn;
         	preparedStatement = connection.prepareStatement(query);
         	HelperExecuteStatementChain.Execute(preparedStatement, params);

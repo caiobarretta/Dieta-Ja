@@ -32,6 +32,5 @@ public class HelperExecuteStatementChain {
 		for(Entry<Integer, Object> param : params.entrySet()) {
 			chain.verificaStatement(statement, param.getKey(), param.getValue());
 		}
-		
 	}
 }

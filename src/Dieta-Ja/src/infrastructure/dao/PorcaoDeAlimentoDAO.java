@@ -30,7 +30,7 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 
 	@Override
 	public PorcaoDeAlimento get(Integer id) {
-		String query = "SELECT * FROM PorcaoDeAlimento WHERE Id_PorcaoDeAlimento = ?";
+		String query = "SELECT * FROM PorcaoDeAlimento WHERE Id_PorcaoAlimento = ?";
 		return super.get(query, id);
 	}
 
@@ -49,7 +49,7 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 
 	@Override
 	public Integer update(PorcaoDeAlimento entity) {
-		String query = "UPDATE PorcaoDeAlimento SET Nome = ?, Descricao = ?, Ativo = ? WHERE Id_PorcaoDeAlimento = ?;";
+		String query = "UPDATE PorcaoDeAlimento SET Nome = ?, Descricao = ?, Ativo = ? WHERE Id_PorcaoAlimento = ?;";
 		return super.update(query, entity);
 	}
 
@@ -85,7 +85,7 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 		List<PorcaoDeAlimento> lst = new ArrayList<PorcaoDeAlimento>();
 		while(rs.next()) {
 			PorcaoDeAlimento porcaoDeAlimento = new PorcaoDeAlimento();
-			porcaoDeAlimento.setID(rs.getInt("Id_PorcaoDeAlimento"));
+			porcaoDeAlimento.setID(rs.getInt("Id_PorcaoAlimento"));
 			porcaoDeAlimento.setNome(rs.getString("Nome"));
 			porcaoDeAlimento.setDescricao(rs.getString("Descricao"));
 			porcaoDeAlimento.setAtivo(rs.getBoolean("Ativo"));
@@ -96,7 +96,7 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 
 	@Override
 	public Integer delete(Integer id) {
-		String query = "UPDATE PorcaoDeAlimento SET Ativo = 0 WHERE Id_PorcaoDeAlimento = ?;";
+		String query = "UPDATE PorcaoDeAlimento SET Ativo = 0 WHERE Id_PorcaoAlimento = ?;";
 		return super.delete(query, id);
 	}
 

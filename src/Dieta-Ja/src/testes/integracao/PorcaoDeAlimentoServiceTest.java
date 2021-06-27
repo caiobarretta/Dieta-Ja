@@ -26,13 +26,19 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 	private PorcaoDeAlimentoService porcaoDeAlimentoService;
 	private PorcaoDeAlimentoRepository porcaoDeAlimentoRepository;
 	
-	public void setUp() throws Exception {
+	@Override
+	protected void setUp() throws Exception {
 		uuid = UUID.randomUUID();
 		porcaoDeAlimento = new PorcaoDeAlimento();
 		container = new Startup(DAOConnectionTest.getConnection()).getContainer();
 		porcaoDeAlimentoDao = (PorcaoDeAlimentoDAO)container.resolveSingleton(IPorcaoDeAlimentoDAO.class);
 		porcaoDeAlimentoRepository = (PorcaoDeAlimentoRepository)container.resolveSingleton(IPorcaoDeAlimentoRepository.class);
 		porcaoDeAlimentoService = (PorcaoDeAlimentoService)container.resolveSingleton(IPorcaoDeAlimentoService.class);
+	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		porcaoDeAlimentoDao.closeConn();
 	}
 
 	public void testAssociarPorcaoRefeicoes() {
@@ -41,7 +47,7 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 		lst.add(2);
 		int rows = porcaoDeAlimentoService.associarPorcaoRefeicoes(lst, 1);
 		if(rows <= 1)
-			fail("Por√ß√µes de alimento n√£o associadas √† refei√ß√£o");
+			fail("porÁıes de alimento n„o est· associadas ‡ refeiÁ„o");
 	}
 
 	public void testAssociarPorcaoAlimentoDieta() {
@@ -50,13 +56,13 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 		lst.add(2);
 		int rows = porcaoDeAlimentoService.associarPorcaoAlimentoDieta(lst, 1);
 		if(rows <= 0)
-			fail("Por√ß√µes de alimento n√£o associadas √† Dieta");
+			fail("PorÁıes de alimento n„o associadas ‡ Dieta");
 	}
 
 	public void testRetornaPorcaoDeAlimentoPeloIdDaDieta() {
 		List<PorcaoDeAlimento> porcao = porcaoDeAlimentoService.retornaPorcaoDeAlimentoPeloIdDaDieta(1);
-		if(porcao.isEmpty())
-			fail("Erro ao pesquisa uma por√ß√£o de alimento v√°lida"); // TODO
+		if(porcao == null || porcao.isEmpty())
+			fail("Erro ao pesquisa uma PorÁıes de alimento v·lida"); // TODO
 	}
 
 	public void testAdd() {
@@ -64,39 +70,45 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 		porcaoDeAlimento.setDescricao(uuid.toString());
 		Integer rows = porcaoDeAlimentoService.add(porcaoDeAlimento);
 		if(rows != 1)
-			fail("Por√ß√£o de alimentos n√£o est√° sendo inserida no banco");
+			fail("PorÁıes de alimentos n„o est· sendo inserida no banco");
 	}
 
 	public void testDelete() {
 		Integer rows = porcaoDeAlimentoService.delete(1);
 		if(rows != 1)
-			fail(String.format("Por√ß√£o de alimentos n√£o est√° sendo deletada corretamente, rows: %d", rows));
+			fail(String.format("PorÁıes de alimentos n„o est· sendo deletada corretamente, rows: %d", rows));
 	}
 
 	public void testGetTakeSkip() {
-		List lst = porcaoDeAlimentoService.get(10, 0);
+		List lst = porcaoDeAlimentoService.get(0, 10);
 		if(lst.isEmpty())
-			fail("Listagem por√ß√£o de Alimento n√£o est√° retornando valores");
+			fail("Listagem PorÁıes de Alimento n„o est· retornando valores");
 	}
 
 	public void testGetInteger() {
 		PorcaoDeAlimento porcao = porcaoDeAlimentoService.get(1);
 		if(porcao == null)
-			fail("Por√ß√£o de alimento n√£o est√° carregando por ID");
+			fail("porÁ„o de alimento n„o est· carregando por ID");
 	}
 
 	public void testSearch() {
-		List<PorcaoDeAlimento> porcao = porcaoDeAlimentoService.search("");
-		if(porcao.isEmpty())
-			fail("A pesquisa da por√ß√£o de alimento n√£o est√° funcionando corretamente");
+		StringBuilder sb = new StringBuilder();
+		sb.append(UUID.randomUUID().toString());
+		sb.append(UUID.randomUUID().toString());
+		List<PorcaoDeAlimento> porcao = porcaoDeAlimentoService.search(sb.toString());
+		if(!porcao.isEmpty())
+			fail("A pesquisa da porÁ„o de alimento n„o est· funcionando corretamente");
 	}
 
 	public void testUpdate() {
+		porcaoDeAlimento.setID(1);
 		porcaoDeAlimento.setNome("Update teste");
 		porcaoDeAlimento.setDescricao("Update teste");
 		Integer rows = porcaoDeAlimentoService.update(porcaoDeAlimento);
 		if(rows != 1)
-			fail(String.format("Por√ß√£o de alimentos n√£o est√° sendo atualizada corretamente, rows: %d", rows));
+			fail(String.format("PorÁıes de alimentos n„o est· sendo atualizada corretamente, rows: %d", rows));
 	}
+	
+	
 
 }
