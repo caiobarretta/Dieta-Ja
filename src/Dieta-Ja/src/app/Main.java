@@ -61,7 +61,6 @@ public class Main extends Application {
 		
 		Parent fxmlPrincipal = FXMLLoader.load(getClass().getResource("view/FXMLPrincipal.fxml"));
 		ScenePrincipal = new Scene(fxmlPrincipal);
-		
 	}
 	
 	public static void main(String[] args) {
