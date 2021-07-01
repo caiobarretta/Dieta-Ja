@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import com.gluonhq.charm.glisten.control.Avatar?>
-<?import com.gluonhq.charm.glisten.control.Icon?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TitledPane?>
@@ -10,9 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Avatar layoutX="14.0" layoutY="14.0" />
       <Label layoutX="65.0" layoutY="23.0" text="Usuário" />
-      <Icon content="SETTINGS" layoutX="136.0" layoutY="19.0" />
       <Pane layoutX="178.0" prefHeight="552.0" prefWidth="717.0" />
       <Accordion layoutX="-1.0" layoutY="57.0" prefHeight="495.0" prefWidth="179.0">
         <panes>

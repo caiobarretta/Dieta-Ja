@@ -1,8 +1,10 @@
-package app;
+package app.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import app.Main;
+import app.enums.FXMLScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,12 +16,9 @@ public class FXMLLoginController implements Initializable {
 	
 	
 	@FXML
-	private void efetuarLogin(ActionEvent event){
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Information Dialog");
-		alert.setHeaderText("Look, an Information Dialog");
-		alert.setContentText("I have a great message for you!");
-		alert.showAndWait();
+	private void efetuarLogin(ActionEvent event) throws Exception{
+		Main.setUsuarioLogado(true);
+		Main.switchScreen(FXMLScreen.FXMLPrincipal);
 	}
 	
 	@Override
