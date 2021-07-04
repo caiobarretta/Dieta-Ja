@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.FXMLPrincipalController">
+   <children>
+      <Label layoutX="65.0" layoutY="23.0" text="Usuário" />
+      <Pane layoutX="178.0" prefHeight="552.0" prefWidth="717.0" />
+      <Accordion layoutX="-1.0" layoutY="57.0" prefHeight="495.0" prefWidth="179.0">
+        <panes>
+          <TitledPane prefHeight="436.0" prefWidth="199.0" text="Alimentos">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="14.0" layoutY="14.0" onAction="#clickCadastrarAlimento" prefHeight="18.0" prefWidth="139.0" text="Cadastrar Alimento" />
+                        <Button layoutX="14.0" layoutY="41.0" onAction="#clickConsultarAlimento" text="Consultar Alimentos" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane text="Dietas">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="14.0" layoutY="14.0" onAction="#clickCadastrarDieta" text="Cadastrar Dieta" />
+                        <Button layoutX="14.0" layoutY="40.0" onAction="#clickConsultarDieta" text="Consultar Dietas" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane text="Pacientes">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="14.0" layoutY="14.0" onAction="#clickCadastrarPaciente" text="Cadastrar Paciente" />
+                        <Button layoutX="14.0" layoutY="40.0" onAction="#clickConsultarPaciente" text="Consultar Pacientes" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+            <TitledPane prefHeight="200.0" prefWidth="200.0" text="Consumo Diário">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="14.0" layoutY="14.0" onAction="#clickRegistrarConsumo" text="Registrar Consumo" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
+</AnchorPane>

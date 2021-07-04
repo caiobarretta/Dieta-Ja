@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:controller="app.controller.FXMLPacientesCadastroController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="28.0" layoutY="20.0" text="Pacientes" />
+      <Label alignment="CENTER" layoutX="223.0" layoutY="43.0" text="Usuário" textAlignment="CENTER" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+      <ComboBox layoutX="223.0" layoutY="407.0" prefHeight="25.0" prefWidth="200.0" promptText="Dieta" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+      <TextField alignment="CENTER" layoutX="223.0" layoutY="70.0" prefHeight="25.0" prefWidth="271.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+      <Button layoutX="325.0" layoutY="485.0" mnemonicParsing="false" text="Adicionar" />
+      <Label alignment="CENTER" layoutX="223.0" layoutY="110.0" text="Senha" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+      <TextField alignment="CENTER" layoutX="223.0" layoutY="137.0" prefHeight="25.0" prefWidth="271.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+      <Label alignment="CENTER" layoutX="223.0" layoutY="174.0" text="Nome" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+      <TextField alignment="CENTER" layoutX="223.0" layoutY="201.0" prefHeight="25.0" prefWidth="271.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+      <ComboBox layoutX="223.0" layoutY="438.0" prefHeight="25.0" prefWidth="200.0" promptText="Status" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+      <Label alignment="CENTER" layoutX="223.0" layoutY="233.0" text="Descrição" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+      <TextArea layoutX="223.0" layoutY="250.0" prefHeight="138.0" prefWidth="271.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="223.0" />
+   </children>
+</AnchorPane>
