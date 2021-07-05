@@ -20,8 +20,18 @@ import infrastructure.dao.helper.StrBuilderHelper;
 public abstract class BaseDAO<TEntity extends Entity> {
 	
 	protected Connection conn;
+	private Integer lastIdInserted;
+	
 	public BaseDAO(Connection conn) {
 		this.conn = conn;
+	}
+	
+	public Integer getLastIdInserted() {
+		return lastIdInserted;
+	}
+
+	public void setLastIdInserted(Integer lastIdInserted) {
+		this.lastIdInserted = lastIdInserted;
 	}
 	
 	protected abstract Map<Integer, Object> converterEntityParaHashMapSemID(TEntity entity);
@@ -71,6 +81,28 @@ public abstract class BaseDAO<TEntity extends Entity> {
 			e.printStackTrace();
 		}
         return result;
+	}
+	
+	protected Integer executeInsert(String query, Map<Integer, Object> params) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+        int rows = 0;
+        try {
+        	connection = this.conn;
+        	preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        	HelperExecuteStatementChain.Execute(preparedStatement, params);
+        	rows = preparedStatement.executeUpdate();
+        	ResultSet rs = preparedStatement.getGeneratedKeys();
+        	if (rs.next()){
+        		setLastIdInserted(rs.getInt(1));
+        	}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (InvalidTypeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return rows;
 	}
 	
 	protected Integer executeUpdate(String query, Map<Integer, Object> params) {

@@ -17,5 +17,10 @@ public class DietaRepository extends DefaultRepository<Dieta> implements IDietaR
 	public IDAO<Dieta> getDAO() {
 		return _idao;
 	}
+	@Override
+	public Integer getLastIdInserted() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

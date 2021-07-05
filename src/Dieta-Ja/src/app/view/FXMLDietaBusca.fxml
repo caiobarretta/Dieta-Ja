@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="1037.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.FXMLAlimentosBuscaController">
+   <children>
+      <Label layoutX="28.0" layoutY="20.0" text="Dieta" />
+      <Label layoutX="29.0" layoutY="75.0" text="Nome" />
+      <TextArea layoutX="29.0" layoutY="421.0" prefHeight="201.0" prefWidth="439.0" />
+      <Label layoutX="28.0" layoutY="404.0" text="Observações" />
+      <TextField layoutX="29.0" layoutY="92.0" prefHeight="25.0" prefWidth="439.0" />
+      <Button layoutX="929.0" layoutY="631.0" mnemonicParsing="false" text="Confirmar" />
+      <AnchorPane layoutX="492.0" layoutY="75.0" prefHeight="550.0" prefWidth="531.0">
+         <children>
+            <TreeTableView prefHeight="550.0" prefWidth="523.0">
+              <columns>
+                <TreeTableColumn prefWidth="185.0" text="Nome" />
+                <TreeTableColumn prefWidth="172.0" text="Porção" />
+                  <TreeTableColumn prefWidth="165.0" text="Observações" />
+              </columns>
+            </TreeTableView>
+         </children>
+      </AnchorPane>
+      <TextField layoutX="822.0" layoutY="29.0" prefHeight="25.0" prefWidth="176.0" promptText="Digite um nome para buscar" />
+      <Button layoutX="813.0" layoutY="631.0" mnemonicParsing="false" text="Excluir" />
+      <ListView accessibleRole="CHECK_BOX" layoutX="29.0" layoutY="152.0" prefHeight="230.0" prefWidth="439.0" />
+      <Label layoutX="29.0" layoutY="135.0" text="Poção de Alimento" />
+   </children>
+</AnchorPane>

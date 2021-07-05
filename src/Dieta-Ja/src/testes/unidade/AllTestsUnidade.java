@@ -11,6 +11,7 @@ public class AllTestsUnidade {
 		suite.addTestSuite(ContainerTest.class);
 		suite.addTestSuite(HelperExecuteStatementChainTest.class);
 		suite.addTestSuite(HelperHashMapTest.class);
+		suite.addTestSuite(StartupTest.class);
 		//$JUnit-END$
 		return suite;
 	}

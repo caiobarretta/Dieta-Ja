@@ -2,10 +2,7 @@ package app.enums;
 
 public enum FXMLScreen {
 	FXMLPrincipal,
-	FXMLPacientesConsulta,
-	FXMLPacientesCadastro,
+	FXMLPaciente,
 	FXMLLogin,
-	FXMLErroLogin,
-	FXMLAlimentosCadastro,
-	FXMLAlimentosBusca
+	FXMLPorcaoDeAlimento
 }

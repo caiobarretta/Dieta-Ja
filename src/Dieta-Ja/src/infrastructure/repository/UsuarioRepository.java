@@ -20,4 +20,9 @@ public class UsuarioRepository extends DefaultRepository<Usuario> implements IUs
 	public IDAO<Usuario> getDAO() {
 		return this._idao;
 	}
+	@Override
+	public Integer getLastIdInserted() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

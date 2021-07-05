@@ -16,4 +16,10 @@ public class UsuarioService extends DefaultService<Usuario> implements IUsuarioS
 	public Integer getLoginUsuario(String usuario, String senha){
 		return this._repo.getLoginUsuario(usuario, senha);
     }
+
+	@Override
+	public Integer getLastIdInserted() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -80,4 +80,10 @@ public class DietaDAO extends DefaultDAO<Dieta> implements IDietaDAO{
 		map.put(3, entity.isAtivo());
 		return map;
 	}
+
+	@Override
+	public Integer getLastIdInserted() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

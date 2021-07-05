@@ -101,4 +101,10 @@ public class UsuarioDAO extends DefaultDAO<Usuario> implements IUsuarioDAO{
 		return lst;
 	}
 
+	@Override
+	public Integer getLastIdInserted() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

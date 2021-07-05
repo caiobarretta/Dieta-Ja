@@ -32,4 +32,10 @@ public abstract class Entity {
 		Ativo = ativo;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return String.format("%d-%s", this.getID(), this.getNome());
+	}
+	
 }

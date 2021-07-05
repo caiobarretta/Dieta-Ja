@@ -11,5 +11,10 @@ public class DietaService extends DefaultService<Dieta> implements IDietaService
 		super(repo);
 		this._repo = repo;
 	}
+	@Override
+	public Integer getLastIdInserted() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

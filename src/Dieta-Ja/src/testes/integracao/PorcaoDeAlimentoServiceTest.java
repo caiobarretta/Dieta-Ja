@@ -46,7 +46,7 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 		lst.add(1);
 		lst.add(2);
 		int rows = porcaoDeAlimentoService.associarPorcaoRefeicoes(lst, 1);
-		if(rows <= 1)
+		if(rows < lst.size())
 			fail("porções de alimento não está associadas à refeição");
 	}
 
@@ -55,8 +55,17 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 		lst.add(1);
 		lst.add(2);
 		int rows = porcaoDeAlimentoService.associarPorcaoAlimentoDieta(lst, 1);
-		if(rows <= 0)
+		if(rows < lst.size())
 			fail("Porções de alimento não associadas à Dieta");
+	}
+	
+	public void testAssociarPorcaoAlimentoDiaDaSemana(){
+		List<Integer> lst = new ArrayList<Integer>();
+		lst.add(1);
+		lst.add(2);
+		int rows = porcaoDeAlimentoService.associarPorcaoAlimentoDiaDaSemana(lst, 1);
+		if(rows < lst.size())
+			fail("porções de alimento não está associando aos dias da semana");
 	}
 
 	public void testRetornaPorcaoDeAlimentoPeloIdDaDieta() {
@@ -71,6 +80,10 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 		Integer rows = porcaoDeAlimentoService.add(porcaoDeAlimento);
 		if(rows != 1)
 			fail("Porções de alimentos não está sendo inserida no banco");
+		
+		Integer idInserted = porcaoDeAlimentoService.getLastIdInserted();
+		if(idInserted < 0)
+			fail("Porções de alimentos não retornando o último id inserido no banco");
 	}
 
 	public void testDelete() {
@@ -80,7 +93,7 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 	}
 
 	public void testGetTakeSkip() {
-		List lst = porcaoDeAlimentoService.get(0, 10);
+		List<PorcaoDeAlimento> lst = porcaoDeAlimentoService.get(0, 10);
 		if(lst.isEmpty())
 			fail("Listagem Porções de Alimento não está retornando valores");
 	}
@@ -107,6 +120,27 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 		Integer rows = porcaoDeAlimentoService.update(porcaoDeAlimento);
 		if(rows != 1)
 			fail(String.format("Porções de alimentos não está sendo atualizada corretamente, rows: %d", rows));
+	}
+	
+	public void testRetornaDiasDaSemanaPeloIdPorcaoDeAlimento(){
+		List<PorcaoDeAlimento> lst = porcaoDeAlimentoService.get(0, 10);
+		PorcaoDeAlimento porcao = lst.get(0);
+		if(porcao == null)
+			fail("A pesquisa da porção de alimento não está carregando corretamente");
+		List<Integer> lstAssociacao = new ArrayList<Integer>();
+		lstAssociacao.add(1);
+		lstAssociacao.add(2);
+		porcaoDeAlimentoService.associarPorcaoAlimentoDiaDaSemana(lstAssociacao, porcao.getID());
+		List<String> diasDaSemana = porcaoDeAlimentoService.retornaDiasDaSemanaPeloIdPorcaoDeAlimento(porcao.getID());
+		if(diasDaSemana.isEmpty())
+			fail("A pesquisa da porção de alimento não está carregando os dias da semana corretamente");	
+	}
+	
+	public void testRetornaRefeicaoPeloIdPorcaoDeAlimento(){
+		PorcaoDeAlimento porcao = porcaoDeAlimentoService.get(1);
+		List<String> refeicao = porcaoDeAlimentoService.retornaRefeicaoPeloIdPorcaoDeAlimento(porcao.getID());
+		if(refeicao.isEmpty())
+			fail("A pesquisa da porção de alimento não está carregando as refeições corretamente");
 	}
 	
 	
