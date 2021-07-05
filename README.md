@@ -13,11 +13,11 @@
 ### BD
 1. ER ou MER (imagem ou pdf) :white_check_mark:
 2. Scripts de criação do banco de dados :white_check_mark:
-3. Consultas simples
-4. Procedures/Funções
+3. Consultas simples :white_check_mark:
+4. Procedures/Funções :white_check_mark:
 5.  Visões :white_check_mark: (Incluir mais 3 visões no projeto entrega final)
 6. Cursores
-7. Controle de Acesso
+7. Controle de Acesso :white_check_mark:
 8. Funções de agregação 
 9.  Triggers (Extra)
 10. Todos os scripts .sql utilizados no trabalho. :white_check_mark:
