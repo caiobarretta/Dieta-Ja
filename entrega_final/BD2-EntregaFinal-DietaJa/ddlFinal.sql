@@ -77,14 +77,14 @@ CREATE TABLE Usuario (
     CONSTRAINT PK_Usuario
     PRIMARY KEY (ID_Usuario));
     
-CREATE TABLE DietaJa_Log (
-	ID_Log int auto_increment not null,
-    ID_Usuario int not null,
-    Nome_Tabela varchar(50) not null,
-    Operacao_Log varchar(20) not null,
-    Conteudo_Log json not null,
-    CONSTRAINT PK_ID_Usuario
-    PRIMARY KEY (ID_Log));
+CREATE TABLE Log (
+    log_id BIGINT NOT NULL,
+    old_row_data JSON,
+    new_row_data JSON,
+    dml_type ENUM('INSERT', 'UPDATE', 'DELETE') NOT NULL,
+    dml_timestamp TIMESTAMP NOT NULL,
+    PRIMARY KEY (log_id, dml_type, dml_timestamp)
+);
 
 -- Adiciona referências estrangeiras nas tabelas necessárias;
 ALTER TABLE DietaJa.PorcaoDeAlimentoDiasDaSemana ADD CONSTRAINT FK_Rel_Porc_Dia_PorcaoDeAlimento
@@ -112,7 +112,4 @@ ALTER TABLE DietaJa.RegistroDeAtividade ADD CONSTRAINT FK_RegistroDeAtividade_Po
 FOREIGN KEY (ID_PorcaoAlimento) REFERENCES DietaJa.PorcaoDeAlimento (ID_PorcaoAlimento);
 
 ALTER TABLE DietaJa.RegistroDeAtividade ADD CONSTRAINT FK_RegistroDeAtividade_Usuario
-FOREIGN KEY (ID_Usuario) REFERENCES DietaJa.Usuario (ID_Usuario);
-
-ALTER TABLE DietaJa.DietaJa_Log ADD CONSTRAINT FK_DietaLog_Usuario
 FOREIGN KEY (ID_Usuario) REFERENCES DietaJa.Usuario (ID_Usuario);
