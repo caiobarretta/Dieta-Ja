@@ -59,13 +59,13 @@ public class FXMLPrincipalController extends BaseController {
 	
 	@FXML
 	public void clickConsultarPaciente(ActionEvent event) throws Exception{
-//		Stage stage = new Stage();
-//	    Parent root = FXMLLoader.load(getClass().getResource("../view/FXMLPacientesConsulta.fxml"));
-//		stage.setScene(new Scene(root));
-//	    stage.setTitle("Consulta Paciente");
-//	    stage.initModality(Modality.WINDOW_MODAL);
-//	    stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-//	    stage.show();
+		Stage stage = new Stage();
+	    Parent root = FXMLLoader.load(getClass().getResource("../view/FXMLPaciente.fxml"));
+		stage.setScene(new Scene(root));
+	    stage.setTitle("Pacientes");
+	    stage.initModality(Modality.WINDOW_MODAL);
+	    stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+	    stage.show();
 	}
 	
 	@FXML

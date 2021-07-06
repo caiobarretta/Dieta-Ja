@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import app.controller.base.DefaultController;
+import app.controller.helper.AlertHelper;
 import app.controller.helper.GridPaneHelper;
 import app.enums.FXMLState;
 import app.model.PorcaoDeAlimentoDTO;
@@ -32,12 +33,9 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	private GridPane gpDiasDaSemana;
 	@FXML
 	private GridPane gpRefeicao;
-	
 	private MultiSelectionCombo cbxDiasDaSemana;
 	private MultiSelectionCombo cbxRefeicao;
-	
 	final PorcaoDeAlimentoService service;
-	
 	public FXMLPorcaoDeAlimentosController(){
 		service = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
 	}
@@ -86,8 +84,6 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
     private void initialize() {
 	}
 	
-	
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -101,10 +97,7 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	protected void actionEdit(PorcaoDeAlimentoDTO dto) {
 		PorcaoDeAlimento porc = service.get(dto.getCodigo());
 		if(porc == null){
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Erro ao Editar");
-			alert.setContentText("A porção de alimento não foi encontrada.");
-			alert.showAndWait();
+			AlertHelper.buildAlert(AlertType.INFORMATION, "Erro ao Editar", "A porção de alimento não foi encontrada.").showAndWait();
 			return;
 		}
 		
@@ -122,32 +115,14 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 
 	@Override
 	protected void actionDelete(PorcaoDeAlimentoDTO dto) {
-		
-		String message = String.format("Deseja realmente deletar o registro: %d", dto.getCodigo());
-		ButtonType btnSim = new ButtonType("Sim", ButtonData.OK_DONE);
-		ButtonType btnNao = new ButtonType("Não", ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.WARNING, message, btnSim, btnNao);
-		alert.setTitle("Deletar");
-		Optional<ButtonType> result = alert.showAndWait();
-
-		if (result.orElse(btnNao) == btnSim) {
-			try {
-				service.delete(dto.getCodigo());
-			} catch (Exception e) {
-				Alert alertDelete = new Alert(AlertType.ERROR);
-				alertDelete.setTitle("Salvar");
-				alertDelete.setContentText(String.format("Erro: %s\n Ao deletar registro:", e.getMessage(), dto.getNome()));
-				alertDelete.showAndWait();
-				return;
-			}
-			
-			Alert alertDelete = new Alert(AlertType.CONFIRMATION);
-			alertDelete.setTitle("Salvar");
-			alertDelete.setContentText(String.format("%s deletado com sucesso.", dto.getNome()));
-			alertDelete.showAndWait();
-			this.clearFXML();
+		try {
+			service.delete(dto.getCodigo());
+		} catch (Exception e) {
+			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro: %s\n Ao deletar registro:", e.getMessage(), dto.getNome())).showAndWait();
+			return;
 		}
-		
+		AlertHelper.buildAlert(AlertType.CONFIRMATION, "Salvar",String.format("%s deletado com sucesso.", dto.getNome())).showAndWait();
+		this.clearFXML();
 	}
 
 	@Override
@@ -169,31 +144,21 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 			try {
 				service.update(porc);
 			} catch (Exception e) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Salvar");
-				alert.setContentText(String.format("Erro ao Editar os dados: %s", e.getMessage()));
-				alert.showAndWait();
+				AlertHelper.buildAlert(AlertType.ERROR, "Salvar",String.format("Erro ao Editar os dados: %s", e.getMessage())).showAndWait();
 				return;
 			}
 		}
-		else if (super.getState() == FXMLState.Inserir) {
-			
+		else if (super.getState() == FXMLState.Inserir) {			
 			try {
 				service.add(porc);
 				idPorcao = service.getLastIdInserted();
 			} catch (Exception e) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Salvar");
-				alert.setContentText(String.format("Erro ao Salvar os dados: %s", e.getMessage()));
-				alert.showAndWait();
+				AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro ao Salvar os dados: %s", e.getMessage())).showAndWait();
 				return;
 			}
 		}
 		else{
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Salvar");
-			alert.setContentText(String.format("Erro de implementação ao salvar os dados."));
-			alert.showAndWait();
+			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro de implementação ao salvar os dados.")).showAndWait();
 			return;
 		}
 		
@@ -201,17 +166,10 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 			service.associarPorcaoAlimentoDiaDaSemana(listDiaDaSemana, idPorcao);
 			service.associarPorcaoRefeicoes(listIdRefeicao, idPorcao);
 		}catch (Exception e) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Salvar");
-			alert.setContentText(String.format("Erro ao Associar os dados: %s", e.getMessage()));
-			alert.showAndWait();
+			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro ao Associar os dados: %s", e.getMessage())).showAndWait();
 			return;
 		}
-		
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Salvar");
-		alert.setContentText(String.format("Dados salvos do código: %d com sucesso!", idPorcao));
-		alert.showAndWait();
+		AlertHelper.buildAlert(AlertType.INFORMATION, "Salvar", String.format("Dados salvos do código: %d com sucesso!", idPorcao)).showAndWait();
 		this.clearFXML();
 	}
 	

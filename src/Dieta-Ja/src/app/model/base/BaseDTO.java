@@ -39,5 +39,9 @@ public abstract class BaseDTO {
 	public void setObs(String obs) {
 		this.obs.set(obs);
 	}
-
+	
+	@Override
+	public String toString() {
+		return String.format("%d-%s", this.getCodigo(), this.getNome());
+	}
 }

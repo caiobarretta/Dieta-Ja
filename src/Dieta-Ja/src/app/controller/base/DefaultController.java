@@ -1,21 +1,29 @@
 package app.controller.base;
 
+import java.util.Optional;
+
+import app.controller.helper.AlertHelper;
 import app.enums.FXMLState;
+import app.model.base.BaseDTO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public abstract class DefaultController<T> extends BaseController {
+public abstract class DefaultController<T extends BaseDTO> extends BaseController {
 	
 	@FXML
 	protected Label lblIdEdit;
@@ -63,8 +71,7 @@ public abstract class DefaultController<T> extends BaseController {
 		loadTableView(lstSearch);
 	}
 	
-	private FXMLState state;
-	private Integer idEditing;
+	
 	protected abstract ObservableList<T> tableViewSource();
 	protected abstract ObservableList<T> getSourceSearch(String search);
 	protected abstract void actionEdit(T dto);
@@ -72,8 +79,7 @@ public abstract class DefaultController<T> extends BaseController {
 	protected abstract void actionSave();
 	
 	public DefaultController(){
-		state = FXMLState.Inserir;
-		idEditing = 0;
+		super();
 	}
 	
 	protected void loadTableView(){
@@ -134,7 +140,14 @@ public abstract class DefaultController<T> extends BaseController {
                     {
                     	btn.setOnAction((ActionEvent event) -> {
                     		T selDTO = getTableView().getItems().get(getIndex());
-                    		actionDelete(selDTO);
+                    		String message = String.format("Deseja realmente deletar o registro: %d", selDTO.getCodigo());
+                    		ButtonType btnSim = new ButtonType("Sim", ButtonData.OK_DONE);
+                    		ButtonType btnNao = new ButtonType("Não", ButtonData.CANCEL_CLOSE);
+                    		Alert alert =  AlertHelper.buildAlert(AlertType.WARNING, message, "Deletar", btnSim, btnNao);
+                    		Optional<ButtonType> result = alert.showAndWait();
+                    		if (result.orElse(btnNao) == btnSim) {
+                    			actionDelete(selDTO);
+                    		}
                         });
                     }
 
@@ -154,24 +167,6 @@ public abstract class DefaultController<T> extends BaseController {
 
         btnCol.setCellFactory(cellFactory);
     }
-
-	
-	public FXMLState getState() {
-		return state;
-	}
-
-	
-	public void setState(FXMLState state) {
-		this.state = state;
-	}
-	
-	public Integer getIdEditing() {
-		return idEditing;
-	}
-
-	public void setIdEditing(Integer idEditing) {
-		this.idEditing = idEditing;
-	}
 
 	protected void clearFXML(){
 		txtNome.setText("");
