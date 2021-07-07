@@ -30,7 +30,7 @@ public class DietaDAO extends DefaultDAO<Dieta> implements IDietaDAO{
 
 	@Override
 	public Dieta get(Integer id) {
-		String query = "SELECT * FROM Dieta WHERE Id_Dieta = ?";
+		String query = "SELECT * FROM Dieta WHERE Id_Dieta = ? AND Ativo = 1";
 		return get(query, id);
 	}
 

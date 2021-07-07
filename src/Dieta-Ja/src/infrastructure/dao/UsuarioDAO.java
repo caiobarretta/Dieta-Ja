@@ -25,13 +25,13 @@ public class UsuarioDAO extends DefaultDAO<Usuario> implements IUsuarioDAO{
 
 	@Override
 	public List<Usuario> get(Integer take, Integer skip) {
-		String query = "SELECT * FROM Usuario LIMIT ?,?;";
+		String query = "SELECT * FROM Usuario WHERE Ativo = 1 LIMIT ?,? ";
 		return super.get(query, take, skip);
 	}
 
 	@Override
 	public Usuario get(Integer id) {
-		String query = "SELECT * FROM Usuario WHERE Id_Usuario = ?";
+		String query = "SELECT * FROM Usuario WHERE Id_Usuario = ?  AND Ativo = 1";
 		return super.get(query, id);
 	}
 
@@ -61,7 +61,7 @@ public class UsuarioDAO extends DefaultDAO<Usuario> implements IUsuarioDAO{
 
 	@Override
 	public Integer getLoginUsuario(String usuario, String senha) {
-		String query = "SELECT * FROM Usuario WHERE login = ? and senha = ?";
+		String query = "SELECT * FROM Usuario WHERE login = ? and senha = ?  AND Ativo = 1";
 		Map<Integer, Object> map = HelperHashMap.criarHashMapComNStringsSequenciais(usuario, senha);
 		List<Usuario> lst = super.executeQuery(query, map);
 		if(lst.isEmpty())
@@ -103,8 +103,7 @@ public class UsuarioDAO extends DefaultDAO<Usuario> implements IUsuarioDAO{
 
 	@Override
 	public Integer getLastIdInserted() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getLastIdInserted();
 	}
 
 }

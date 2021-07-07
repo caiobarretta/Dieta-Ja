@@ -1,10 +1,14 @@
 package app.controller.base;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import app.controller.helper.AlertHelper;
 import app.enums.FXMLState;
 import app.model.base.BaseDTO;
+import core.entities.PorcaoDeAlimento;
+import core.entities.base.Entity;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public abstract class DefaultController<T extends BaseDTO> extends BaseController {
+public abstract class DefaultController<T extends BaseDTO, TEntity extends Entity> extends BaseController {
 	
 	@FXML
 	protected Label lblIdEdit;
@@ -54,9 +58,45 @@ public abstract class DefaultController<T extends BaseDTO> extends BaseControlle
 	@FXML
 	protected Button btnSalvar;
 	
+	private TEntity entity; 
+	
 	@FXML
 	protected void clickSalvar(ActionEvent event) {
-		actionSave();
+		TEntity entity = createNewInstance();
+		entity.setNome(txtNome.getText());
+		entity.setDescricao(txtObs.getText());
+		loadFieldsEntity(entity);
+		List<String> lstCamposInvalidos = new ArrayList<String>();
+		boolean camposValidos = loadFieldsRequiredEntity(entity, lstCamposInvalidos);
+		if(!camposValidos){
+			String mensagemCampos = String.format("Existem campos obrigatórios não preenchidos:%s", String.join("\n", lstCamposInvalidos));
+			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", mensagemCampos).showAndWait();
+			return;
+		}
+		Integer id = 0;
+		if(super.getState() == FXMLState.Editar){
+			id = super.getIdEditing();
+			entity.setID(super.getIdEditing());
+			try {
+				entityUpdate(entity);
+			} catch (Exception e) {
+				AlertHelper.buildAlert(AlertType.ERROR, "Salvar",String.format("Erro ao Editar os dados: %s", e.getMessage())).showAndWait();
+				return;
+			}
+		}
+		else if (super.getState() == FXMLState.Inserir) {			
+			try {
+				id = entityAdd(entity);
+			} catch (Exception e) {
+				AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro ao Salvar os dados: %s", e.getMessage())).showAndWait();
+				return;
+			}
+		}
+		else{
+			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro de implementação ao salvar os dados.")).showAndWait();
+			return;
+		}
+		actionSave(id);
     }
 	
 	@FXML
@@ -74,9 +114,17 @@ public abstract class DefaultController<T extends BaseDTO> extends BaseControlle
 	
 	protected abstract ObservableList<T> tableViewSource();
 	protected abstract ObservableList<T> getSourceSearch(String search);
-	protected abstract void actionEdit(T dto);
+	protected abstract TEntity carregaEntidade(T dto);
+	protected abstract void loadOthersColumnsTableView();
+	protected abstract void actionEdit();
 	protected abstract void actionDelete(T dto);
-	protected abstract void actionSave();
+	protected abstract void actionSave(Integer id);
+	protected abstract TEntity createNewInstance();
+	protected abstract void entityUpdate(TEntity entity);
+	protected abstract Integer entityAdd(TEntity entity);
+	protected abstract void entityDelete(Integer id);
+	protected abstract void loadFieldsEntity(TEntity entity);
+	protected abstract boolean loadFieldsRequiredEntity(TEntity entity, List<String> lstCamposInvalidos);
 	
 	public DefaultController(){
 		super();
@@ -86,6 +134,7 @@ public abstract class DefaultController<T extends BaseDTO> extends BaseControlle
 		codigoCol.setCellValueFactory(new PropertyValueFactory<>("codigo"));
 		nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		obsCol.setCellValueFactory(new PropertyValueFactory<>("obs"));
+		loadOthersColumnsTableView();
 		configActionButtonEditToTable("Editar", editButtonCol);
 		configActionButtonDeleteToTable("Deletar", deleteButtonCol);
 		tableView.setItems(tableViewSource());
@@ -99,6 +148,20 @@ public abstract class DefaultController<T extends BaseDTO> extends BaseControlle
 		tableView.setItems(lstSearch);
 	}
 	
+	
+	protected boolean validaEdit(T dto){
+		TEntity entity = carregaEntidade(dto);
+		if(entity == null){
+			AlertHelper.buildAlert(AlertType.INFORMATION, "Erro ao Editar", "O registro não foi encontrado.").showAndWait();
+			return false;
+		}
+		
+		this.setEntity(entity);
+		super.setState(FXMLState.Editar);
+		super.setIdEditing(dto.getCodigo());
+		return true;
+	}
+	
 	private void configActionButtonEditToTable(String titleButton, TableColumn<T, Void> btnCol) {
         Callback<TableColumn<T, Void>, TableCell<T, Void>> cellFactory = new Callback<TableColumn<T, Void>, TableCell<T, Void>>() {
             @Override
@@ -109,7 +172,9 @@ public abstract class DefaultController<T extends BaseDTO> extends BaseControlle
                     {
                     	btn.setOnAction((ActionEvent event) -> {
                     		T selDTO = getTableView().getItems().get(getIndex());
-                    		actionEdit(selDTO);
+                    		boolean ehValido = validaEdit(selDTO);
+                    		if(ehValido)
+                    			actionEdit();
                         });
                     }
 
@@ -146,6 +211,14 @@ public abstract class DefaultController<T extends BaseDTO> extends BaseControlle
                     		Alert alert =  AlertHelper.buildAlert(AlertType.WARNING, message, "Deletar", btnSim, btnNao);
                     		Optional<ButtonType> result = alert.showAndWait();
                     		if (result.orElse(btnNao) == btnSim) {
+                    			try {
+                    				entityDelete(selDTO.getCodigo());
+                    			} catch (Exception e) {
+                    				AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro: %s\n Ao deletar registro:", e.getMessage(), selDTO.getNome())).showAndWait();
+                    				return;
+                    			}
+                    			AlertHelper.buildAlert(AlertType.CONFIRMATION, "Salvar",String.format("%s deletado com sucesso.", selDTO.getNome())).showAndWait();
+                    			
                     			actionDelete(selDTO);
                     		}
                         });
@@ -174,5 +247,13 @@ public abstract class DefaultController<T extends BaseDTO> extends BaseControlle
 		this.setIdEditing(0);
 		this.setState(FXMLState.Inserir);
 		lblIdEdit.setText("0");
+	}
+
+	public TEntity getEntity() {
+		return entity;
+	}
+
+	public void setEntity(TEntity entity) {
+		this.entity = entity;
 	}
 }

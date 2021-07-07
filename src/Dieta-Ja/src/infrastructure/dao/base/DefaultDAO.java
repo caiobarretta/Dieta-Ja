@@ -26,8 +26,9 @@ public abstract class DefaultDAO<TEntity extends Entity> extends BaseDAO<TEntity
 	
 	protected TEntity get(String query, Integer id) {
 		Map<Integer, Object> map = HelperHashMap.criarHashMapComNInteirosSequenciais(id);
-		if(this.executeQuery(query, map).size() > 0 )
+		if(this.executeQuery(query, map).size() > 0 ){
 			return  super.executeQuery(query, map).get(0);
+		}
 		return null;
 	}
 	

@@ -52,7 +52,6 @@ public class UsuarioServiceTest extends TestCase {
 		usuario.setLogin("Teste login");
 		usuario.setSenha("1234");
 		usuario.setTipoUsuario(TipoUsuarioEnum.Paciente);
-		usuario.setAtivo(true);
 		usuario.setDietaID(1);
 		Integer rows = usuarioService.add(usuario);
 		if(rows != 1)

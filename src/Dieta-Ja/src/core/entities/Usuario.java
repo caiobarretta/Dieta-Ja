@@ -10,6 +10,7 @@ public class Usuario extends Entity {
 	protected TipoUsuarioEnum TipoUsuario;
 	
 	public Usuario() {
+		this.setAtivo(true);
 	}
 	
 	public String getLogin() {
@@ -35,5 +36,13 @@ public class Usuario extends Entity {
 	}
 	public void setTipoUsuario(TipoUsuarioEnum tipoUsuario) {
 		TipoUsuario = tipoUsuario;
+	}
+	
+	@Override
+	public String toString() {
+		String basicDescription = String.format("ID:%d Nome:%s Descricao:%s Ativo:%b", this.getID(), this.getNome(), this.getDescricao(), this.isAtivo());
+		String tipoUsuario = TipoUsuarioEnum.retornaNomeEnumPeloId(TipoUsuarioEnum.retornaIdPeloEnum(this.getTipoUsuario()));
+		String description = String.format("%s Login:%s Senha:%s DietaID:%d TipoUsuario:%s",basicDescription, this.getLogin(), this.getSenha(), this.getDietaID(), tipoUsuario);
+		return description;
 	}
 }

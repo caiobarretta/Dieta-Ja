@@ -27,7 +27,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import services.PorcaoDeAlimentoService;
 
-public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeAlimentoDTO> {
+public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeAlimentoDTO, PorcaoDeAlimento> {
 	
 	@FXML
 	private GridPane gpDiasDaSemana;
@@ -73,10 +73,8 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	@Override
 	protected ObservableList<PorcaoDeAlimentoDTO> tableViewSource() { 
 		List<PorcaoDeAlimentoDTO> lstDTO = new ArrayList<PorcaoDeAlimentoDTO>();
-		List<PorcaoDeAlimento> lstPorc = service.get(0, 100);
-		for (PorcaoDeAlimento porc : lstPorc) {
-			lstDTO.add(new PorcaoDeAlimentoDTO(porc.getID(), porc.getNome(), porc.getDescricao()));
-		}
+		List<PorcaoDeAlimento> lst = service.get(0, 100);
+		ConvertEntidadeEmModelo(lstDTO, lst);
         return FXCollections.observableArrayList(lstDTO);
 	}
 	
@@ -94,15 +92,9 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	}
 
 	@Override
-	protected void actionEdit(PorcaoDeAlimentoDTO dto) {
-		PorcaoDeAlimento porc = service.get(dto.getCodigo());
-		if(porc == null){
-			AlertHelper.buildAlert(AlertType.INFORMATION, "Erro ao Editar", "A porção de alimento não foi encontrada.").showAndWait();
-			return;
-		}
+	protected void actionEdit() {
+		PorcaoDeAlimento porc = (PorcaoDeAlimento)super.getEntity();
 		
-		super.setState(FXMLState.Editar);
-		super.setIdEditing(dto.getCodigo());
 		List<String> diasDaSemana = service.retornaDiasDaSemanaPeloIdPorcaoDeAlimento(porc.getID());
 		List<String> refeicoes = service.retornaRefeicaoPeloIdPorcaoDeAlimento(porc.getID());
 		
@@ -115,61 +107,25 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 
 	@Override
 	protected void actionDelete(PorcaoDeAlimentoDTO dto) {
-		try {
-			service.delete(dto.getCodigo());
-		} catch (Exception e) {
-			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro: %s\n Ao deletar registro:", e.getMessage(), dto.getNome())).showAndWait();
-			return;
-		}
-		AlertHelper.buildAlert(AlertType.CONFIRMATION, "Salvar",String.format("%s deletado com sucesso.", dto.getNome())).showAndWait();
 		this.clearFXML();
 	}
 
 	@Override
-	protected void actionSave() {
-		PorcaoDeAlimento porc = new PorcaoDeAlimento();
-		porc.setNome(txtNome.getText());
-		porc.setDescricao(txtObs.getText());
-		
+	protected void actionSave(Integer id) {
 		List<String> listDiaDaSemanaSelecionado = cbxDiasDaSemana.getSelectedItemsAsString();
 		List<String> listRefeicaoSelecionado = cbxRefeicao.getSelectedItemsAsString();
 		
 		List<Integer> listDiaDaSemana = DiaDaSemanaEnum.convertListStringToListInt(listDiaDaSemanaSelecionado);
 		List<Integer> listIdRefeicao = RefeicaoEnum.convertListStringToListInt(listRefeicaoSelecionado);
 		
-		Integer idPorcao = 0;
-		if(super.getState() == FXMLState.Editar){
-			idPorcao = super.getIdEditing();
-			porc.setID(super.getIdEditing());
-			try {
-				service.update(porc);
-			} catch (Exception e) {
-				AlertHelper.buildAlert(AlertType.ERROR, "Salvar",String.format("Erro ao Editar os dados: %s", e.getMessage())).showAndWait();
-				return;
-			}
-		}
-		else if (super.getState() == FXMLState.Inserir) {			
-			try {
-				service.add(porc);
-				idPorcao = service.getLastIdInserted();
-			} catch (Exception e) {
-				AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro ao Salvar os dados: %s", e.getMessage())).showAndWait();
-				return;
-			}
-		}
-		else{
-			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro de implementação ao salvar os dados.")).showAndWait();
-			return;
-		}
-		
 		try{
-			service.associarPorcaoAlimentoDiaDaSemana(listDiaDaSemana, idPorcao);
-			service.associarPorcaoRefeicoes(listIdRefeicao, idPorcao);
+			service.associarPorcaoAlimentoDiaDaSemana(listDiaDaSemana, id);
+			service.associarPorcaoRefeicoes(listIdRefeicao, id);
 		}catch (Exception e) {
 			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro ao Associar os dados: %s", e.getMessage())).showAndWait();
 			return;
 		}
-		AlertHelper.buildAlert(AlertType.INFORMATION, "Salvar", String.format("Dados salvos do código: %d com sucesso!", idPorcao)).showAndWait();
+		AlertHelper.buildAlert(AlertType.INFORMATION, "Salvar", String.format("Dados salvos do código: %d com sucesso!", id)).showAndWait();
 		this.clearFXML();
 	}
 	
@@ -184,11 +140,68 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	@Override
 	protected ObservableList<PorcaoDeAlimentoDTO> getSourceSearch(String search) {
 		List<PorcaoDeAlimentoDTO> lstDTO = new ArrayList<PorcaoDeAlimentoDTO>();
-		List<PorcaoDeAlimento> lstPorc = service.search(search);
-		for (PorcaoDeAlimento porc : lstPorc) {
-			lstDTO.add(new PorcaoDeAlimentoDTO(porc.getID(), porc.getNome(), porc.getDescricao()));
-		}
+		List<PorcaoDeAlimento> lst = service.search(search);
+		ConvertEntidadeEmModelo(lstDTO, lst);
         return FXCollections.observableArrayList(lstDTO);
+	}
+
+	private void ConvertEntidadeEmModelo(List<PorcaoDeAlimentoDTO> lstDTO, List<PorcaoDeAlimento> lstPorc) {
+		for (PorcaoDeAlimento porc : lstPorc) {
+			lstDTO.add(ConvertEntidadeEmModelo(porc));
+		}
+	}
+	
+	private PorcaoDeAlimentoDTO ConvertEntidadeEmModelo(PorcaoDeAlimento ent) {
+			return new PorcaoDeAlimentoDTO(ent.getID(), ent.getNome(), ent.getDescricao());
+	}
+
+	@Override
+	protected void loadOthersColumnsTableView() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected PorcaoDeAlimento carregaEntidade(PorcaoDeAlimentoDTO dto) {
+		List<PorcaoDeAlimentoDTO> lstDTO = new ArrayList<PorcaoDeAlimentoDTO>();
+		List<PorcaoDeAlimento> lst = new ArrayList<PorcaoDeAlimento>();
+		PorcaoDeAlimento porc = service.get(dto.getCodigo());
+		lst.add(porc);
+		ConvertEntidadeEmModelo(lstDTO, lst);
+		return lst.get(0);
+	}
+
+	@Override
+	protected PorcaoDeAlimento createNewInstance() {
+		return new PorcaoDeAlimento();
+	}
+
+	@Override
+	protected void entityUpdate(PorcaoDeAlimento entity) {
+		service.update(entity);
+	}
+
+	@Override
+	protected Integer entityAdd(PorcaoDeAlimento entity) {
+		service.add(entity);
+		return service.getLastIdInserted();
+	}
+
+	@Override
+	protected void entityDelete(Integer id) {
+		service.delete(id);
+	}
+
+	@Override
+	protected boolean loadFieldsRequiredEntity(PorcaoDeAlimento entity, List<String> lstCamposInvalidos) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	protected void loadFieldsEntity(PorcaoDeAlimento entity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
