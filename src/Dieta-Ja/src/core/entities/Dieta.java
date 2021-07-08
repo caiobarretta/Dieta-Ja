@@ -6,6 +6,6 @@ import core.entities.base.Entity;
 public class Dieta extends Entity {
 	
 	public Dieta() {
-		
+		this.setAtivo(true);
 	}
 }

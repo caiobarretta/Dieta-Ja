@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import core.entities.DiaDaSemanaEnum;
 import core.entities.Dieta;
+import core.entities.PorcaoDeAlimento;
 import core.interfaces.dao.IDietaDAO;
 import infrastructure.dao.base.DAOConnection;
 import infrastructure.dao.base.DefaultDAO;
@@ -24,7 +26,7 @@ public class DietaDAO extends DefaultDAO<Dieta> implements IDietaDAO{
 
 	@Override
 	public List<Dieta> get(Integer take, Integer skip) {
-		String query = "SELECT * FROM Dieta LIMIT ?,?;";
+		String query = "SELECT * FROM Dieta WHERE Ativo = 1 LIMIT ?,?";
 		return super.get(query, take, skip);
 	}
 
@@ -36,7 +38,7 @@ public class DietaDAO extends DefaultDAO<Dieta> implements IDietaDAO{
 
 	@Override
 	public List<Dieta> search(String search) {
-		String query = "SELECT * FROM Dieta WHERE Nome like ? OR Descricao like ? AND Ativo = 1";
+		String query = "SELECT * FROM Dieta WHERE (Nome like ? OR Descricao like ?) AND Ativo = 1";
 		return search(query, search);
 	}
 
@@ -83,7 +85,17 @@ public class DietaDAO extends DefaultDAO<Dieta> implements IDietaDAO{
 
 	@Override
 	public Integer getLastIdInserted() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getLastIdInserted();
+	}
+
+	@Override
+	public List<Integer> retornaPorcaoDeAlimentoPeloIdDieta(Integer id) {
+		List<Integer> lstResult = new ArrayList<Integer>();
+		String query = "SELECT ID_PorcaoAlimento FROM PorcaoDeAlimentoDieta WHERE ID_Dieta = ?";
+		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "ID_PorcaoAlimento", id);
+		for (Integer index : lst) {
+			lstResult.add(index);
+		}
+		return lstResult;
 	}
 }

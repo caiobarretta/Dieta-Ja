@@ -78,8 +78,9 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
         return FXCollections.observableArrayList(lstDTO);
 	}
 	
-	@FXML
-    private void initialize() {
+	@Override
+    public void initialize() {
+		super.initialize();
 	}
 	
 	@Override

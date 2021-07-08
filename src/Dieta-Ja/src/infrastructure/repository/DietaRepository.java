@@ -1,5 +1,7 @@
 package infrastructure.repository;
 
+import java.util.List;
+
 import core.entities.Dieta;
 import core.interfaces.dao.IDietaDAO;
 import core.interfaces.dao.base.IDAO;
@@ -19,8 +21,10 @@ public class DietaRepository extends DefaultRepository<Dieta> implements IDietaR
 	}
 	@Override
 	public Integer getLastIdInserted() {
-		// TODO Auto-generated method stub
-		return null;
+		return _idao.getLastIdInserted();
 	}
-
+	@Override
+	public List<Integer> retornaPorcaoDeAlimentoPeloIdDieta(Integer id) {
+		return _idao.retornaPorcaoDeAlimentoPeloIdDieta(id);
+	}
 }

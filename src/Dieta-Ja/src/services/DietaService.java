@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import core.entities.Dieta;
 import core.interfaces.repository.IDietaRepository;
 import core.interfaces.service.IDietaService;
@@ -11,10 +13,14 @@ public class DietaService extends DefaultService<Dieta> implements IDietaService
 		super(repo);
 		this._repo = repo;
 	}
+	
 	@Override
 	public Integer getLastIdInserted() {
-		// TODO Auto-generated method stub
-		return null;
+		return this._repo.getLastIdInserted();
 	}
 	
+	@Override
+	public List<Integer> retornaPorcaoDeAlimentoPeloIdDieta(Integer id) {
+		return this._repo.retornaPorcaoDeAlimentoPeloIdDieta(id);
+	}
 }

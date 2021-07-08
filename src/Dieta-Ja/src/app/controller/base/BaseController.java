@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import app.enums.FXMLState;
 import core.Startup;
 import core.ioc.Container;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 public abstract class BaseController implements Initializable {
@@ -24,6 +25,11 @@ public abstract class BaseController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+	}
+	
+	@FXML
+    public void initialize(){
+		
 	}
 
 	public Container getContainer() {
