@@ -13,14 +13,6 @@ public class PorcaoDeAlimentoRepository extends DefaultRepository<PorcaoDeAlimen
 	public PorcaoDeAlimentoRepository(IPorcaoDeAlimentoDAO dao) {
 		this._idao = dao;
 	}
-	
-	public Integer associarPorcaoAlimentoDieta(List<Integer> listIdProcaoAlimento, Integer idDieta){
-		return this._idao.associarPorcaoAlimentoDieta(listIdProcaoAlimento, idDieta);
-    }
-
-    public Integer associarPorcaoRefeicoes(List<Integer> listIdRefeicao, Integer idPorcaoDeAlimento){
-    	return this._idao.associarPorcaoRefeicoes(listIdRefeicao, idPorcaoDeAlimento);
-    }
 
     public List<PorcaoDeAlimento> retornaPorcaoDeAlimentoPeloIdDaDieta(Integer id){
     	return this._idao.retornaPorcaoDeAlimentoPeloIdDaDieta(id);
@@ -43,11 +35,6 @@ public class PorcaoDeAlimentoRepository extends DefaultRepository<PorcaoDeAlimen
 	}
 
 	@Override
-	public Integer associarPorcaoAlimentoDiaDaSemana(List<Integer> listDiaDaSemana, Integer porcaoDeAlimentoID) {
-		return this._idao.associarPorcaoAlimentoDiaDaSemana(listDiaDaSemana, porcaoDeAlimentoID);
-	}
-
-	@Override
 	public Integer getLastIdInserted() {
 		return this._idao.getLastIdInserted();
 	}
@@ -55,5 +42,11 @@ public class PorcaoDeAlimentoRepository extends DefaultRepository<PorcaoDeAlimen
 	@Override
 	public List<String> retornaDiaDaSemanaPeloIDPorcaoDeAlimento(Integer id) {
 		return this._idao.retornaDiaDaSemanaPeloIDPorcaoDeAlimento(id);
+	}
+
+	@Override
+	public Integer associarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(Integer IdPorcaoDeAlimento,
+			List<Integer> listDiaDaSemana, List<Integer> listIdRefeicao, Integer dietaID) {
+		return this._idao.associarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(IdPorcaoDeAlimento, listDiaDaSemana, listIdRefeicao, dietaID);
 	}
 }

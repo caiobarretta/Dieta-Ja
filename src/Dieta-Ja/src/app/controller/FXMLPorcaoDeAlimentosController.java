@@ -123,8 +123,7 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 		List<Integer> listIdRefeicao = RefeicaoEnum.convertListStringToListInt(listRefeicaoSelecionado);
 		
 		try{
-			service.associarPorcaoAlimentoDiaDaSemana(listDiaDaSemana, id);
-			service.associarPorcaoRefeicoes(listIdRefeicao, id);
+			service.associarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(1, listDiaDaSemana, listIdRefeicao, 1);
 		}catch (Exception e) {
 			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro ao Associar os dados: %s", e.getMessage())).showAndWait();
 			return;

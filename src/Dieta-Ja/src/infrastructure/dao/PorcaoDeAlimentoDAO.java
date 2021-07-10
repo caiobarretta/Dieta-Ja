@@ -11,6 +11,7 @@ import java.util.Map;
 import core.entities.DiaDaSemanaEnum;
 import core.entities.PorcaoDeAlimento;
 import core.entities.RefeicaoEnum;
+import core.entities.TipoMedidaEnum;
 import core.interfaces.dao.IPorcaoDeAlimentoDAO;
 import infrastructure.dao.base.DefaultDAO;
 
@@ -29,7 +30,7 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 
 	@Override
 	public PorcaoDeAlimento get(Integer id) {
-		String query = "SELECT * FROM PorcaoDeAlimento WHERE Id_PorcaoAlimento = ? and Ativo = 1";
+		String query = "SELECT * FROM PorcaoDeAlimento WHERE Id_PorcaoDeAlimento = ? and Ativo = 1";
 		return super.get(query, id);
 	}
 
@@ -41,48 +42,23 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 
 	@Override
 	public Integer add(PorcaoDeAlimento entity) {
-		String query = "INSERT INTO PorcaoDeAlimento (Nome, Descricao, Ativo) values (?, ?, ?);";
+		//# ID_PorcaoDeAlimento, Nome, Descricao, Ativo, Quantidade, TipoMedida
+		String query = "INSERT INTO PorcaoDeAlimento (Nome, Descricao, Ativo, Quantidade, TipoMedida) values (?, ?, ?, ?, ?);";
 		return super.add(query, entity);
 
 	}
 
 	@Override
 	public Integer update(PorcaoDeAlimento entity) {
-		String query = "UPDATE PorcaoDeAlimento SET Nome = ?, Descricao = ?, Ativo = ? WHERE Id_PorcaoAlimento = ?";
+		//# ID_PorcaoDeAlimento, Nome, Descricao, Ativo, Quantidade, TipoMedida
+		String query = "UPDATE PorcaoDeAlimento SET Nome = ?, Descricao = ?, Ativo = ?, Quantidade = ?, TipoMedida = ? WHERE Id_PorcaoDeAlimento = ?";
 		return super.update(query, entity);
-	}
-
-	@Override
-	public Integer associarPorcaoRefeicoes(List<Integer> listIdRefeicao, Integer porcaoDeAlimentoID) {
-		String queryDelete = "DELETE FROM RefeicaoPorcaoDeAlimento WHERE ID_PorcaoAlimento = ?";
-		super.delete(queryDelete, porcaoDeAlimentoID);
-
-		String query = "INSERT INTO RefeicaoPorcaoDeAlimento (ID_PorcaoAlimento, Refeicao) VALUES (?, ?)";
-		return associar(query, listIdRefeicao, porcaoDeAlimentoID);
-	}
-
-	@Override
-	public Integer associarPorcaoAlimentoDieta(List<Integer> listIdProcaoAlimento, Integer dietaID) {
-		String queryDelete = "DELETE FROM PorcaoDeAlimentoDieta WHERE ID_DIETA = ?";
-		super.delete(queryDelete, dietaID);
-
-		String query = "INSERT INTO PorcaoDeAlimentoDieta (ID_PorcaoAlimento, ID_DIETA) VALUES (?, ?)";
-		return associar(query, listIdProcaoAlimento, dietaID);
-	}
-
-	@Override
-	public Integer associarPorcaoAlimentoDiaDaSemana(List<Integer> listDiaDaSemana, Integer porcaoDeAlimentoID) {
-		String queryDelete = "DELETE FROM PorcaoDeAlimentoDiasDaSemana WHERE ID_PorcaoAlimento = ?";
-		super.delete(queryDelete, porcaoDeAlimentoID);
-
-		String query = "INSERT INTO PorcaoDeAlimentoDiasDaSemana (ID_PorcaoAlimento, DiaDaSemana) VALUES (?, ?)";
-		return associar(query, listDiaDaSemana, porcaoDeAlimentoID);
 	}
 
 	@Override
 	public List<PorcaoDeAlimento> retornaPorcaoDeAlimentoPeloIdDaDieta(Integer id) {
 		List<PorcaoDeAlimento> lstResult = new ArrayList<PorcaoDeAlimento>();
-		String query = "SELECT Id_Dieta FROM PorcaoDeAlimentoDieta WHERE ID_PorcaoAlimento = ?";
+		String query = "SELECT Id_Dieta FROM PorcaoDeAlimentoDiasDaSemanaDietaRefeicao WHERE Id_PorcaoDeAlimento = ?";
 		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "Id_Dieta", id);
 		for (Integer index : lst) {
 			lstResult.add(this.get(index));
@@ -92,7 +68,7 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 	
 	public List<String> retornaDiaDaSemanaPeloIDPorcaoDeAlimento(Integer id) {
 		List<String> lstResult = new ArrayList<String>();
-		String query = "SELECT DiaDaSemana FROM PorcaoDeAlimentoDiasDaSemana WHERE ID_PorcaoAlimento = ?";
+		String query = "SELECT DiaDaSemana FROM PorcaoDeAlimentoDiasDaSemanaDietaRefeicao WHERE Id_PorcaoDeAlimento = ?";
 		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "DiaDaSemana", id);
 		for (Integer index : lst) {
 			lstResult.add(DiaDaSemanaEnum.retornaNomeEnumPeloId(index));
@@ -100,9 +76,10 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 		return lstResult;
 	}
 	
-	public List<String> retornaRefeicaoPeloIDPorcaoDeAlimento(Integer id) {
+	@Override
+	public List<String> retornaRefeicaoPeloIdPorcaoDeAlimento(Integer id) {
 		List<String> lstResult = new ArrayList<String>();
-		String query = "SELECT Refeicao FROM RefeicaoPorcaoDeAlimento WHERE ID_PorcaoAlimento = ?";
+		String query = "SELECT Refeicao FROM PorcaoDeAlimentoDiasDaSemanaDietaRefeicao WHERE Id_PorcaoDeAlimento = ?";
 		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "Refeicao", id);
 		for (Integer index : lst) {
 			lstResult.add(RefeicaoEnum.retornaNomeEnumPeloId(index));
@@ -116,18 +93,23 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 		map.put(1, entity.getNome());
 		map.put(2, entity.getDescricao());
 		map.put(3, entity.isAtivo());
+		map.put(4, entity.getQuantidade());
+		map.put(5, TipoMedidaEnum.retornaIdPeloEnum(entity.getTipoMedida()));
 		return map;
 	}
 
 	@Override
 	protected List<PorcaoDeAlimento> LoadEntityFromResultSet(ResultSet rs) throws SQLException {
 		List<PorcaoDeAlimento> lst = new ArrayList<PorcaoDeAlimento>();
+		//# ID_PorcaoDeAlimento, Nome, Descricao, Ativo, Quantidade, TipoMedida
 		while (rs.next()) {
 			PorcaoDeAlimento porcaoDeAlimento = new PorcaoDeAlimento();
-			porcaoDeAlimento.setID(rs.getInt("Id_PorcaoAlimento"));
+			porcaoDeAlimento.setID(rs.getInt("Id_PorcaoDeAlimento"));
 			porcaoDeAlimento.setNome(rs.getString("Nome"));
 			porcaoDeAlimento.setDescricao(rs.getString("Descricao"));
 			porcaoDeAlimento.setAtivo(rs.getBoolean("Ativo"));
+			porcaoDeAlimento.setQuantidade(rs.getInt("Quantidade"));
+			porcaoDeAlimento.setTipoMedida(TipoMedidaEnum.retornaEnumPeloId(rs.getInt("TipoMedida")));
 			lst.add(porcaoDeAlimento);
 		}
 		return lst;
@@ -135,14 +117,14 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 
 	@Override
 	public Integer delete(Integer id) {
-		String query = "UPDATE PorcaoDeAlimento SET Ativo = 0 WHERE Id_PorcaoAlimento = ?";
+		String query = "UPDATE PorcaoDeAlimento SET Ativo = 0 WHERE Id_PorcaoDeAlimento = ?";
 		return super.delete(query, id);
 	}
 
 	@Override
 	public List<String> retornaDiasDaSemanaPeloIdPorcaoDeAlimento(Integer id) {
 		List<String> lstResult = new ArrayList<String>();
-		String query = "SELECT DiaDaSemana FROM PorcaoDeAlimentoDiasDaSemana WHERE Id_PorcaoAlimento = ?";
+		String query = "SELECT DiaDaSemana FROM PorcaoDeAlimentoDiasDaSemanaDietaRefeicao WHERE Id_PorcaoDeAlimento = ?";
 		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "DiaDaSemana", id);
 		for (Integer index : lst) {
 			lstResult.add(DiaDaSemanaEnum.retornaNomeEnumPeloId(index));
@@ -154,9 +136,23 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 	public Integer getLastIdInserted() {
 		return super.getLastIdInserted();
 	}
-
+	
 	@Override
-	public List<String> retornaRefeicaoPeloIdPorcaoDeAlimento(Integer id) {
-		return retornaRefeicaoPeloIDPorcaoDeAlimento(id);
+	public Integer associarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(Integer IdPorcaoDeAlimento,
+			List<Integer> listDiaDaSemana, List<Integer> listIdRefeicao, Integer dietaID) {
+		
+		//# ID_PorcaoDeAlimento, ID_Dieta, DiaDaSemana, Refeicao
+		
+		String queryDelete = "DELETE FROM PorcaoDeAlimentoDiasDaSemanaDietaRefeicao WHERE ID_Dieta = ?";
+		super.delete(queryDelete, dietaID);
+		
+		String query = "INSERT INTO PorcaoDeAlimentoDiasDaSemanaDietaRefeicao (Id_PorcaoDeAlimento, DiaDaSemana, Refeicao, ID_Dieta) VALUES(?, ?, ?, ?);";
+		int counter = 0;
+		for (Integer dia : listDiaDaSemana) {
+			for (Integer ref : listIdRefeicao) {
+				counter += super.add(query, IdPorcaoDeAlimento, dia, ref, dietaID);
+			}
+		}
+		return counter;
 	}
 }

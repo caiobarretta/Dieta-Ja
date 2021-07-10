@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import core.Startup;
 import core.entities.PorcaoDeAlimento;
+import core.entities.TipoMedidaEnum;
 import core.interfaces.dao.IPorcaoDeAlimentoDAO;
 import core.interfaces.repository.IPorcaoDeAlimentoRepository;
 import core.interfaces.service.IPorcaoDeAlimentoService;
@@ -40,31 +41,15 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 	protected void tearDown() throws Exception {
 		porcaoDeAlimentoDao.closeConn();
 	}
-
-	public void testAssociarPorcaoRefeicoes() {
-		List<Integer> lst = new ArrayList<Integer>();
-		lst.add(1);
-		lst.add(2);
-		int rows = porcaoDeAlimentoService.associarPorcaoRefeicoes(lst, 1);
-		if(rows < lst.size())
-			fail("porções de alimento não está associadas à refeição");
-	}
-
-	public void testAssociarPorcaoAlimentoDieta() {
-		List<Integer> lst = new ArrayList<Integer>();
-		lst.add(1);
-		lst.add(2);
-		int rows = porcaoDeAlimentoService.associarPorcaoAlimentoDieta(lst, 1);
-		if(rows < lst.size())
-			fail("Porções de alimento não associadas à Dieta");
-	}
 	
-	public void testAssociarPorcaoAlimentoDiaDaSemana(){
-		List<Integer> lst = new ArrayList<Integer>();
-		lst.add(1);
-		lst.add(2);
-		int rows = porcaoDeAlimentoService.associarPorcaoAlimentoDiaDaSemana(lst, 1);
-		if(rows < lst.size())
+	public void testAssociarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(){
+		List<Integer> listDiaDaSemana = new ArrayList<Integer>();
+		listDiaDaSemana.add(1);
+		List<Integer> listIdRefeicao = new ArrayList<Integer>();
+		listIdRefeicao.add(1);
+		
+		int rows = porcaoDeAlimentoService.associarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(1, listDiaDaSemana, listIdRefeicao, 1);
+		if(rows < listDiaDaSemana.size())
 			fail("porções de alimento não está associando aos dias da semana");
 	}
 
@@ -77,6 +62,8 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 	public void testAdd() {
 		porcaoDeAlimento.setNome(uuid.toString());
 		porcaoDeAlimento.setDescricao(uuid.toString());
+		porcaoDeAlimento.setQuantidade(1);
+		porcaoDeAlimento.setTipoMedida(TipoMedidaEnum.g);
 		Integer rows = porcaoDeAlimentoService.add(porcaoDeAlimento);
 		if(rows != 1)
 			fail("Porções de alimentos não está sendo inserida no banco");
@@ -99,7 +86,7 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 	}
 
 	public void testGetInteger() {
-		PorcaoDeAlimento porcao = porcaoDeAlimentoService.get(1);
+		PorcaoDeAlimento porcao = porcaoDeAlimentoService.get(0, 10).get(0);
 		if(porcao == null)
 			fail("porção de alimento não está carregando por ID");
 	}
@@ -117,6 +104,8 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 		porcaoDeAlimento.setID(1);
 		porcaoDeAlimento.setNome("Update teste");
 		porcaoDeAlimento.setDescricao("Update teste");
+		porcaoDeAlimento.setQuantidade(1);
+		porcaoDeAlimento.setTipoMedida(TipoMedidaEnum.g);
 		Integer rows = porcaoDeAlimentoService.update(porcaoDeAlimento);
 		if(rows != 1)
 			fail(String.format("Porções de alimentos não está sendo atualizada corretamente, rows: %d", rows));
@@ -127,10 +116,13 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 		PorcaoDeAlimento porcao = lst.get(0);
 		if(porcao == null)
 			fail("A pesquisa da porção de alimento não está carregando corretamente");
-		List<Integer> lstAssociacao = new ArrayList<Integer>();
-		lstAssociacao.add(1);
-		lstAssociacao.add(2);
-		porcaoDeAlimentoService.associarPorcaoAlimentoDiaDaSemana(lstAssociacao, porcao.getID());
+		
+		List<Integer> listDiaDaSemana = new ArrayList<Integer>();
+		listDiaDaSemana.add(1);
+		List<Integer> listIdRefeicao = new ArrayList<Integer>();
+		listIdRefeicao.add(1);
+		
+		porcaoDeAlimentoService.associarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(porcao.getID(), listDiaDaSemana, listIdRefeicao, 1);
 		List<String> diasDaSemana = porcaoDeAlimentoService.retornaDiasDaSemanaPeloIdPorcaoDeAlimento(porcao.getID());
 		if(diasDaSemana.isEmpty())
 			fail("A pesquisa da porção de alimento não está carregando os dias da semana corretamente");	

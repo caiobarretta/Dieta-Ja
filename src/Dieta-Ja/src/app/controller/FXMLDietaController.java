@@ -3,21 +3,16 @@ package app.controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import app.controller.base.DefaultController;
 import app.controller.helper.AlertHelper;
 import app.controller.helper.GridPaneHelper;
-import app.enums.FXMLState;
 import app.model.DietaDTO;
-import app.model.PorcaoDeAlimentoDTO;
 import app.view.component.MultiSelectionCombo;
 
-import core.entities.DiaDaSemanaEnum;
 import core.entities.Dieta;
 import core.entities.PorcaoDeAlimento;
-import core.entities.RefeicaoEnum;
 import core.entities.Usuario;
 import core.interfaces.service.IDietaService;
 import core.interfaces.service.IPorcaoDeAlimentoService;
@@ -25,10 +20,7 @@ import core.ioc.Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import services.DietaService;
 import services.PorcaoDeAlimentoService;
@@ -112,20 +104,6 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 
 	@Override
 	protected void actionSave(Integer id) {
-		List<Object> listPorcaoDeAlimentoSelecionada = cbxPorcaoDeAlimento.getSelectedItemsSource();
-		List<Integer> listIdPorcaoAlimento = new ArrayList<Integer>();
-		
-		for (Object porcao : listPorcaoDeAlimentoSelecionada) {
-			 PorcaoDeAlimento porc = (PorcaoDeAlimento)porcao;
-			 listIdPorcaoAlimento.add(porc.getID());
-		}
-		
-		try{
-			porcaoDeAlimentoService.associarPorcaoAlimentoDieta(listIdPorcaoAlimento, id);
-		}catch (Exception e) {
-			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro ao Associar os dados: %s", e.getMessage())).showAndWait();
-			return;
-		}
 		AlertHelper.buildAlert(AlertType.INFORMATION, "Salvar", String.format("Dados salvos do código: %d com sucesso!", id)).showAndWait();
 		this.clearFXML();
 	}

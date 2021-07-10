@@ -50,6 +50,13 @@ public abstract class DefaultDAO<TEntity extends Entity> extends BaseDAO<TEntity
 		return retorno;
 	}
 	
+	protected Integer add(String query, Integer... params) {
+		Map<Integer, Object> map = HelperHashMap.criarHashMapComNInteirosSequenciais(params);
+		Integer retorno = super.executeUpdate(query, map);
+		return retorno;
+	}
+	
+	
 	protected Integer update(String query, TEntity entity) {
 		Map<Integer, Object> map = converterEntityParaHashMapComIDNaUltimaPosicao(entity);
 		return super.executeUpdate(query, map);
