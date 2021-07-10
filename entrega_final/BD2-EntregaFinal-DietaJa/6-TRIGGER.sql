@@ -22,7 +22,7 @@ INSERT INTO Log (LogContent, LogDate, LogType)
             NOW(), 
 			'INSERT');
 END 
-DELIMITER ;
+DELIMITER $$ ;
 
 -- Triggers para criar LOG após UPDATE do Usuário;
 DROP TRIGGER IF EXISTS Tgr_TabelaUsuario_Update;
@@ -44,11 +44,13 @@ INSERT INTO Log (LogContent, LogDate, LogType)
             NOW(), 
             'UPDATE');
 END 
-DELIMITER ;
+$$ 
 
+SHOW TRIGGERS;
 -- TESTE Insere Usuário
 INSERT INTO Usuario (Login, Senha, TipoUsuario, Descricao, Nome, Ativo)
 VALUES ("@testetrigger", "@123455", 3, "Trigger Teste Insert", "Trigger Teste", true);
+SELECT * FROM Log;
 
 -- TESTE Update Usuário
 UPDATE Usuario SET Ativo = false WHERE ID_Usuario = 1;

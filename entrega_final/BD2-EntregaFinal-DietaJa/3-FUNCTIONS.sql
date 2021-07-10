@@ -66,6 +66,3 @@ SELECT CONVERT_ENUM_SENTIMENTO_STR(1);
 SELECT CONVERT_ENUM_REFEICAO_STR(2);
 SELECT CONVERT_ENUM_DIA_DA_SEMANA_STR(3);
 SELECT SPLIT_STR("dietaja,podeser", "podeser", 1);
-
-
-CREATE FUNCTION CONVERT_ENUM_SENTIMENTO_STR(   enumerador INT ) RETURNS VARCHAR(255) RETURN  (CASE  WHEN enumerador = 1 THEN "Muito Satisfeito"     WHEN enumerador = 2 THEN "Satisfeito"     WHEN enumerador = 3 THEN "Razoavelmente satisfeito"     WHEN enumerador = 4 THEN "Um pouco insatisfeito"     WHEN enumerador = 5 THEN "Insatisfeito"     WHEN enumerador = 6 THEN "Totalmente insatisfeito"     END)

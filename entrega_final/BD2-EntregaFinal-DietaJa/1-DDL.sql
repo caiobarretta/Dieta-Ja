@@ -74,7 +74,3 @@ FOREIGN KEY (ID_PorcaoDeAlimento) REFERENCES DietaJa.PorcaoDeAlimento (ID_Porcao
 
 ALTER TABLE DietaJa.RegistroDeAtividade ADD CONSTRAINT FK_RegistroDeAtividade_Usuario
 FOREIGN KEY (ID_Usuario) REFERENCES DietaJa.Usuario (ID_Usuario);
-
-
-INSERT INTO DietaJa.PorcaoDeAlimentoDiasDaSemanaDietaRefeicao (ID_PorcaoDeAlimento, ID_Dieta, DiaDaSemana, Refeicao)
-VALUES (1, 1, 1, 1);
