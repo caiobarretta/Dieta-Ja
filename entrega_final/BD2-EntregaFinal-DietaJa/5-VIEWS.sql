@@ -3,7 +3,7 @@ USE DietaJa;
 
 -- Base para Relatórios espelhados no sistema; 
 -- Views que interagem entre Sentimento, Refeição, Dia da semana e Dieta.
-DROP VIEW SentimentoRefeicaoDiaDaSemanaDieta;
+DROP VIEW IF EXISTS SentimentoRefeicaoDiaDaSemanaDieta;
 CREATE VIEW SentimentoRefeicaoDiaDaSemanaDieta AS
 SELECT  usr.Nome AS "Usuário", ra.Registro, dt.Nome,
 CONVERT_ENUM_SENTIMENTO_STR(ra.Sentimento) AS "Sentimento",
@@ -15,7 +15,7 @@ INNER JOIN Dieta dt ON ra.ID_Dieta = dt.ID_Dieta
 INNER JOIN DietaJa.Usuario AS usr ON ra.ID_Usuario = usr.ID_Usuario;
 
 -- Consulta quais usuários estão ativos ou inativos na plataforma;
-DROP VIEW AtivoInativo;
+DROP VIEW IF EXISTS AtivoInativo;
 CREATE VIEW AtivoInativo AS
 SELECT tab1.Nome,
 CASE

@@ -1,4 +1,5 @@
 USE DietaJa;
+SET GLOBAL log_bin_trust_function_creators = 1;
 
 -- FUNCTIONS
 -- CONVERT ENUMS: Sentimento, Refeicao, DiaDaSemana
@@ -67,3 +68,4 @@ SELECT CONVERT_ENUM_DIA_DA_SEMANA_STR(3);
 SELECT SPLIT_STR("dietaja,podeser", "podeser", 1);
 
 
+CREATE FUNCTION CONVERT_ENUM_SENTIMENTO_STR(   enumerador INT ) RETURNS VARCHAR(255) RETURN  (CASE  WHEN enumerador = 1 THEN "Muito Satisfeito"     WHEN enumerador = 2 THEN "Satisfeito"     WHEN enumerador = 3 THEN "Razoavelmente satisfeito"     WHEN enumerador = 4 THEN "Um pouco insatisfeito"     WHEN enumerador = 5 THEN "Insatisfeito"     WHEN enumerador = 6 THEN "Totalmente insatisfeito"     END)

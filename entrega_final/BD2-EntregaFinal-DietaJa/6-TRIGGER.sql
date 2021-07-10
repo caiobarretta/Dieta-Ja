@@ -3,7 +3,7 @@ USE DietaJa;
 -- TRIGGERS
 -- Triggers para criar LOG após INSERT do Usuário;
 
-DROP TRIGGER Tgr_TabelaUsuario_Insert;
+DROP TRIGGER IF EXISTS Tgr_TabelaUsuario_Insert;
 DELIMITER $$
 CREATE TRIGGER Tgr_TabelaUsuario_Insert AFTER INSERT
 ON Usuario
@@ -25,7 +25,7 @@ END
 DELIMITER ;
 
 -- Triggers para criar LOG após UPDATE do Usuário;
-DROP TRIGGER Tgr_TabelaUsuario_Update;
+DROP TRIGGER IF EXISTS Tgr_TabelaUsuario_Update;
 DELIMITER $$
 CREATE TRIGGER Tgr_TabelaUsuario_Update AFTER UPDATE
 ON Usuario
