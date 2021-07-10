@@ -62,6 +62,7 @@ CREATE TABLE Log (
 	ID_Log INT AUTO_INCREMENT NOT NULL,
     LogContent VARCHAR(3000),
     LogDate DATETIME,
+    LogType VARCHAR(10),
     PRIMARY KEY (ID_Log));
 
 -- Adiciona referências estrangeiras nas tabelas necessárias;
