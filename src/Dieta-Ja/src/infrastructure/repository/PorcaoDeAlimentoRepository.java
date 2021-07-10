@@ -51,4 +51,9 @@ public class PorcaoDeAlimentoRepository extends DefaultRepository<PorcaoDeAlimen
 	public Integer getLastIdInserted() {
 		return this._idao.getLastIdInserted();
 	}
+
+	@Override
+	public List<String> retornaDiaDaSemanaPeloIDPorcaoDeAlimento(Integer id) {
+		return this._idao.retornaDiaDaSemanaPeloIDPorcaoDeAlimento(id);
+	}
 }

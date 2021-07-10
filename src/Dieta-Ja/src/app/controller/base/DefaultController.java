@@ -8,7 +8,9 @@ import app.controller.helper.AlertHelper;
 import app.enums.FXMLState;
 import app.model.base.BaseDTO;
 import core.entities.PorcaoDeAlimento;
+import core.entities.Usuario;
 import core.entities.base.Entity;
+import core.ioc.Container;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +31,15 @@ import javafx.util.Callback;
 
 public abstract class DefaultController<T extends BaseDTO, TEntity extends Entity> extends BaseController {
 	
+	private FXMLState state;
+	private Integer idEditing;
+	
+	public DefaultController(Container container, Usuario usuario) {
+		super(container, usuario);
+		state = FXMLState.Inserir;
+		idEditing = 0;
+	}
+
 	@FXML
 	protected Label lblIdEdit;
 	@FXML
@@ -74,9 +85,9 @@ public abstract class DefaultController<T extends BaseDTO, TEntity extends Entit
 			return;
 		}
 		Integer id = 0;
-		if(super.getState() == FXMLState.Editar){
-			id = super.getIdEditing();
-			entity.setID(super.getIdEditing());
+		if(this.getState() == FXMLState.Editar){
+			id = this.getIdEditing();
+			entity.setID(this.getIdEditing());
 			try {
 				entityUpdate(entity);
 			} catch (Exception e) {
@@ -84,7 +95,7 @@ public abstract class DefaultController<T extends BaseDTO, TEntity extends Entit
 				return;
 			}
 		}
-		else if (super.getState() == FXMLState.Inserir) {			
+		else if (this.getState() == FXMLState.Inserir) {			
 			try {
 				id = entityAdd(entity);
 			} catch (Exception e) {
@@ -101,7 +112,7 @@ public abstract class DefaultController<T extends BaseDTO, TEntity extends Entit
 	
 	@FXML
 	protected void clickCancelar(ActionEvent event) {
-		Stage stage = (Stage) btnCancelar.getScene().getWindow();
+		Stage stage = (Stage)btnCancelar.getScene().getWindow();
 	    stage.close();
     }
 	
@@ -126,9 +137,7 @@ public abstract class DefaultController<T extends BaseDTO, TEntity extends Entit
 	protected abstract void loadFieldsEntity(TEntity entity);
 	protected abstract boolean loadFieldsRequiredEntity(TEntity entity, List<String> lstCamposInvalidos);
 	
-	public DefaultController(){
-		super();
-	}
+	
 	
 	protected void loadTableView(){
 		codigoCol.setCellValueFactory(new PropertyValueFactory<>("codigo"));
@@ -157,8 +166,8 @@ public abstract class DefaultController<T extends BaseDTO, TEntity extends Entit
 		}
 		
 		this.setEntity(entity);
-		super.setState(FXMLState.Editar);
-		super.setIdEditing(dto.getCodigo());
+		this.setState(FXMLState.Editar);
+		this.setIdEditing(dto.getCodigo());
 		return true;
 	}
 	
@@ -255,5 +264,21 @@ public abstract class DefaultController<T extends BaseDTO, TEntity extends Entit
 
 	public void setEntity(TEntity entity) {
 		this.entity = entity;
+	}
+	
+	public FXMLState getState() {
+		return state;
+	}
+
+	public void setState(FXMLState state) {
+		this.state = state;
+	}
+	
+	public Integer getIdEditing() {
+		return idEditing;
+	}
+
+	public void setIdEditing(Integer idEditing) {
+		this.idEditing = idEditing;
 	}
 }

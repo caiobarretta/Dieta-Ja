@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import app.enums.FXMLState;
 import core.Startup;
+import core.entities.Usuario;
 import core.ioc.Container;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,14 +13,11 @@ import javafx.fxml.Initializable;
 public abstract class BaseController implements Initializable {
 
 	private Container container;
-	private FXMLState state;
-	private Integer idEditing;
+	private Usuario usuario;
 	
-	public BaseController() {
-		state = FXMLState.Inserir;
-		idEditing = 0;
-		Startup startup = new Startup();
-		this.container = startup.getContainer();
+	public BaseController(Container container, Usuario usuario) {
+		this.container = container;
+		this.usuario = usuario;
 	}
 	
 	@Override
@@ -33,23 +31,10 @@ public abstract class BaseController implements Initializable {
 	}
 
 	public Container getContainer() {
-		return container;
-	}
-	
-	public FXMLState getState() {
-		return state;
+		return new Startup().getContainer();
 	}
 
-	public void setState(FXMLState state) {
-		this.state = state;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	
-	public Integer getIdEditing() {
-		return idEditing;
-	}
-
-	public void setIdEditing(Integer idEditing) {
-		this.idEditing = idEditing;
-	}
-
 }

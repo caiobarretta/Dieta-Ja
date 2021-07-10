@@ -16,7 +16,9 @@ import app.view.component.MultiSelectionCombo;
 import core.entities.DiaDaSemanaEnum;
 import core.entities.PorcaoDeAlimento;
 import core.entities.RefeicaoEnum;
+import core.entities.Usuario;
 import core.interfaces.service.IPorcaoDeAlimentoService;
+import core.ioc.Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -36,7 +38,8 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	private MultiSelectionCombo cbxDiasDaSemana;
 	private MultiSelectionCombo cbxRefeicao;
 	final PorcaoDeAlimentoService service;
-	public FXMLPorcaoDeAlimentosController(){
+	public FXMLPorcaoDeAlimentosController(Container container, Usuario usuario){
+		super(container, usuario);
 		service = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
 	}
 	

@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.FXMLPacienteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="300.0" layoutY="73.0" prefHeight="612.0" prefWidth="477.0">
          <children>
@@ -36,7 +36,7 @@
       <TextField fx:id="txtPesquisar" layoutX="301.0" layoutY="26.0" prefHeight="26.0" prefWidth="418.0" promptText="Digite um nome para buscar" />
       <Button fx:id="btnPesquisar" layoutX="731.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickPesquisar" text="Pesquisar" />
       <Label layoutX="38.0" layoutY="30.0" text="Pacientes:" />
-      <Label fx:id="lblIdEdit" layoutX="158.0" layoutY="30.0" text="0" />
+      <Label fx:id="lblIdEdit" layoutX="153.0" layoutY="30.0" text="0" />
       <Label layoutX="38.0" layoutY="68.0" text="Nome" />
       <TextField fx:id="txtNome" layoutX="38.0" layoutY="95.0" prefHeight="26.0" prefWidth="255.0" />
       <TextArea fx:id="txtObs" layoutX="38.0" layoutY="547.0" prefHeight="103.0" prefWidth="255.0" />

@@ -13,4 +13,5 @@ public interface IPorcaoDeAlimentoRepository extends IRepository<PorcaoDeAliment
     List<PorcaoDeAlimento> retornaPorcaoDeAlimentoPeloIdDaDieta(Integer id);
     List<String> retornaDiasDaSemanaPeloIdPorcaoDeAlimento(Integer id);
     List<String> retornaRefeicaoPeloIdPorcaoDeAlimento(Integer id);
+    List<String> retornaDiaDaSemanaPeloIDPorcaoDeAlimento(Integer id);
 }

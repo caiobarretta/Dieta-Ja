@@ -37,7 +37,7 @@ public class UsuarioDAO extends DefaultDAO<Usuario> implements IUsuarioDAO{
 
 	@Override
 	public List<Usuario> search(String search) {
-		String query = "SELECT * FROM Usuario WHERE Nome like ? OR Descricao like ? AND Ativo = 1";
+		String query = "SELECT * FROM Usuario WHERE (Nome like ? OR Descricao like ?) AND Ativo = 1";
 		return super.search(query, search);
 	}
 

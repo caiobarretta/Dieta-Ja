@@ -16,6 +16,7 @@ import core.entities.TipoUsuarioEnum;
 import core.entities.Usuario;
 import core.interfaces.service.IDietaService;
 import core.interfaces.service.IUsuarioService;
+import core.ioc.Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,7 +44,8 @@ public class FXMLPacienteController extends DefaultController<PacienteDTO, Usuar
 	
 	final UsuarioService service;
 	final DietaService dietaService;
-	public FXMLPacienteController(){
+	public FXMLPacienteController(Container container, Usuario usuario){
+		super(container, usuario);
 		service = (UsuarioService)super.getContainer().resolveSingleton(IUsuarioService.class);
 		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
 	}

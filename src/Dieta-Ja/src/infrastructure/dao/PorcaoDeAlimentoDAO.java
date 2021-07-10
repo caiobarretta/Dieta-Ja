@@ -82,10 +82,30 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 	@Override
 	public List<PorcaoDeAlimento> retornaPorcaoDeAlimentoPeloIdDaDieta(Integer id) {
 		List<PorcaoDeAlimento> lstResult = new ArrayList<PorcaoDeAlimento>();
-		String query = "SELECT Id_Dieta FROM PorcaoDeAlimentoDieta WHERE id_porcaoalimento = ?";
+		String query = "SELECT Id_Dieta FROM PorcaoDeAlimentoDieta WHERE ID_PorcaoAlimento = ?";
 		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "Id_Dieta", id);
 		for (Integer index : lst) {
 			lstResult.add(this.get(index));
+		}
+		return lstResult;
+	}
+	
+	public List<String> retornaDiaDaSemanaPeloIDPorcaoDeAlimento(Integer id) {
+		List<String> lstResult = new ArrayList<String>();
+		String query = "SELECT DiaDaSemana FROM PorcaoDeAlimentoDiasDaSemana WHERE ID_PorcaoAlimento = ?";
+		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "DiaDaSemana", id);
+		for (Integer index : lst) {
+			lstResult.add(DiaDaSemanaEnum.retornaNomeEnumPeloId(index));
+		}
+		return lstResult;
+	}
+	
+	public List<String> retornaRefeicaoPeloIDPorcaoDeAlimento(Integer id) {
+		List<String> lstResult = new ArrayList<String>();
+		String query = "SELECT Refeicao FROM RefeicaoPorcaoDeAlimento WHERE ID_PorcaoAlimento = ?";
+		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "Refeicao", id);
+		for (Integer index : lst) {
+			lstResult.add(RefeicaoEnum.retornaNomeEnumPeloId(index));
 		}
 		return lstResult;
 	}
@@ -131,18 +151,12 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 	}
 
 	@Override
-	public List<String> retornaRefeicaoPeloIdPorcaoDeAlimento(Integer id) {
-		String query = "SELECT Refeicao FROM RefeicaoPorcaoDeAlimento WHERE Id_PorcaoAlimento = ?";
-		List<String> lstResult = new ArrayList<String>();
-		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "Refeicao", id);
-		for (Integer index : lst) {
-			lstResult.add(RefeicaoEnum.retornaNomeEnumPeloId(index));
-		}
-		return lstResult;
+	public Integer getLastIdInserted() {
+		return super.getLastIdInserted();
 	}
 
 	@Override
-	public Integer getLastIdInserted() {
-		return super.getLastIdInserted();
+	public List<String> retornaRefeicaoPeloIdPorcaoDeAlimento(Integer id) {
+		return retornaRefeicaoPeloIDPorcaoDeAlimento(id);
 	}
 }

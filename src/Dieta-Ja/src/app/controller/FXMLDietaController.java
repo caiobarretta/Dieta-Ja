@@ -18,8 +18,10 @@ import core.entities.DiaDaSemanaEnum;
 import core.entities.Dieta;
 import core.entities.PorcaoDeAlimento;
 import core.entities.RefeicaoEnum;
+import core.entities.Usuario;
 import core.interfaces.service.IDietaService;
 import core.interfaces.service.IPorcaoDeAlimentoService;
+import core.ioc.Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,16 +34,18 @@ import services.DietaService;
 import services.PorcaoDeAlimentoService;
 
 public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
-	
 	@FXML
 	private GridPane gpPorcoesDeAlimento;
 	@FXML
 	private GridPane gpRefeicao;
 	private MultiSelectionCombo cbxPorcaoDeAlimento;
-	final DietaService service;
+	
+	final DietaService dietaService;
 	final PorcaoDeAlimentoService porcaoDeAlimentoService;
-	public FXMLDietaController(){
-		service = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
+	public FXMLDietaController(Container container, Usuario usuario) {
+		super(container, usuario);
+		// TODO Auto-generated constructor stub
+		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
 		porcaoDeAlimentoService = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
 	}
 	
@@ -63,7 +67,7 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 	@Override
 	protected ObservableList<DietaDTO> tableViewSource() { 
 		List<DietaDTO> lstDTO = new ArrayList<DietaDTO>();
-		List<Dieta> lst = service.get(0, 100);
+		List<Dieta> lst = dietaService.get(0, 100);
 		ConvertEntidadeEmModelo(lstDTO, lst);
         return FXCollections.observableArrayList(lstDTO);
 	}
@@ -85,11 +89,14 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 	protected void actionEdit() {
 		Dieta dieta = (Dieta)super.getEntity();
 		
-		List<Integer> lstPorcaoDeAlimentoId = service.retornaPorcaoDeAlimentoPeloIdDieta(dieta.getID());
+		List<Integer> lstPorcaoDeAlimentoId = dietaService.retornaPorcaoDeAlimentoPeloIdDieta(dieta.getID());
 		List<PorcaoDeAlimento> lstPorcaoDeAlimento = new ArrayList<PorcaoDeAlimento>();
 		
 		for (Integer id : lstPorcaoDeAlimentoId) {
-			lstPorcaoDeAlimento.add(porcaoDeAlimentoService.get(id));
+			PorcaoDeAlimento porc = porcaoDeAlimentoService.get(id);
+			if(porc == null)
+				continue;
+			lstPorcaoDeAlimento.add(porc);
 		}
 		
 		lblIdEdit.setText(dieta.getID().toString());
@@ -133,7 +140,7 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 	@Override
 	protected ObservableList<DietaDTO> getSourceSearch(String search) {
 		List<DietaDTO> lstDTO = new ArrayList<DietaDTO>();
-		List<Dieta> lst = service.search(search);
+		List<Dieta> lst = dietaService.search(search);
 		ConvertEntidadeEmModelo(lstDTO, lst);
         return FXCollections.observableArrayList(lstDTO);
 	}
@@ -158,7 +165,7 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 	protected Dieta carregaEntidade(DietaDTO dto) {
 		List<DietaDTO> lstDTO = new ArrayList<DietaDTO>();
 		List<Dieta> lst = new ArrayList<Dieta>();
-		Dieta dieta = service.get(dto.getCodigo());
+		Dieta dieta = dietaService.get(dto.getCodigo());
 		lst.add(dieta);
 		ConvertEntidadeEmModelo(lstDTO, lst);
 		return lst.get(0);
@@ -171,18 +178,18 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 
 	@Override
 	protected void entityUpdate(Dieta entity) {
-		service.update(entity);
+		dietaService.update(entity);
 	}
 
 	@Override
 	protected Integer entityAdd(Dieta entity) {
-		service.add(entity);
-		return service.getLastIdInserted();
+		dietaService.add(entity);
+		return dietaService.getLastIdInserted();
 	}
 
 	@Override
 	protected void entityDelete(Integer id) {
-		service.delete(id);
+		dietaService.delete(id);
 	}
 
 	@Override
@@ -194,7 +201,5 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 	@Override
 	protected void loadFieldsEntity(Dieta entity) {
 		// TODO Auto-generated method stub
-		
 	}
-
 }

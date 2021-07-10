@@ -40,4 +40,9 @@ public class PorcaoDeAlimentoService extends DefaultService<PorcaoDeAlimento> im
 	public Integer getLastIdInserted() {
 		return this._repo.getLastIdInserted();
 	}
+	@Override
+	public List<String> retornaDiaDaSemanaPeloIDPorcaoDeAlimento(Integer id) {
+		// TODO Auto-generated method stub
+		return this._repo.retornaDiaDaSemanaPeloIDPorcaoDeAlimento(id);
+	}
 }

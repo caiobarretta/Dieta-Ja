@@ -1,35 +1,37 @@
 package app.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.stream.Collectors;
 
-import app.Main;
 import app.controller.base.BaseController;
-import core.entities.Dieta;
+import app.controller.helper.GridPaneHelper;
+import app.controller.helper.WindowHelper;
+import app.view.component.MultiSelectionCombo;
+import core.entities.DiaDaSemanaEnum;
 import core.entities.PorcaoDeAlimento;
 import core.entities.TipoUsuarioEnum;
 import core.entities.Usuario;
 import core.interfaces.service.IDietaService;
 import core.interfaces.service.IPorcaoDeAlimentoService;
 import core.interfaces.service.IUsuarioService;
+import core.ioc.Container;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.stage.Window;
 import services.DietaService;
 import services.PorcaoDeAlimentoService;
 import services.UsuarioService;
@@ -37,97 +39,112 @@ import services.UsuarioService;
 public class FXMLPrincipalController extends BaseController{
 	
 	@FXML
-	TreeView<String> treeView;
-	
+	private TreeView<String> treeView;
 	@FXML
-	DatePicker dtRegistro;
-	
+	private DatePicker dtRegistro;
 	@FXML
-	TextArea txtAreaComment;
-	
+	private TextArea txtAreaComment;
 	@FXML
-	Pane panelRegistroAtividade;
-	
+	private Pane panelRegistroAtividade;
 	@FXML
-	Pane panelDieta;
-	
+	private Pane panelDieta;
+	@FXML
+	private GridPane gpPorcaoDeAlimento;
 	@FXML
     private Label lblUsuario;
 	@FXML
     private Label lblDieta;
 	
-	final UsuarioService usuarioService;
-	final PorcaoDeAlimentoService porcaoDeAlimentoService;
-	final DietaService dietaService;
 	
-	final Timer timer;
+	private MultiSelectionCombo cbxPorcaoDeAlimento; 
 	
-	public FXMLPrincipalController(){
-		timer = new Timer();
-		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
+	private final UsuarioService usuarioService;
+	private final PorcaoDeAlimentoService porcaoDeAlimentoService;
+	private final DietaService dietaService;
+	
+	public FXMLPrincipalController(Container container, Usuario usuario){
+		super(container, usuario);
 		usuarioService = (UsuarioService)super.getContainer().resolveSingleton(IUsuarioService.class);
 		porcaoDeAlimentoService = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
+		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
 	}
 	
-	public void carregaPorcaoDeAlimentoTreeView(Integer idDieta){
-		
-		System.out.println("carregaPorcaoDeAlimentoTreeView");
+	public void carregaPorcaoDeAlimentoForm(Integer idDieta){
 		List<Integer>  lstIdPorcaoAlimento = dietaService.retornaPorcaoDeAlimentoPeloIdDieta(idDieta);
-		TreeItem<String> root = new TreeItem<>("Porções de alimento");
+		TreeItem<String> root = new TreeItem<String>("Porções de alimento");
 		
+		List<PorcaoDeAlimento> lstPorcaoAlimento = new ArrayList<PorcaoDeAlimento>();
 		for (Integer idPorc : lstIdPorcaoAlimento) {
 			PorcaoDeAlimento porc = porcaoDeAlimentoService.get(idPorc);
-			TreeItem<String> node = new TreeItem<>(porc.getNome());
-			root.getChildren().add(node);
+			if(porc == null)
+				continue;
+			lstPorcaoAlimento.add(porc);
 		}
+		List<PorcaoDeAlimento> lstPorcaoAlimentoDistinct = lstPorcaoAlimento.stream().distinct().collect(Collectors.toList());
+		cbxPorcaoDeAlimento = new MultiSelectionCombo("Porção de Alimento:", "[Vazio]", lstPorcaoAlimentoDistinct);
+		GridPaneHelper.loadGridPane(gpPorcaoDeAlimento, cbxPorcaoDeAlimento.build(), 200, 100);
 		
+		for (PorcaoDeAlimento porc : lstPorcaoAlimento) {
+			TreeItem<String> nodePorcaoDeAlimento = new TreeItem<String>(porc.getNome());
+			root.getChildren().add(nodePorcaoDeAlimento);
+			List<String>lstDiasDaSemana = porcaoDeAlimentoService.retornaDiaDaSemanaPeloIDPorcaoDeAlimento(porc.getID());
+			for (String diaDaSemana : lstDiasDaSemana) {
+				TreeItem<String> nodeDiaDaSemana = new TreeItem<String>(diaDaSemana);
+				nodePorcaoDeAlimento.getChildren().add(nodeDiaDaSemana);
+			}
+			List<String> lstRefeicoes = porcaoDeAlimentoService.retornaRefeicaoPeloIdPorcaoDeAlimento(porc.getID());
+			for (String refeicao : lstRefeicoes) {
+				TreeItem<String> nodeDiaDaSemana = new TreeItem<String>(refeicao);
+				nodePorcaoDeAlimento.getChildren().add(nodeDiaDaSemana);
+			}
+		}
 		treeView.setRoot(root);
 	}
 	
+	private List<PorcaoDeAlimento> removePorcaoDeAlimentoRepetida(List<PorcaoDeAlimento> lstPorcaoAlimento) {
+		List<PorcaoDeAlimento> aux = new ArrayList<PorcaoDeAlimento>();
+		for (PorcaoDeAlimento porcaoDeAlimento : lstPorcaoAlimento) {
+			if(!aux.contains(porcaoDeAlimento)){
+				aux.add(porcaoDeAlimento);
+			}
+		}
+		return aux;
+	}
+
 	@FXML
 	public void clickPorcaoAlimento(ActionEvent event) throws Exception{
-		Stage stage = new Stage();
-	    Parent root = FXMLLoader.load(getClass().getResource("../view/FXMLPorcaoDeAlimentos.fxml"));
-	    stage.setScene(new Scene(root));
-	    stage.setTitle("Porção Alimento");
-	    stage.initModality(Modality.WINDOW_MODAL);
-	    stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-	    stage.show();
+		InputStream is = getClass().getResource("../view/FXMLPorcaoDeAlimentos.fxml").openStream();
+		Window window = ((Node)event.getSource()).getScene().getWindow();
+		
+		FXMLPorcaoDeAlimentosController controller = new FXMLPorcaoDeAlimentosController(super.getContainer(), super.getUsuario());
+	    WindowHelper.OpenModal(is, "Porção Alimento", window, controller);
 	}
 	
 	@FXML
 	public void clickDieta(ActionEvent event) throws IOException{
-		Stage stage = new Stage();
-	    Parent root = FXMLLoader.load(getClass().getResource("../view/FXMLDieta.fxml"));
-		stage.setScene(new Scene(root));
-	    stage.setTitle("Dieta");
-	    stage.initModality(Modality.WINDOW_MODAL);
-	    stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-	    stage.show();
+		InputStream is = getClass().getResource("../view/FXMLDieta.fxml").openStream();
+		Window window = ((Node)event.getSource()).getScene().getWindow();
+		
+		FXMLDietaController controller = new FXMLDietaController(super.getContainer(), super.getUsuario());
+		WindowHelper.OpenModal(is, "Dieta", window, controller);
 	}
 	
 	@FXML
 	public void clickPaciente(ActionEvent event) throws Exception{
-		Stage stage = new Stage();
-	    Parent root = FXMLLoader.load(getClass().getResource("../view/FXMLPaciente.fxml"));
-		stage.setScene(new Scene(root));
-	    stage.setTitle("Pacientes");
-	    stage.initModality(Modality.WINDOW_MODAL);
-	    stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-	    stage.show();
+		InputStream is = getClass().getResource("../view/FXMLPaciente.fxml").openStream();
+		Window window = ((Node)event.getSource()).getScene().getWindow();
+		FXMLPacienteController controller = new FXMLPacienteController(super.getContainer(), super.getUsuario());
+		WindowHelper.OpenModal(is, "Pacientes", window, controller);
 	}
-	
-	
-	@Override
-    public void initialize() {
-		
-    }
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		super.initialize(location, resources);
-		timer.schedule(taskInitialize, 1000);
+		super.initialize(location, resources);	
+		lblUsuario.setText(super.getUsuario().getNome());
 		
+		if(super.getUsuario().getTipoUsuario() == TipoUsuarioEnum.Paciente){
+			carregaPorcaoDeAlimentoForm(super.getUsuario().getDietaID());
+		}
 	}
 	
 
@@ -136,29 +153,4 @@ public class FXMLPrincipalController extends BaseController{
 		if(dtRegistro != null)
 			System.out.println(dtRegistro.getValue().toString());
 	}
-	
-	private TimerTask taskInitialize = new TimerTask()
-	{
-	        public void run()
-	        {
-	        	Stage stage = (Stage)lblUsuario.getScene().getWindow();
-	    		Usuario usuario = (Usuario)stage.getUserData();
-	    		System.out.printf("Nome Usuário: ", usuario.getNome());
-//	        	lblUsuario.setText(Main.usuarioNome);
-//	        	Integer codigoUsuario = Main.codigoUsuario;
-//	        	Usuario usuario = usuarioService.get(codigoUsuario);
-//	        	
-//	    		if(usuario.getTipoUsuario() == TipoUsuarioEnum.Paciente){
-//	    			Dieta dieta = dietaService.get(usuario.getDietaID());
-//	    			lblDieta.setText(dieta.getNome());
-//	    			carregaPorcaoDeAlimentoTreeView(usuario.getDietaID());
-//	    		}
-//	    		else{
-//	    			panelRegistroAtividade.setVisible(false);
-//	    			panelDieta.setVisible(false);
-//	    		}
-	        }
-
-	};
-	
 }
