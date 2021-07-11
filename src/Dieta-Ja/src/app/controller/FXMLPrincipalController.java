@@ -29,6 +29,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Window;
@@ -54,6 +56,10 @@ public class FXMLPrincipalController extends BaseController{
     private Label lblUsuario;
 	@FXML
     private Label lblDieta;
+	@FXML
+	private ImageView imgLogo;
+	@FXML
+	private ImageView imgPanelDieta;
 	
 	private MultiSelectionCombo cbxPorcaoDeAlimento; 
 	
@@ -140,6 +146,14 @@ public class FXMLPrincipalController extends BaseController{
 	public void initialize(URL location, ResourceBundle resources) {
 		super.initialize(location, resources);	
 		lblUsuario.setText(super.getUsuario().getNome());
+		
+		Image imageLogo = new Image(getClass().getResource("../resources/dieta-ja-bwh-removebg-preview.png").toExternalForm());
+		imgLogo.setImage(imageLogo);
+		
+		Image imagePanelDieta = new Image(getClass().getResource("../resources/dieta-ja-bwh.png").toExternalForm());
+		imgPanelDieta.setImage(imagePanelDieta);
+		
+		
 		
 		if(super.getUsuario().getTipoUsuario() == TipoUsuarioEnum.Paciente){
 			carregaPorcaoDeAlimentoForm(super.getUsuario().getDietaID());

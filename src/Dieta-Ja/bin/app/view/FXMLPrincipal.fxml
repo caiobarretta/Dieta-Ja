@@ -34,11 +34,7 @@
          </font></Button>
       <Pane fx:id="panelDieta1" layoutX="200.0" prefHeight="691.0" prefWidth="979.0" style="-fx-background-image: ..\Dieta-já (2).png; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 5;">
          <children>
-            <ImageView fitHeight="600.0" fitWidth="600.0" layoutX="190.0" layoutY="46.0" opacity="0.2">
-               <image>
-                  <Image url="@../resources/dieta-ja-bwh.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="imgPanelDieta" fitHeight="600.0" fitWidth="600.0" layoutX="190.0" layoutY="46.0" opacity="0.2"/>
          </children>
       </Pane>
       <Pane fx:id="panelDieta" layoutX="200.0" prefHeight="691.0" prefWidth="979.0" style="-fx-background-image: ..\Dieta-já (2).png; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 5;" visible="false">
@@ -136,10 +132,6 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="1.0" layoutY="491.0">
-         <image>
-            <Image url="@../resources/dieta-ja-bwh-removebg-preview.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="imgLogo" fitHeight="200.0" fitWidth="200.0" layoutX="1.0" layoutY="491.0"/>
    </children>
 </AnchorPane>
