@@ -30,6 +30,7 @@ CREATE TABLE PorcaoDeAlimentoDiasDaSemanaDietaRefeicao (
     ID_Dieta int not null,
     DiaDaSemana int not null,
     Refeicao int not null,
+    CONSTRAINT PK_PDADSDR
     PRIMARY KEY (ID_PorcaoDeAlimento, ID_Dieta, DiaDaSemana, Refeicao));
 
 CREATE TABLE RegistroDeAtividade (
@@ -75,6 +76,8 @@ FOREIGN KEY (ID_PorcaoDeAlimento) REFERENCES DietaJa.PorcaoDeAlimento (ID_Porcao
 ALTER TABLE DietaJa.RegistroDeAtividade ADD CONSTRAINT FK_RegistroDeAtividade_Usuario
 FOREIGN KEY (ID_Usuario) REFERENCES DietaJa.Usuario (ID_Usuario);
 
+ALTER TABLE DietaJa.PorcaoDeAlimentoDiasDaSemanaDietaRefeicao ADD CONSTRAINT FK_PorcaoDeAlimento_PDADSDR
+FOREIGN KEY (ID_PorcaoDeAlimento) REFERENCES DietaJa.PorcaoDeAlimento (ID_PorcaoDeAlimento);
 
-INSERT INTO DietaJa.PorcaoDeAlimentoDiasDaSemanaDietaRefeicao (ID_PorcaoDeAlimento, ID_Dieta, DiaDaSemana, Refeicao)
-VALUES (1, 1, 1, 1);
+ALTER TABLE DietaJa.PorcaoDeAlimentoDiasDaSemanaDietaRefeicao ADD CONSTRAINT FK_Dieta_PDADSDR
+FOREIGN KEY (ID_Dieta) REFERENCES DietaJa.Dieta (ID_Dieta);
