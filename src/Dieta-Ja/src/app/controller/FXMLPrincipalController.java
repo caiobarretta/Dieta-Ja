@@ -55,7 +55,6 @@ public class FXMLPrincipalController extends BaseController{
 	@FXML
     private Label lblDieta;
 	
-	
 	private MultiSelectionCombo cbxPorcaoDeAlimento; 
 	
 	private final UsuarioService usuarioService;

@@ -3,13 +3,11 @@ package app.controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import app.controller.base.DefaultController;
 import app.controller.helper.AlertHelper;
 import app.controller.helper.GridPaneHelper;
-import app.enums.FXMLState;
 import app.model.PorcaoDeAlimentoDTO;
 import app.view.component.MultiSelectionCombo;
 
@@ -22,10 +20,7 @@ import core.ioc.Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import services.PorcaoDeAlimentoService;
 
@@ -38,6 +33,7 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	private MultiSelectionCombo cbxDiasDaSemana;
 	private MultiSelectionCombo cbxRefeicao;
 	final PorcaoDeAlimentoService service;
+	
 	public FXMLPorcaoDeAlimentosController(Container container, Usuario usuario){
 		super(container, usuario);
 		service = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
