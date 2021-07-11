@@ -22,7 +22,6 @@ public class UsuarioRepository extends DefaultRepository<Usuario> implements IUs
 	}
 	@Override
 	public Integer getLastIdInserted() {
-		// TODO Auto-generated method stub
-		return null;
+		return this._idao.getLastIdInserted();
 	}
 }
