@@ -14,8 +14,8 @@ public class PorcaoDeAlimentoService extends DefaultService<PorcaoDeAlimento> im
 		super(repo);
 		this._repo = repo;
 	}
-    public List<PorcaoDeAlimento> retornaPorcaoDeAlimentoPeloIdDaDieta(Integer id){
-    	return this._repo.retornaPorcaoDeAlimentoPeloIdDaDieta(id);
+    public List<Integer> retornaIdDaDietaPeloIdPorcaoDeAlimento(Integer id){
+    	return this._repo.retornaIdDaDietaPeloIdPorcaoDeAlimento(id);
     }
 	@Override
 	public List<String> retornaDiasDaSemanaPeloIdPorcaoDeAlimento(Integer id) {

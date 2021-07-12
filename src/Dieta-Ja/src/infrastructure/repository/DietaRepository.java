@@ -2,6 +2,7 @@ package infrastructure.repository;
 
 import java.util.List;
 
+import app.model.TreeViewPorcaoDeAlimentoDTO;
 import core.entities.Dieta;
 import core.interfaces.dao.IDietaDAO;
 import core.interfaces.dao.base.IDAO;
@@ -24,7 +25,11 @@ public class DietaRepository extends DefaultRepository<Dieta> implements IDietaR
 		return _idao.getLastIdInserted();
 	}
 	@Override
-	public List<Integer> retornaPorcaoDeAlimentoPeloIdDieta(Integer id) {
+	public List<TreeViewPorcaoDeAlimentoDTO> retornaPorcaoDeAlimentoPeloIdDieta(Integer id) {
 		return _idao.retornaPorcaoDeAlimentoPeloIdDieta(id);
+	}
+	@Override
+	public List<Integer> retornaPorcaoDeAlimentoPeloIdDietaAgrupado(Integer id) {
+		return _idao.retornaPorcaoDeAlimentoPeloIdDietaAgrupado(id);
 	}
 }

@@ -12,16 +12,22 @@ import app.model.PorcaoDeAlimentoDTO;
 import app.view.component.MultiSelectionCombo;
 
 import core.entities.DiaDaSemanaEnum;
+import core.entities.Dieta;
 import core.entities.PorcaoDeAlimento;
 import core.entities.RefeicaoEnum;
+import core.entities.TipoMedidaEnum;
 import core.entities.Usuario;
+import core.interfaces.service.IDietaService;
 import core.interfaces.service.IPorcaoDeAlimentoService;
 import core.ioc.Container;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import services.DietaService;
 import services.PorcaoDeAlimentoService;
 
 public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeAlimentoDTO, PorcaoDeAlimento> {
@@ -30,13 +36,22 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	private GridPane gpDiasDaSemana;
 	@FXML
 	private GridPane gpRefeicao;
+	@FXML
+	private TextField txtQuantidade;
+	@FXML
+	private ChoiceBox<String> cbxTipoMedida;
+	@FXML
+	private ChoiceBox<Dieta> cbxDieta;
+	
 	private MultiSelectionCombo cbxDiasDaSemana;
 	private MultiSelectionCombo cbxRefeicao;
 	final PorcaoDeAlimentoService service;
+	final DietaService dietaService;
 	
 	public FXMLPorcaoDeAlimentosController(Container container, Usuario usuario){
 		super(container, usuario);
 		service = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
+		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
 	}
 	
 	private void carregarDiasDaSemana(){
@@ -44,29 +59,58 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
     	GridPaneHelper.loadGridPane(gpDiasDaSemana, cbxDiasDaSemana.build(), 200, 100);
 	}
 	
-	private void recarregarDiasDaSemana(List<String> diasDaSemana){
-		cbxDiasDaSemana = new MultiSelectionCombo("Dias Da Semana:", "[Vazio]", DiaDaSemanaEnum.asListOrderedById());
-    	GridPaneHelper.reloadGridPane(gpDiasDaSemana, cbxDiasDaSemana.build(diasDaSemana), 200, 100);
+	private void carregarRefeicoes(){
+		cbxRefeicao = new MultiSelectionCombo("Refeições:", "[Vazio]", RefeicaoEnum.asListOrderedById());
+		GridPaneHelper.loadGridPane(gpRefeicao, cbxRefeicao.build(), 200, 100);
 	}
+	
+	private void carregarTipoMedida(){
+		List<String> lstTipoMedida = TipoMedidaEnum.asListOrderedById();
+		cbxTipoMedida.setItems(FXCollections.observableArrayList(lstTipoMedida));
+	}
+	
+	private void carregarDieta(){
+		List<Dieta> dietas = dietaService.get(0, 1000);
+		cbxDieta.setItems(FXCollections.observableArrayList(dietas));
+	}
+	
 	
 	private void recarregarDiasDaSemana(){
 		cbxDiasDaSemana = new MultiSelectionCombo("Dias Da Semana:", "[Vazio]", DiaDaSemanaEnum.asListOrderedById());
     	GridPaneHelper.reloadGridPane(gpDiasDaSemana, cbxDiasDaSemana.build(), 200, 100);
 	}
 	
-	private void carregaRefeicoes(){
+	private void recarregaRefeicoes(){
 		cbxRefeicao = new MultiSelectionCombo("Refeições:", "[Vazio]", RefeicaoEnum.asListOrderedById());
-		GridPaneHelper.loadGridPane(gpRefeicao, cbxRefeicao.build(), 200, 100);
+		GridPaneHelper.reloadGridPane(gpRefeicao, cbxRefeicao.build(), 200, 100);
 	}
 	
-	private void recarregaRefeicoes(List<String> refeicoes){
+	
+	private void recarregarDiasDaSemana(List<String> diasDaSemana){
+		cbxDiasDaSemana = new MultiSelectionCombo("Dias Da Semana:", "[Vazio]", DiaDaSemanaEnum.asListOrderedById());
+    	GridPaneHelper.reloadGridPane(gpDiasDaSemana, cbxDiasDaSemana.build(diasDaSemana), 200, 100);
+	}
+	
+	private void recarregarRefeicoes(List<String> refeicoes){
 		cbxRefeicao = new MultiSelectionCombo("Refeições:", "[Vazio]", RefeicaoEnum.asListOrderedById());
 		GridPaneHelper.reloadGridPane(gpRefeicao, cbxRefeicao.build(refeicoes), 200, 100);
 	}
 	
-	private void recarregaRefeicoes(){
-		cbxRefeicao = new MultiSelectionCombo("Refeições:", "[Vazio]", RefeicaoEnum.asListOrderedById());
-		GridPaneHelper.reloadGridPane(gpRefeicao, cbxRefeicao.build(), 200, 100);
+	private void recarregarTipoMedida(TipoMedidaEnum tipoMedida){
+		String enumSelected = TipoMedidaEnum.retornaNomeEnumPeloId(TipoMedidaEnum.retornaIdPeloEnum(tipoMedida));
+		cbxTipoMedida.setValue(enumSelected);
+	}
+	
+	private void recarregarDieta(Integer id){
+		List<Dieta> dietas = dietaService.get(0, 1000);
+		Dieta dLoad = null;
+		for (Dieta d : dietas) {
+			if(id == d.getID()){
+				dLoad = d;
+			}
+		}
+		cbxDieta.setItems(FXCollections.observableArrayList(dietas));
+		cbxDieta.setValue(dLoad);
 	}
 	
 	@Override
@@ -87,7 +131,9 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
 		carregarDiasDaSemana();
-		carregaRefeicoes();
+		carregarRefeicoes();
+		carregarTipoMedida();
+		carregarDieta();
 		super.loadTableView();
 	}
 
@@ -95,13 +141,17 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	protected void actionEdit() {
 		PorcaoDeAlimento porc = (PorcaoDeAlimento)super.getEntity();
 		
+		Integer idDieta = service.retornaIdDaDietaPeloIdPorcaoDeAlimento(porc.getID()).get(0);
 		List<String> diasDaSemana = service.retornaDiasDaSemanaPeloIdPorcaoDeAlimento(porc.getID());
 		List<String> refeicoes = service.retornaRefeicaoPeloIdPorcaoDeAlimento(porc.getID());
 		
 		lblIdEdit.setText(porc.getID().toString());
 		txtNome.setText(porc.getNome());
+		txtQuantidade.setText(porc.getQuantidade().toString());
 		recarregarDiasDaSemana(diasDaSemana);
-		recarregaRefeicoes(refeicoes);
+		recarregarRefeicoes(refeicoes);
+		recarregarTipoMedida(porc.getTipoMedida());
+		recarregarDieta(idDieta);
 		txtObs.setText(porc.getDescricao());
 	}
 
@@ -118,8 +168,10 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 		List<Integer> listDiaDaSemana = DiaDaSemanaEnum.convertListStringToListInt(listDiaDaSemanaSelecionado);
 		List<Integer> listIdRefeicao = RefeicaoEnum.convertListStringToListInt(listRefeicaoSelecionado);
 		
+		Dieta dieta =  (Dieta)cbxDieta.getSelectionModel().getSelectedItem();
+		
 		try{
-			service.associarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(1, listDiaDaSemana, listIdRefeicao, 1);
+			service.associarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(id, listDiaDaSemana, listIdRefeicao, dieta.getID());
 		}catch (Exception e) {
 			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", String.format("Erro ao Associar os dados: %s", e.getMessage())).showAndWait();
 			return;
@@ -133,6 +185,9 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 		super.clearFXML();
 		recarregarDiasDaSemana();
 		recarregaRefeicoes();
+		carregarDieta();
+		carregarTipoMedida();
+		txtQuantidade.setText("");
 		super.loadTableView();
 	}
 
@@ -193,14 +248,33 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 
 	@Override
 	protected boolean loadFieldsRequiredEntity(PorcaoDeAlimento entity, List<String> lstCamposInvalidos) {
-		// TODO Auto-generated method stub
+		Dieta dieta =  (Dieta)cbxDieta.getSelectionModel().getSelectedItem();
+		String tipoMedida =  cbxTipoMedida.getSelectionModel().getSelectedItem();
+		if(dieta == null){
+			lstCamposInvalidos.add("Dieta");
+			return false;
+		}
+		if(tipoMedida == null){
+			lstCamposInvalidos.add("Tipo Medida");
+			return false;
+		}
 		return true;
 	}
 
 	@Override
 	protected void loadFieldsEntity(PorcaoDeAlimento entity) {
-		// TODO Auto-generated method stub
-		
+		int quantidade;
+		try {
+			quantidade = Integer.parseInt(txtQuantidade.getText());
+		}
+		catch (NumberFormatException e)
+		{
+			AlertHelper.buildAlert(AlertType.ERROR, "Salvar", "O valor do campo quantidade deve ser um número inteiro válido.").showAndWait();
+			return;
+		}
+		entity.setQuantidade(quantidade);
+		String tipoMedida =  cbxTipoMedida.getSelectionModel().getSelectedItem();
+		entity.setTipoMedida(TipoMedidaEnum.retornaEnumPeloNome(tipoMedida));
 	}
 
 }

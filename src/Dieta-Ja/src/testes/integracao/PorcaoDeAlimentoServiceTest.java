@@ -54,7 +54,7 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 	}
 
 	public void testRetornaPorcaoDeAlimentoPeloIdDaDieta() {
-		List<PorcaoDeAlimento> porcao = porcaoDeAlimentoService.retornaPorcaoDeAlimentoPeloIdDaDieta(1);
+		List<Integer> porcao = porcaoDeAlimentoService.retornaIdDaDietaPeloIdPorcaoDeAlimento(1);
 		if(porcao == null || porcao.isEmpty())
 			fail("Erro ao pesquisa uma Porções de alimento válida"); // TODO
 	}
