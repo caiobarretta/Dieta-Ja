@@ -19,15 +19,15 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Button layoutX="15.0" layoutY="90.0" onAction="#clickPorcaoAlimento" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Porção de Alimentos" textFill="#f2f2f2">
+      <Button fx:id="btnPorcaoAlimento" layoutX="15.0" layoutY="90.0" onAction="#clickPorcaoAlimento" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Porção de Alimentos" textFill="#f2f2f2">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="19.0" layoutY="169.0" onAction="#clickPaciente" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Pacientes" textFill="#f2f2f2">
+      <Button fx:id="btnPaciente" layoutX="19.0" layoutY="169.0" onAction="#clickPaciente" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Pacientes" textFill="#f2f2f2">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="19.0" layoutY="131.0" onAction="#clickDieta" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Dietas" textFill="#f2f2f2">
+      <Button fx:id="btnDieta" layoutX="19.0" layoutY="131.0" onAction="#clickDieta" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Dietas" textFill="#f2f2f2">
          <font>
             <Font size="14.0" />
          </font></Button>

@@ -48,6 +48,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -83,6 +84,13 @@ public class FXMLPrincipalController extends BaseController{
 	private ImageView imgPanelDieta;
 	@FXML
 	private ChoiceBox<String> cbxSentimento;
+	@FXML
+	private Button btnPorcaoAlimento;
+	@FXML
+	private Button btnPaciente;
+	@FXML
+	private Button btnDieta;
+	
 	
 	private MultiSelectionCombo cbxPorcaoDeAlimento;
 	private Integer idDieta;
@@ -206,6 +214,10 @@ public class FXMLPrincipalController extends BaseController{
 			panelDieta.setVisible(true);
 			this.setIdDieta(super.getUsuario().getDietaID());
 			carregaPorcaoDeAlimentoForm(this.getIdDieta());
+			
+			btnDieta.setVisible(false);
+			btnPaciente.setVisible(false);
+			btnPorcaoAlimento.setVisible(false);
 		}
 	}
 	
