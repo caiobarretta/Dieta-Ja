@@ -56,14 +56,10 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 	}
 
 	@Override
-	public List<PorcaoDeAlimento> retornaPorcaoDeAlimentoPeloIdDaDieta(Integer id) {
+	public List<Integer> retornaIdDaDietaPeloIdPorcaoDeAlimento(Integer id) {
 		List<PorcaoDeAlimento> lstResult = new ArrayList<PorcaoDeAlimento>();
 		String query = "SELECT Id_Dieta FROM PorcaoDeAlimentoDiasDaSemanaDietaRefeicao WHERE Id_PorcaoDeAlimento = ?";
-		List<Integer> lst = loadFieldIntegerFromEnumAsList(query, "Id_Dieta", id);
-		for (Integer index : lst) {
-			lstResult.add(this.get(index));
-		}
-		return lstResult;
+		return loadFieldIntegerFromEnumAsList(query, "Id_Dieta", id);
 	}
 	
 	public List<String> retornaDiaDaSemanaPeloIDPorcaoDeAlimento(Integer id) {
@@ -142,9 +138,8 @@ public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements
 			List<Integer> listDiaDaSemana, List<Integer> listIdRefeicao, Integer dietaID) {
 		
 		//# ID_PorcaoDeAlimento, ID_Dieta, DiaDaSemana, Refeicao
-		
-		String queryDelete = "DELETE FROM PorcaoDeAlimentoDiasDaSemanaDietaRefeicao WHERE ID_Dieta = ?";
-		super.delete(queryDelete, dietaID);
+		String queryDelete = "DELETE FROM PorcaoDeAlimentoDiasDaSemanaDietaRefeicao WHERE Id_PorcaoDeAlimento = ? AND ID_Dieta = ?";
+		super.delete(queryDelete, IdPorcaoDeAlimento, dietaID);
 		
 		String query = "INSERT INTO PorcaoDeAlimentoDiasDaSemanaDietaRefeicao (Id_PorcaoDeAlimento, DiaDaSemana, Refeicao, ID_Dieta) VALUES(?, ?, ?, ?);";
 		int counter = 0;

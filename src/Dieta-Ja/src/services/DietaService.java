@@ -2,6 +2,7 @@ package services;
 
 import java.util.List;
 
+import app.model.TreeViewPorcaoDeAlimentoDTO;
 import core.entities.Dieta;
 import core.interfaces.repository.IDietaRepository;
 import core.interfaces.service.IDietaService;
@@ -20,7 +21,12 @@ public class DietaService extends DefaultService<Dieta> implements IDietaService
 	}
 	
 	@Override
-	public List<Integer> retornaPorcaoDeAlimentoPeloIdDieta(Integer id) {
+	public List<TreeViewPorcaoDeAlimentoDTO> retornaPorcaoDeAlimentoPeloIdDieta(Integer id) {
 		return this._repo.retornaPorcaoDeAlimentoPeloIdDieta(id);
+	}
+
+	@Override
+	public List<Integer> retornaPorcaoDeAlimentoPeloIdDietaAgrupado(Integer id) {
+		return this._repo.retornaPorcaoDeAlimentoPeloIdDietaAgrupado(id);
 	}
 }

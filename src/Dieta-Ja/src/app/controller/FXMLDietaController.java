@@ -26,34 +26,12 @@ import services.DietaService;
 import services.PorcaoDeAlimentoService;
 
 public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
-	@FXML
-	private GridPane gpPorcoesDeAlimento;
-	@FXML
-	private GridPane gpRefeicao;
-	private MultiSelectionCombo cbxPorcaoDeAlimento;
 	
 	final DietaService dietaService;
-	final PorcaoDeAlimentoService porcaoDeAlimentoService;
 	public FXMLDietaController(Container container, Usuario usuario) {
 		super(container, usuario);
 		// TODO Auto-generated constructor stub
 		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
-		porcaoDeAlimentoService = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
-	}
-	
-	private void carregarPorcaoDeAlimento(){
-		cbxPorcaoDeAlimento = new MultiSelectionCombo("Porção de alimento:", "[Vazio]", porcaoDeAlimentoService.get(0, 100));
-    	GridPaneHelper.loadGridPane(gpPorcoesDeAlimento, cbxPorcaoDeAlimento.build(), 200, 100);
-	}
-	
-	private void recarregarPorcaoDeAlimento(List<PorcaoDeAlimento> porcaoDeAlimento){
-		cbxPorcaoDeAlimento = new MultiSelectionCombo("Porção de alimento:", "[Vazio]", porcaoDeAlimentoService.get(0, 100));
-    	GridPaneHelper.reloadGridPane(gpPorcoesDeAlimento, cbxPorcaoDeAlimento.build(porcaoDeAlimento), 200, 100);
-	}
-	
-	private void recarregarPorcaoDeAlimento(){
-		cbxPorcaoDeAlimento = new MultiSelectionCombo("Porção de alimento:", "[Vazio]", porcaoDeAlimentoService.get(0, 100));
-    	GridPaneHelper.reloadGridPane(gpPorcoesDeAlimento, cbxPorcaoDeAlimento.build(), 200, 100);
 	}
 	
 	@Override
@@ -73,7 +51,6 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		super.initialize(location, resources);
-		carregarPorcaoDeAlimento();
 		super.loadTableView();
 	}
 
@@ -81,19 +58,8 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 	protected void actionEdit() {
 		Dieta dieta = (Dieta)super.getEntity();
 		
-		List<Integer> lstPorcaoDeAlimentoId = dietaService.retornaPorcaoDeAlimentoPeloIdDieta(dieta.getID());
-		List<PorcaoDeAlimento> lstPorcaoDeAlimento = new ArrayList<PorcaoDeAlimento>();
-		
-		for (Integer id : lstPorcaoDeAlimentoId) {
-			PorcaoDeAlimento porc = porcaoDeAlimentoService.get(id);
-			if(porc == null)
-				continue;
-			lstPorcaoDeAlimento.add(porc);
-		}
-		
 		lblIdEdit.setText(dieta.getID().toString());
 		txtNome.setText(dieta.getNome());
-		recarregarPorcaoDeAlimento(lstPorcaoDeAlimento);
 		txtObs.setText(dieta.getDescricao());
 	}
 
@@ -111,7 +77,6 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 	@Override
 	protected void clearFXML() {
 		super.clearFXML();
-		recarregarPorcaoDeAlimento();
 		super.loadTableView();
 	}
 

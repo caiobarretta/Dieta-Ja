@@ -62,8 +62,8 @@ public abstract class DefaultDAO<TEntity extends Entity> extends BaseDAO<TEntity
 		return super.executeUpdate(query, map);
 	}
 	
-	protected Integer delete(String query, Integer id) {
-		Map<Integer, Object> map = HelperHashMap.criarHashMapComNInteirosSequenciais(id);
+	protected Integer delete(String query, Integer... params) {
+		Map<Integer, Object> map = HelperHashMap.criarHashMapComNInteirosSequenciais(params);
 		return super.executeUpdate(query, map);
 	}
 	

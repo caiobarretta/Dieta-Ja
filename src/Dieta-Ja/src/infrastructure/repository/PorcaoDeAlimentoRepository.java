@@ -14,8 +14,8 @@ public class PorcaoDeAlimentoRepository extends DefaultRepository<PorcaoDeAlimen
 		this._idao = dao;
 	}
 
-    public List<PorcaoDeAlimento> retornaPorcaoDeAlimentoPeloIdDaDieta(Integer id){
-    	return this._idao.retornaPorcaoDeAlimentoPeloIdDaDieta(id);
+    public List<Integer> retornaIdDaDietaPeloIdPorcaoDeAlimento(Integer id){
+    	return this._idao.retornaIdDaDietaPeloIdPorcaoDeAlimento(id);
     }
 
 	@Override

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="851.0" style="-fx-background-color: #F2F2F2; -fx-border-color: black; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="759.0" prefWidth="851.0" style="-fx-background-color: #F2F2F2; -fx-border-color: black; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="28.0" layoutY="20.0" style="-fx-font-weight: 700;" text="Porção Alimento:">
          <font>
@@ -22,8 +22,8 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextArea fx:id="txtObs" layoutX="28.0" layoutY="520.0" prefHeight="103.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
-      <Label layoutX="28.0" layoutY="500.0" style="-fx-font-weight: 700;" text="Observações">
+      <TextArea fx:id="txtObs" layoutX="28.0" layoutY="608.0" prefHeight="103.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <Label layoutX="28.0" layoutY="588.0" style="-fx-font-weight: 700;" text="Observações">
          <font>
             <Font size="14.0" />
          </font></Label>
@@ -31,13 +31,13 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <Button fx:id="btnSalvar" layoutX="161.0" layoutY="640.0" mnemonicParsing="false" onAction="#clickSalvar" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #8BC25C; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5; -fx-font-weight: 700;" text="Salvar">
+      <Button fx:id="btnSalvar" layoutX="161.0" layoutY="716.0" mnemonicParsing="false" onAction="#clickSalvar" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #8BC25C; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5; -fx-font-weight: 700;" text="Salvar">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <AnchorPane layoutX="290.0" layoutY="63.0" prefHeight="612.0" prefWidth="450.0">
+      <AnchorPane layoutX="290.0" layoutY="63.0" prefHeight="683.0" prefWidth="538.0">
          <children>
-            <TableView fx:id="tableView" editable="true" prefHeight="612.0" prefWidth="538.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;">
+            <TableView fx:id="tableView" editable="true" prefHeight="683.0" prefWidth="538.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;">
               <columns>
                 <TableColumn fx:id="codigoCol" editable="false" prefWidth="75.0" text="Código" />
                 <TableColumn fx:id="nomeCol" editable="false" prefWidth="75.0" text="Nome" />
@@ -59,7 +59,7 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <Button fx:id="btnCancelar" layoutX="30.0" layoutY="640.0" mnemonicParsing="false" onAction="#clickCancelar" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #F5C609; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: 700;" text="Cancelar">
+      <Button fx:id="btnCancelar" layoutX="30.0" layoutY="716.0" mnemonicParsing="false" onAction="#clickCancelar" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: #F5C609; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: 700;" text="Cancelar">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -67,12 +67,12 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <ScrollPane layoutX="29.0" layoutY="180.0" prefHeight="150.0" prefWidth="255.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
+      <ScrollPane layoutX="29.0" layoutY="280.0" prefHeight="150.0" prefWidth="255.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
          <content>
             <GridPane fx:id="gpDiasDaSemana" prefHeight="150.0" prefWidth="256.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
          </content>
       </ScrollPane>
-      <ScrollPane layoutX="29.0" layoutY="343.0" prefHeight="150.0" prefWidth="255.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
+      <ScrollPane layoutX="29.0" layoutY="437.0" prefHeight="150.0" prefWidth="255.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
          <content>
             <GridPane fx:id="gpRefeicao" prefHeight="150.0" prefWidth="254.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
          </content>
@@ -81,8 +81,24 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <ChoiceBox fx:id="cbxDieta" layoutX="26.0" layoutY="139.0" prefHeight="26.0" prefWidth="255.0" />
-      <Label layoutX="28.0" layoutY="119.0" style="-fx-font-weight: 700;" text="Dieta">
+      <ChoiceBox fx:id="cbxDieta" layoutX="28.0" layoutY="240.0" prefHeight="26.0" prefWidth="255.0" />
+      <Label layoutX="30.0" layoutY="220.0" style="-fx-font-weight: 700;" text="Dieta">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="112.0" style="-fx-font-weight: 700;" text="Quantidade">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtQuantidade" layoutX="28.0" layoutY="132.0" prefHeight="26.0" prefWidth="255.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <ChoiceBox fx:id="cbxTipoMedida" layoutX="29.0" layoutY="187.0" prefHeight="26.0" prefWidth="255.0" />
+      <Label layoutX="31.0" layoutY="167.0" style="-fx-font-weight: 700;" text="Tipo Medida">
          <font>
             <Font size="14.0" />
          </font>
