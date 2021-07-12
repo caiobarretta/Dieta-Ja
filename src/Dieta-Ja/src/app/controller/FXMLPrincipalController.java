@@ -3,9 +3,15 @@ package app.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
@@ -121,6 +127,11 @@ public class FXMLPrincipalController extends BaseController{
 		}
 		treeView.setRoot(root);
 		
+		carregarPorcaoDeAlimento();
+		carregarSentimento();
+	}
+
+	private void carregarPorcaoDeAlimento() {
 		List<Integer> lstIdPorcao = dietaService.retornaPorcaoDeAlimentoPeloIdDietaAgrupado(idDieta);
 		List<PorcaoDeAlimento> lstPorcaoAlimento = new ArrayList<PorcaoDeAlimento>();
 		for (Integer idPorc : lstIdPorcao) {
@@ -129,8 +140,17 @@ public class FXMLPrincipalController extends BaseController{
 		
 		cbxPorcaoDeAlimento = new MultiSelectionCombo("Porção de Alimento:", "[Vazio]", lstPorcaoAlimento);
 		GridPaneHelper.loadGridPane(gpPorcaoDeAlimento, cbxPorcaoDeAlimento.build(), 200, 100);
+	}
+	
+	private void recarregarPorcaoDeAlimento() {
+		List<Integer> lstIdPorcao = dietaService.retornaPorcaoDeAlimentoPeloIdDietaAgrupado(idDieta);
+		List<PorcaoDeAlimento> lstPorcaoAlimento = new ArrayList<PorcaoDeAlimento>();
+		for (Integer idPorc : lstIdPorcao) {
+			lstPorcaoAlimento.add(porcaoDeAlimentoService.get(idPorc));
+		}
 		
-		carregarSentimento();
+		cbxPorcaoDeAlimento = new MultiSelectionCombo("Porção de Alimento:", "[Vazio]", lstPorcaoAlimento);
+		GridPaneHelper.reloadGridPane(gpPorcaoDeAlimento, cbxPorcaoDeAlimento.build(), 200, 100);
 	}
 	
 	private void recarregarSentimento(SentimentoEnum sentimento){
@@ -192,47 +212,89 @@ public class FXMLPrincipalController extends BaseController{
 
 	@FXML
 	public void clickRegistro(ActionEvent event){
-		if(dtRegistro != null)
-			System.out.println(dtRegistro.getValue().toString());
+		if(dtRegistro != null){
+			List<RegistroDeAtividade> lst = new RegistroDeAtividadeDAO().getByRegistroEUsuario(dtRegistro.getValue().toString(), super.getUsuario().getID());
+			if(!lst.isEmpty()){
+				txtAreaComment.setText(lst.get(0).getComentarios());
+				recarregarSentimento(SentimentoEnum.retornaEnumPeloId(lst.get(0).getSentimento()));
+				
+				
+				List<Integer> lstIdPorcao = dietaService.retornaPorcaoDeAlimentoPeloIdDietaAgrupado(idDieta);
+				List<PorcaoDeAlimento> lstPorcaoAlimento = new ArrayList<PorcaoDeAlimento>();
+				List<PorcaoDeAlimento> lstPorcaoAlimentoSelecionada = new ArrayList<PorcaoDeAlimento>();
+				for (Integer idPorc : lstIdPorcao) {
+					lstPorcaoAlimento.add(porcaoDeAlimentoService.get(idPorc));
+				}
+				
+				for (RegistroDeAtividade reg : lst) {
+					lstPorcaoAlimentoSelecionada.add(porcaoDeAlimentoService.get(reg.getPorcaoDeAlimentoID()));
+				}
+				
+				cbxPorcaoDeAlimento = new MultiSelectionCombo("Porção de Alimento:", "[Vazio]", lstPorcaoAlimento);
+				GridPaneHelper.reloadGridPane(gpPorcaoDeAlimento, cbxPorcaoDeAlimento.build(lstPorcaoAlimentoSelecionada), 200, 100);
+				
+			}
+			else{
+				clearForm();
+			}
+		}
+	}
+	
+	private void clearForm(){
+		recarregarPorcaoDeAlimento();
+		txtAreaComment.setText("");
+		carregarSentimento();
 	}
 	
 	@FXML
 	protected void clickSalvar(ActionEvent event){
 		List<Object> lstPorcaoDeAlimentoSelecionada =  cbxPorcaoDeAlimento.getSelectedItemsSource();
-		List<PorcaoDeAlimento> lstPorcaoDeAlimento = new ArrayList<PorcaoDeAlimento>();
-		for (Object porcaoDeAlimento : lstPorcaoDeAlimentoSelecionada) {
-			lstPorcaoDeAlimento.add((PorcaoDeAlimento)porcaoDeAlimento);
-		}
 		String sentimento =  cbxSentimento.getSelectionModel().getSelectedItem();
-		
-		RegistroDeAtividade registro = new RegistroDeAtividade();
-		//ID_Dieta
-		registro.setDietaID(this.idDieta);
-		//ID_PorcaoDeAlimento
-		registro.setPorcaoDeAlimentoID(lstPorcaoDeAlimento.get(0).getID());
-		//ID_Usuario
-		registro.setUsuarioID(super.getUsuario().getID());
-		//Registro
-		registro.setRegistro(dtRegistro.getValue().toString());
-		//Comentarios
-		registro.setComentarios(txtAreaComment.getText());
-		//Sentimento
-		registro.setSentimento(SentimentoEnum.retornaIdPeloEnum(SentimentoEnum.retornaEnumPeloNome(sentimento)));
-		//Refeicao
-		registro.setRefeicaoID(1);
-		//DiaDaSemana
-		registro.setDiaDaSemanaID(1);
-		
-		RegistroDeAtividadeDAO registroDAO = new RegistroDeAtividadeDAO();
-		//try{
-			registroDAO.Add(registro);
-			AlertHelper.buildAlert(AlertType.INFORMATION, "Salvar", "Dados salvos com sucesso!").showAndWait();
-		//}
-		//catch(Exception ex){
-			//AlertHelper.buildAlert(AlertType.ERROR, "Erro", "Erro ao salvar os dados").showAndWait();
-		//}
+		try{
+			for (Object porcaoDeAlimento : lstPorcaoDeAlimentoSelecionada) {
+				PorcaoDeAlimento porc = (PorcaoDeAlimento)porcaoDeAlimento;
+				RegistroDeAtividade registro = new RegistroDeAtividade();
+				//ID_Dieta
+				registro.setDietaID(this.idDieta);
+				//ID_PorcaoDeAlimento
+				registro.setPorcaoDeAlimentoID(porc.getID());
+				//ID_Usuario
+				registro.setUsuarioID(super.getUsuario().getID());
+				//Registro
+				registro.setRegistro(dtRegistro.getValue().toString());
+				//Comentarios
+				registro.setComentarios(txtAreaComment.getText());
+				//Sentimento
+				registro.setSentimento(SentimentoEnum.retornaIdPeloEnum(SentimentoEnum.retornaEnumPeloNome(sentimento)));
+				//DiaDaSemana
+				registro.setDiaDaSemanaID(DiaDaSemanaEnum.retornaIdPeloNome(getWeekDayPtBr(dtRegistro.getValue().toString())));
+				
+				RegistroDeAtividadeDAO registroDAO = new RegistroDeAtividadeDAO();
+				registroDAO.Add(registro);
+			}
+		AlertHelper.buildAlert(AlertType.INFORMATION, "Salvar", "Dados salvos com sucesso!").showAndWait();
+		}
+		catch(Exception ex){
+			AlertHelper.buildAlert(AlertType.ERROR, "Erro", "Erro ao salvar os dados").showAndWait();
+		}
 		
 	}
+	
+	public String getWeekDayPtBr(String date){ //2021-07-12
+		// TODO Auto-generated method stub
+		SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date dt1 = format1.parse(date);
+			DateFormat format2=new SimpleDateFormat("EEEE"); 
+			String finalDay=format2.format(dt1);
+			return finalDay;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+    }
 	
 	@FXML
 	protected void clickCancelar(ActionEvent event) {
