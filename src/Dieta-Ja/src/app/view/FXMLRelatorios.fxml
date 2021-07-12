@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="1145.0" style="-fx-border-color: black; -fx-border-width: 5; -fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.FXMLPrincipalController2">
+   <children>
+      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="415.0" layoutY="27.0">
+         <image>
+            <!-- <Image url="@../resources/dieta-ja-bwh.png" /> -->
+         </image>
+      </ImageView>
+      <BarChart fx:id="chartSentimentoRefeicao" categoryGap="2.0" layoutX="14.0" layoutY="379.0" prefHeight="300.0" prefWidth="340.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" title="Sentimento x Refeição">
+        <xAxis>
+          <CategoryAxis label="Sentimento" side="BOTTOM" fx:id="xSentimentosRefeicao" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="ySentimentosRefeicao" label="Refeição" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <BarChart fx:id="chartSentimentosDias" categoryGap="2.0" layoutX="395.0" layoutY="379.0" prefHeight="300.0" prefWidth="340.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" title="Sentimento x Dias">
+         <xAxis>
+            <CategoryAxis label="Dias" side="BOTTOM" fx:id="xSentimentosDias" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="ySentimentosDias" label="Sentimentos" side="LEFT" />
+         </yAxis>
+      </BarChart>
+      <BarChart fx:id="chartSentimentosDieta" categoryGap="2.0" layoutX="779.0" layoutY="379.0" prefHeight="300.0" prefWidth="340.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" title="Dieta x Sentimentos">
+         <xAxis>
+            <CategoryAxis label="Dias" side="BOTTOM" fx:id="xSentimentosDieta" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yRefeicao11" label="Sentimentos" side="LEFT" />
+         </yAxis>
+      </BarChart>
+      <BarChart layoutX="779.0" layoutY="15.0" prefHeight="335.0" prefWidth="340.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" title="Usuários Ativos">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <ChoiceBox fx:id="cbUser" layoutX="14.0" layoutY="240.0" prefHeight="27.0" prefWidth="259.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <DatePicker layoutX="14.0" layoutY="120.0" prefHeight="27.0" prefWidth="259.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <DatePicker layoutX="14.0" layoutY="178.0" prefHeight="27.0" prefWidth="259.0" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <Label layoutX="14.0" layoutY="99.0" style="-fx-font-weight: 700;" text="De">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="157.0" style="-fx-font-weight: 700;" text="Até">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="219.0" style="-fx-font-weight: 700;" text="Paciente">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

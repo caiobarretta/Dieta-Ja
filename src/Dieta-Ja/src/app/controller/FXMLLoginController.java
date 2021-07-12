@@ -21,6 +21,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import services.UsuarioService;
 
 public class FXMLLoginController extends BaseController{
@@ -35,6 +37,9 @@ public class FXMLLoginController extends BaseController{
 
     @FXML
     private TextField txtPassword;
+    
+    @FXML
+    private ImageView imgLogin;
 
 	@FXML
 	private void efetuarLogin(ActionEvent event) throws Exception{
@@ -51,7 +56,15 @@ public class FXMLLoginController extends BaseController{
 		else{
 			AlertHelper.buildAlert(AlertType.INFORMATION, "Login", "Login incorreto, por favor tente novamente.").showAndWait();
 		}
-		
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		super.initialize(location, resources);
+		//
+		Image image = new Image(getClass().getResource("../resources/dieta-ja-go.jpeg").toExternalForm());
+		imgLogin.setImage(image);
 	}
 
 	

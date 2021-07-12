@@ -9,18 +9,34 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="851.0" style="-fx-background-color: #F2F2F2; -fx-border-color: black; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="28.0" layoutY="20.0" text="Porção Alimento:" />
-      <Label layoutX="28.0" layoutY="58.0" text="Nome" />
-      <TextArea fx:id="txtObs" layoutX="28.0" layoutY="537.0" prefHeight="103.0" prefWidth="255.0" />
-      <Label layoutX="28.0" layoutY="510.0" text="Observações" />
-      <TextField fx:id="txtNome" layoutX="28.0" layoutY="85.0" prefHeight="26.0" prefWidth="255.0" />
-      <Button fx:id="btnSalvar" layoutX="160.0" layoutY="647.0" mnemonicParsing="false" onAction="#clickSalvar" prefHeight="26.0" prefWidth="122.0" text="Salvar" />
+      <Label layoutX="28.0" layoutY="20.0" style="-fx-font-weight: 700;" text="Porção Alimento:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="28.0" layoutY="50.0" style="-fx-font-weight: 700;" text="Nome">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextArea fx:id="txtObs" layoutX="28.0" layoutY="524.0" prefHeight="103.0" prefWidth="255.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" />
+      <Label layoutX="28.0" layoutY="504.0" style="-fx-font-weight: 700;" text="Observações">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="txtNome" layoutX="29.0" layoutY="70.0" prefHeight="26.0" prefWidth="255.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button fx:id="btnSalvar" layoutX="161.0" layoutY="640.0" mnemonicParsing="false" onAction="#clickSalvar" prefHeight="26.0" prefWidth="122.0" style="-fx-border-color: black; -fx-background-color: #8BC25C; -fx-background-radius: 5; -fx-border-radius: 5; -fx-font-weight: 700;" text="Salvar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
       <AnchorPane layoutX="290.0" layoutY="63.0" prefHeight="612.0" prefWidth="450.0">
          <children>
-            <TableView fx:id="tableView" editable="true" prefHeight="612.0" prefWidth="457.0">
+            <TableView fx:id="tableView" editable="true" prefHeight="576.0" prefWidth="537.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
               <columns>
                 <TableColumn fx:id="codigoCol" editable="false" prefWidth="75.0" text="Código" />
                 <TableColumn fx:id="nomeCol" editable="false" prefWidth="75.0" text="Nome" />
@@ -38,14 +54,26 @@
             </TableView>
          </children>
       </AnchorPane>
-      <TextField fx:id="txtPesquisar" layoutX="291.0" layoutY="16.0" prefHeight="26.0" prefWidth="377.0" promptText="Digite um nome para buscar" />
-      <Button fx:id="btnCancelar" layoutX="29.0" layoutY="647.0" mnemonicParsing="false" onAction="#clickCancelar" prefHeight="26.0" prefWidth="122.0" text="Cancelar" />
-      <Button fx:id="btnPesquisar" layoutX="678.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickPesquisar" text="Pesquisar" />
-      <ScrollPane layoutX="28.0" layoutY="118.0" prefHeight="385.0" prefWidth="255.0">
+      <TextField fx:id="txtPesquisar" layoutX="291.0" layoutY="16.0" prefHeight="27.0" prefWidth="439.0" promptText="Digite um nome para buscar" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button fx:id="btnCancelar" layoutX="28.0" layoutY="640.0" mnemonicParsing="false" onAction="#clickCancelar" prefHeight="26.0" prefWidth="122.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5; -fx-background-color: #F5C609; -fx-font-weight: 700;" text="Cancelar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="btnPesquisar" layoutX="744.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickPesquisar" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5; -fx-font-weight: 700;" text="Pesquisar">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <ScrollPane layoutX="28.0" layoutY="111.0" prefHeight="385.0" prefWidth="255.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
          <content>
             <GridPane fx:id="gpPorcoesDeAlimento" prefHeight="184.0" prefWidth="254.0" />
          </content>
       </ScrollPane>
-      <Label fx:id="lblIdEdit" layoutX="147.0" layoutY="20.0" text="0" />
+      <Label fx:id="lblIdEdit" layoutX="147.0" layoutY="20.0" style="-fx-font-weight: 700;" text="0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>
