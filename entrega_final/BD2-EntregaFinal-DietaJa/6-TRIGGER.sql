@@ -1,8 +1,7 @@
 USE DietaJa;
 
 -- TRIGGERS
--- Triggers para criar LOG após INSERT do Usuário;
-
+-- Trigger para criar LOG após INSERT do Usuário;
 DROP TRIGGER IF EXISTS Tgr_TabelaUsuario_Insert;
 DELIMITER $$
 CREATE TRIGGER Tgr_TabelaUsuario_Insert AFTER INSERT
@@ -24,7 +23,7 @@ INSERT INTO Log (LogContent, LogDate, LogType)
 END 
 DELIMITER $$ ;
 
--- Triggers para criar LOG após UPDATE do Usuário;
+-- Trigger para criar LOG após UPDATE do Usuário;
 DROP TRIGGER IF EXISTS Tgr_TabelaUsuario_Update;
 DELIMITER $$
 CREATE TRIGGER Tgr_TabelaUsuario_Update AFTER UPDATE
@@ -47,9 +46,14 @@ END
 $$ 
 
 SHOW TRIGGERS;
+
 -- TESTE Insere Usuário
 INSERT INTO Usuario (Login, Senha, TipoUsuario, Descricao, Nome, Ativo)
 VALUES ("@testetrigger", "@123455", 3, "Trigger Teste Insert", "Trigger Teste", true);
+
+INSERT INTO Usuario (Login, Senha, TipoUsuario, Descricao, Nome, Ativo)
+VALUES ("@aquialfumacoisa", "@2121343", 2, "trestigrestristes ", "Trigger com Procedure", true);
+
 SELECT * FROM Log;
 
 -- TESTE Update Usuário
