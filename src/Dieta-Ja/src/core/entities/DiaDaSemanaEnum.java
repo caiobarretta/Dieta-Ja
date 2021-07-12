@@ -8,11 +8,11 @@ import java.util.Map;
 
 //Enum que representa os dias da semana
 public enum DiaDaSemanaEnum {
-	Segunda(1, "Segunda-Feira"),
-	Terca(2, "Terça-Feira"),
-	Quarta(3, "Quarta-Feira"),
-	Quinta(4, "Quinta-Feira"),
-	Sexta(5, "Sexta-Feira"),
+	Segunda(1, "Segunda-feira"),
+	Terca(2, "Terça-feira"),
+	Quarta(3, "Quarta-feira"),
+	Quinta(4, "Quinta-feira"),
+	Sexta(5, "Sexta-feira"),
 	Sabado(6, "Sábado"),
 	Domingo(7, "Domingo");
 	
