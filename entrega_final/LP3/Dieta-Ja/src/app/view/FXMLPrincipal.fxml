@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="1169.0" style="-fx-background-color: #77DB98; -fx-border-color: black; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="lblUsuario" layoutX="14.0" layoutY="14.0" style="-fx-font-weight: 700;" text="Usuário:">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button fx:id="btnPorcaoAlimento" layoutX="15.0" layoutY="90.0" onAction="#clickPorcaoAlimento" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Porção de Alimentos" textFill="#f2f2f2">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="btnPaciente" layoutX="19.0" layoutY="169.0" onAction="#clickPaciente" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Pacientes" textFill="#f2f2f2">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="btnDieta" layoutX="19.0" layoutY="131.0" onAction="#clickDieta" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Dietas" textFill="#f2f2f2">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Pane fx:id="panelDietaLogo" layoutX="200.0" prefHeight="691.0" prefWidth="979.0" style="-fx-background-image: ..\Dieta-já (2).png; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 5;">
+         <children>
+            <ImageView fx:id="imgPanelDieta" fitHeight="600.0" fitWidth="600.0" layoutX="190.0" layoutY="46.0" opacity="0.2" />
+         </children>
+      </Pane>
+      <Pane fx:id="panelDieta" layoutX="200.0" prefHeight="691.0" prefWidth="979.0" style="-fx-background-image: ..\Dieta-já (2).png; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 5;" visible="false">
+         <children>
+            <TreeView fx:id="treeView" layoutX="21.0" layoutY="72.0" prefHeight="604.0" prefWidth="255.0" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5;" />
+            <Label layoutX="22.0" layoutY="14.0" style="-fx-font-weight: 700;" text="Dieta:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDieta" layoutX="69.0" layoutY="14.0" style="-fx-font-weight: 700;" text="dieta">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="21.0" layoutY="41.0" style="-fx-font-weight: 700;" text="Porções de Alimento">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Pane fx:id="panelRegistroAtividade" layoutX="293.0" prefHeight="691.0" prefWidth="0.0" style="-fx-background-color: #77DB98; -fx-max-width: 5; -fx-border-radius: 10;">
+               <children>
+                  <DatePicker fx:id="dtRegistro" editable="false" layoutX="14.0" layoutY="42.0" onAction="#clickRegistro" onMouseClicked="#clickRegistro" showWeekNumbers="true" style="-fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                  <Label layoutX="14.0" layoutY="14.0" style="-fx-font-weight: 700;" text="Registro de Atividades">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="451.0" style="-fx-font-weight: 700;" text="Comentários:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="txtAreaComment" layoutX="15.0" layoutY="479.0" prefHeight="156.0" prefWidth="647.0" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5;" />
+                  <ScrollPane layoutX="14.0" layoutY="79.0" prefHeight="349.0" prefWidth="330.0">
+                     <content>
+                        <GridPane fx:id="gpPorcaoDeAlimento" prefHeight="347.0" prefWidth="328.0" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5;" />
+                     </content>
+                  </ScrollPane>
+                  <Label layoutX="376.0" layoutY="46.0" style="-fx-font-weight: 700;" text="Sentimentos">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button layoutX="894.0" layoutY="645.0" mnemonicParsing="false" style="-fx-font-weight: 700; -fx-background-color: #8BC25C; -fx-border-color: black; -fx-border-radius: 10; -fx-background-radius: 10;" text="Salvar" onAction="#clickSalvar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="815.0" layoutY="645.0" mnemonicParsing="false" style="-fx-font-weight: 700; -fx-background-color: #F5C609; -fx-border-color: black; -fx-border-radius: 10; -fx-background-radius: 10;" text="Cancelar" onAction="#clickCancelar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <ChoiceBox fx:id="cbxSentimento" layoutX="669.0" layoutY="72.0" prefHeight="26.0" prefWidth="293.0" />
+         </children>
+      </Pane>
+      <Label fx:id="lblUsuario" layoutX="19.0" layoutY="39.0" style="-fx-font-weight: 700;" text="\@user">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button layoutX="19.0" layoutY="209.0" onAction="#clickPaciente" style="-fx-border-radius: 5; -fx-border-color: black; -fx-background-radius: 5; -fx-font-weight: 700; -fx-background-color: #115945;" text="Relatórios" textFill="#f2f2f2">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imgLogo" fitHeight="200.0" fitWidth="200.0" layoutX="1.0" layoutY="491.0" />
+   </children>
+</AnchorPane>
