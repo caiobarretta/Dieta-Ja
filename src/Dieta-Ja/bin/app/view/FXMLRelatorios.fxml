@@ -15,7 +15,11 @@
    <children>
       <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="415.0" layoutY="27.0">
          <image>
+<<<<<<< Updated upstream
             <!-- <Image url="@../resources/dieta-ja-bwh.png" /> -->
+=======
+            <Image url="@../resources/dieta-ja-bwh.png" />
+>>>>>>> Stashed changes
          </image>
       </ImageView>
       <BarChart fx:id="chartSentimentoRefeicao" categoryGap="2.0" layoutX="14.0" layoutY="379.0" prefHeight="300.0" prefWidth="340.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" title="Sentimento x Refeição">
