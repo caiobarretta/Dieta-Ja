@@ -81,3 +81,6 @@ FOREIGN KEY (ID_PorcaoDeAlimento) REFERENCES DietaJa.PorcaoDeAlimento (ID_Porcao
 
 ALTER TABLE DietaJa.PorcaoDeAlimentoDiasDaSemanaDietaRefeicao ADD CONSTRAINT FK_Dieta_PDADSDR
 FOREIGN KEY (ID_Dieta) REFERENCES DietaJa.Dieta (ID_Dieta);
+
+ALTER TABLE DietaJa.Usuario ADD CONSTRAINT FK_Dieta_usr
+FOREIGN KEY (ID_Dieta) REFERENCES DietaJa.Dieta (ID_Dieta);
