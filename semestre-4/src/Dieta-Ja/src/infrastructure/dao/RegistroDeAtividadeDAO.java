@@ -17,7 +17,7 @@ import core.entities.RegistroDeAtividade;
 import core.exception.InvalidTypeException;
 import core.interfaces.dao.IRegistroDeAtividadeDAO;
 import infrastructure.dao.base.DAOConnection;
-import infrastructure.dao.base.DefaultDAO;
+import infrastructure.dao.base.DefaultDAOTemplateMethod;
 import infrastructure.dao.helper.StrBuilderHelper;
 
 public class RegistroDeAtividadeDAO implements IRegistroDeAtividadeDAO{

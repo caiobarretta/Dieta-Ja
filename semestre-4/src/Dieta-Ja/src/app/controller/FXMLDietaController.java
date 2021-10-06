@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import app.controller.base.DefaultController;
+import app.controller.base.DefaultControllerTemplateMethod;
 import app.controller.helper.AlertHelper;
 import app.controller.helper.GridPaneHelper;
 import app.model.DietaDTO;
@@ -25,7 +25,7 @@ import javafx.scene.layout.GridPane;
 import services.DietaService;
 import services.PorcaoDeAlimentoService;
 
-public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
+public class FXMLDietaController extends DefaultControllerTemplateMethod<DietaDTO, Dieta> {
 	
 	final DietaService dietaService;
 	public FXMLDietaController(Container container, Usuario usuario) {

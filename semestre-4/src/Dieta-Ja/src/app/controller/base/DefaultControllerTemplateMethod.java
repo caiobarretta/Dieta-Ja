@@ -29,12 +29,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public abstract class DefaultController<T extends BaseDTO, TEntity extends Entity> extends BaseController {
+public abstract class DefaultControllerTemplateMethod<T extends BaseDTO, TEntity extends Entity> extends BaseController {
 	
 	private FXMLState state;
 	private Integer idEditing;
 	
-	public DefaultController(Container container, Usuario usuario) {
+	public DefaultControllerTemplateMethod(Container container, Usuario usuario) {
 		super(container, usuario);
 		state = FXMLState.Inserir;
 		idEditing = 0;

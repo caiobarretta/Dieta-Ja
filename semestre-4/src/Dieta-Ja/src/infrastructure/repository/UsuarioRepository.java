@@ -4,9 +4,9 @@ import core.entities.Usuario;
 import core.interfaces.dao.IUsuarioDAO;
 import core.interfaces.dao.base.IDAO;
 import core.interfaces.repository.IUsuarioRepository;
-import infrastructure.repository.base.DefaultRepository;
+import infrastructure.repository.base.DefaultRepositoryTemplateMethod;
 
-public class UsuarioRepository extends DefaultRepository<Usuario> implements IUsuarioRepository{
+public class UsuarioRepository extends DefaultRepositoryTemplateMethod<Usuario> implements IUsuarioRepository{
 	
 	protected final IUsuarioDAO _idao;
 	public UsuarioRepository(IUsuarioDAO dao) {

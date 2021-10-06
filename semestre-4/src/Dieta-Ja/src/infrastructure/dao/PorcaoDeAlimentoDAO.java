@@ -13,9 +13,9 @@ import core.entities.PorcaoDeAlimento;
 import core.entities.RefeicaoEnum;
 import core.entities.TipoMedidaEnum;
 import core.interfaces.dao.IPorcaoDeAlimentoDAO;
-import infrastructure.dao.base.DefaultDAO;
+import infrastructure.dao.base.DefaultDAOTemplateMethod;
 
-public class PorcaoDeAlimentoDAO extends DefaultDAO<PorcaoDeAlimento> implements IPorcaoDeAlimentoDAO {
+public class PorcaoDeAlimentoDAO extends DefaultDAOTemplateMethod<PorcaoDeAlimento> implements IPorcaoDeAlimentoDAO {
 
 	public PorcaoDeAlimentoDAO(Connection conn) {
 		super(conn);
