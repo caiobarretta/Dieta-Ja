@@ -46,8 +46,8 @@ public class FXMLPacienteController extends DefaultController<PacienteDTO, Usuar
 	final DietaService dietaService;
 	public FXMLPacienteController(Container container, Usuario usuario){
 		super(container, usuario);
-		service = (UsuarioService)super.getContainer().resolveSingleton(IUsuarioService.class);
-		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
+		service = (UsuarioService)super.getContainer().resolve(IUsuarioService.class);
+		dietaService = (DietaService)super.getContainer().resolve(IDietaService.class);
 	}
 	
 	private void carregaDietas(){

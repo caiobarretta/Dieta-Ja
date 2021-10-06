@@ -10,9 +10,12 @@ import core.interfaces.dao.IUsuarioDAO;
 import core.interfaces.repository.IUsuarioRepository;
 import core.interfaces.service.IUsuarioService;
 import core.ioc.Container;
+import infrastructure.dao.DAOFactory;
 import infrastructure.dao.UsuarioDAO;
+import infrastructure.repository.RepositoryFactory;
 import infrastructure.repository.UsuarioRepository;
 import junit.framework.TestCase;
+import services.ServicesFactory;
 import services.UsuarioService;
 import testes.DAOConnectionTest;
 
@@ -21,23 +24,15 @@ public class UsuarioServiceTest extends TestCase {
 	private UUID uuid;
 	private Usuario usuario;
 	private Container container;
-	private UsuarioDAO usuarioDao;
 	private UsuarioService usuarioService;
-	private UsuarioRepository usuarioRepository;
 	
 	@Override
 	protected void setUp() throws Exception {
 		usuario = new Usuario();
 		uuid = UUID.randomUUID();
-		container = new Startup(DAOConnectionTest.getConnection()).getContainer();
-		usuarioDao = (UsuarioDAO)container.resolveSingleton(IUsuarioDAO.class);
-		usuarioRepository = (UsuarioRepository)container.resolveSingleton(IUsuarioRepository.class);
-		usuarioService = (UsuarioService)container.resolveSingleton(IUsuarioService.class);
-	}
-	
-	@Override
-	protected void tearDown() throws Exception {
-		usuarioDao.closeConn();
+		container = new Startup(DAOConnectionTest.getConnection(), new DAOFactory(), 
+				new RepositoryFactory(), new ServicesFactory()).getContainer();
+		usuarioService = (UsuarioService)container.resolve(IUsuarioService.class);
 	}
 
 	public void testIsUsuario() {

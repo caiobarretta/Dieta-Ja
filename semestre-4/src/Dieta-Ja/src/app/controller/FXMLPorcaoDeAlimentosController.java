@@ -50,8 +50,8 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	
 	public FXMLPorcaoDeAlimentosController(Container container, Usuario usuario){
 		super(container, usuario);
-		service = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
-		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
+		service = (PorcaoDeAlimentoService)super.getContainer().resolve(IPorcaoDeAlimentoService.class);
+		dietaService = (DietaService)super.getContainer().resolve(IDietaService.class);
 	}
 	
 	private void carregarDiasDaSemana(){

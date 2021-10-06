@@ -31,7 +31,7 @@ public class FXMLDietaController extends DefaultController<DietaDTO, Dieta> {
 	public FXMLDietaController(Container container, Usuario usuario) {
 		super(container, usuario);
 		// TODO Auto-generated constructor stub
-		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
+		dietaService = (DietaService)super.getContainer().resolve(IDietaService.class);
 	}
 	
 	@Override

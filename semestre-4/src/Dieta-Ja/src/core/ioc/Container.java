@@ -18,7 +18,7 @@ public class Container {
 		mapInterfaceImplementation.put(interfaceObj, implementationObj);
 	}
 	
-	public <T extends Serializable>  Object resolveSingleton(T interfaceObj){
+	public <T extends Serializable>  Object resolve(T interfaceObj){
 		return mapInterfaceImplementation.get(interfaceObj);
 	}
 }

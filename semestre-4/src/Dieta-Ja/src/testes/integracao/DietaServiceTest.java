@@ -9,11 +9,14 @@ import core.interfaces.dao.IDietaDAO;
 import core.interfaces.repository.IDietaRepository;
 import core.interfaces.service.IDietaService;
 import core.ioc.Container;
+import infrastructure.dao.DAOFactory;
 import infrastructure.dao.DietaDAO;
 import infrastructure.dao.base.DAOConnection;
 import infrastructure.repository.DietaRepository;
+import infrastructure.repository.RepositoryFactory;
 import junit.framework.TestCase;
 import services.DietaService;
+import services.ServicesFactory;
 import testes.DAOConnectionTest;
 import testes.helper.UtilHashMapTest;
 import testes.mock.DietaDAOMock;
@@ -23,23 +26,15 @@ public class DietaServiceTest extends TestCase{
 	private UUID uuid;
 	private Dieta dieta;
 	private Container container;
-	private DietaDAO dietaDao;
 	private DietaService dietaService;
-	private DietaRepository dietaRepository;
 	
 	@Override
 	protected void setUp() throws Exception {
 		dieta = new Dieta();
 		uuid = UUID.randomUUID();
-		container = new Startup(DAOConnectionTest.getConnection()).getContainer();
-		dietaDao = (DietaDAO)container.resolveSingleton(IDietaDAO.class);
-		dietaRepository = (DietaRepository)container.resolveSingleton(IDietaRepository.class);
-		dietaService = (DietaService)container.resolveSingleton(IDietaService.class);
-	}
-	
-	@Override
-	protected void tearDown() throws Exception {
-		dietaDao.closeConn();
+		container = new Startup(DAOConnectionTest.getConnection(), new DAOFactory(), 
+				new RepositoryFactory(), new ServicesFactory()).getContainer();
+		dietaService = (DietaService)container.resolve(IDietaService.class);
 	}
 	
 	public void testDadoUmaDietaValidaQuandoOServicoAdicionarNoBDDevePersistirOsDados() {
