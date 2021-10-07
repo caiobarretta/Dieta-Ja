@@ -35,3 +35,36 @@
 
 # Colaboração
 
+<div align="center">
+
+<a href="https://github.com/caiobarretta">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/60993267?s=400&u=c1f849f90ceb9c25bd7765473b2b933b62c0ef11&v=4" width="100px;" alt="Foto de Perfil Caio Augusto Barretta"/>
+ <br />
+  <p>
+ <sub><b>Caio Barretta</b></sub></a>
+<p>
+
+
+[![Github Badge](https://img.shields.io/badge/-Caio_Barretta-000?style=flat-square&logo=Github&logoColor=white)](https://github.com/caiobarretta)
+[![Gmail Badge](https://img.shields.io/badge/-caio.barretta@aluno.ifsp.edu.br-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:caio.barretta@aluno.ifsp.edu.br)](mailto:caio.barretta@aluno.ifsp.edu.br)
+
+<div align="center">
+
+
+<div align="center">
+
+<a href="https://github.com/gabrieleleonel">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/60993267?s=400&u=c1f849f90ceb9c25bd7765473b2b933b62c0ef11&v=4" width="100px;" alt="Foto de Perfil Gabriele Leonel"/>
+ <br />
+  <p>
+ <sub><b>Gabriele Leonel</b></sub></a>
+<p>
+
+
+[![Github Badge](https://img.shields.io/badge/-Gabriele_Leonel-000?style=flat-square&logo=Github&logoColor=white)](https://github.com/gabrieleleonel)
+[![Gmail Badge](https://img.shields.io/badge/-gabriele.leonel@aluno.ifsp.edu.br-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gabriele.leonel@aluno.ifsp.edu.br)](mailto:gabriele.leonel@aluno.ifsp.edu.br)
+
+<div align="center">
+
+</div>
+</div>
