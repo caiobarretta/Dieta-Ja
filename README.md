@@ -27,6 +27,7 @@
 
 - [Diagrama UML](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/Diagramas/DiagramaClasses-DietaJ%C3%A1.png)
 - [Código Fonte]()
+- [Diagrama Casos de Uso](https://miro.com/app/board/o9J_ltHRdZo=/?invite_link_id=819715852823)
 
 
 # Apresentação
