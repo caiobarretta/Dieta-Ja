@@ -17,16 +17,16 @@
 
 # ASW
 
-[Diagrama de Contexto](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/ASW/C4%20Model%20System%20Context%20Diagram%20for%20Dieta-J%C3%A1.vpd.png)
-[Diagrama de Containers](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/ASW/C4%20Model%20Container%20Diagram%20for%20Dieta-J%C3%A1.vpd.png)
-[Diagrama de Componentes](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/ASW/C4%20Model%20Component%20Diagram%20for%20Dieta-J%C3%A1.vpd.png)
-[Diagrama de Código]()
+- [Diagrama de Contexto](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/ASW/C4%20Model%20System%20Context%20Diagram%20for%20Dieta-J%C3%A1.vpd.png)
+- [Diagrama de Containers](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/ASW/C4%20Model%20Container%20Diagram%20for%20Dieta-J%C3%A1.vpd.png)
+- [Diagrama de Componentes](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/ASW/C4%20Model%20Component%20Diagram%20for%20Dieta-J%C3%A1.vpd.png)
+- [Diagrama de Código]()
 
 
 # POO
 
-[Diagrama UML](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/Diagramas/DiagramaClasses-DietaJ%C3%A1.png)
-[Código Fonte]()
+- [Diagrama UML](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/Diagramas/DiagramaClasses-DietaJ%C3%A1.png)
+- [Código Fonte]()
 
 
 # Apresentação
