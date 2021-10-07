@@ -1,5 +1,8 @@
 # DietaJá - Projeto do IFSP
 
+# Sobre
+O projeto interdisciplinar faz parte do ciclo de finalização do 4  semestre do curso de Análise e Desenvolvimento de Sistemas do IFSP - campus Campinas. O projeto interdisciplinar integra sempre 2 ou mais disciplinas a fim de desenvolver o conhecimento teórico de maneira prática. Neste semestre as disciplinas Programação Orientada a Objetos e Arquitetura de Software foram as escolhidas para compor a grade.
+
 ## Programação Orientada a Objetos / Arquitetura de Software
 #### Requisitos
 - Descrição do Projeto
