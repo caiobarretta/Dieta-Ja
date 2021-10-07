@@ -38,7 +38,7 @@
 <div align="center">
 
 <a href="https://github.com/caiobarretta">
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/60993267?s=400&u=c1f849f90ceb9c25bd7765473b2b933b62c0ef11&v=4" width="100px;" alt="Foto de Perfil Caio Augusto Barretta"/>
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/7398046?v=4" width="100px;" alt="Foto de Perfil Caio Augusto Barretta"/>
  <br />
   <p>
  <sub><b>Caio Barretta</b></sub></a>
@@ -54,7 +54,7 @@
 <div align="center">
 
 <a href="https://github.com/gabrieleleonel">
- <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/60993267?s=400&u=c1f849f90ceb9c25bd7765473b2b933b62c0ef11&v=4" width="100px;" alt="Foto de Perfil Gabriele Leonel"/>
+ <img style="border-radius: 50%;" src="https://https://avatars.githubusercontent.com/u/42439114?v=4" width="100px;" alt="Foto de Perfil Gabriele Leonel"/>
  <br />
   <p>
  <sub><b>Gabriele Leonel</b></sub></a>
@@ -65,6 +65,18 @@
 [![Gmail Badge](https://img.shields.io/badge/-gabriele.leonel@aluno.ifsp.edu.br-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gabriele.leonel@aluno.ifsp.edu.br)](mailto:gabriele.leonel@aluno.ifsp.edu.br)
 
 <div align="center">
+
+<div align="center">
+
+<a href="https://github.com/miziaalmeida">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/42849855?s=400&u=f2dfc70f52e7c272e7865b3582e6cc09fea8f576&v=4" width="100px;" alt="Foto de Mízia Lima"/>
+ <br />
+  <p>
+ <sub><b>Mízia Lima</b></sub></a>
+<p>
+
+[![Github Badge](https://img.shields.io/badge/-Mízia_Lima-000?style=flat-square&logo=Github&logoColor=white)](https://github.com/miziaalmeida)
+[![Gmail Badge](https://img.shields.io/badge/-mizia.lima@aluno.ifsp.edu.br-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:mizia.lima@aluno.ifsp.edu.br)](mailto:mizia.lima@aluno.ifsp.edu.br)
 
 </div>
 </div>
