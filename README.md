@@ -14,6 +14,7 @@
 - Demo do sistema funcionando (execução de código); **ASW**
 - Apresentação explicitando tudo o que foi utilizado de conceitos no projeto **POO**
 
+- [Miro Infos]()
 
 # ASW
 
@@ -27,8 +28,7 @@
 
 - [Diagrama UML](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/Diagramas/DiagramaClasses-DietaJ%C3%A1.png)
 - [Diagrama Casos de Uso](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/Diagramas/DietaJ%C3%A1%20-%20Diagrams%20-%20Diagrama%20Casos%20de%20Uso%20-%20DietaJ%C3%A1.jpg)
-- [Miro Infos]()
-- [Código Fonte]()
+- [Código Fonte](https://github.com/caiobarretta/Dieta-Ja/tree/master/src)
 
 # Apresentação
 [Slides]()
