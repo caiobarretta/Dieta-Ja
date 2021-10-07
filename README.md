@@ -54,7 +54,7 @@
 <div align="center">
 
 <a href="https://github.com/gabrieleleonel">
- <img style="border-radius: 50%;" src="https://https://avatars.githubusercontent.com/u/42439114?v=4" width="100px;" alt="Foto de Perfil Gabriele Leonel"/>
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/42439114?v=4" width="100px;" alt="Foto de Perfil Gabriele Leonel"/>
  <br />
   <p>
  <sub><b>Gabriele Leonel</b></sub></a>
