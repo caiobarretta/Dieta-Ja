@@ -5,9 +5,9 @@ import core.entities.PorcaoDeAlimento;
 import core.interfaces.dao.IPorcaoDeAlimentoDAO;
 import core.interfaces.dao.base.IDAO;
 import core.interfaces.repository.IPorcaoDeAlimentoRepository;
-import infrastructure.repository.base.DefaultRepository;
+import infrastructure.repository.base.DefaultRepositoryTemplateMethod;
 
-public class PorcaoDeAlimentoRepository extends DefaultRepository<PorcaoDeAlimento> implements IPorcaoDeAlimentoRepository{
+public class PorcaoDeAlimentoRepository extends DefaultRepositoryTemplateMethod<PorcaoDeAlimento> implements IPorcaoDeAlimentoRepository{
 	
 	protected final IPorcaoDeAlimentoDAO _idao;
 	public PorcaoDeAlimentoRepository(IPorcaoDeAlimentoDAO dao) {

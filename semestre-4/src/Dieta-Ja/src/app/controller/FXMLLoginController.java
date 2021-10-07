@@ -43,7 +43,7 @@ public class FXMLLoginController extends BaseController{
 
 	@FXML
 	private void efetuarLogin(ActionEvent event) throws Exception{
-		UsuarioService usuarioService = ((UsuarioService)super.getContainer().resolveSingleton(IUsuarioService.class));
+		UsuarioService usuarioService = ((UsuarioService)super.getContainer().resolve(IUsuarioService.class));
 		int codigoUsuario = usuarioService.getLoginUsuario(txtLogin.getText(), txtPassword.getText());
 		
 		if(codigoUsuario > 0){

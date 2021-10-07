@@ -12,10 +12,13 @@ import core.interfaces.dao.IPorcaoDeAlimentoDAO;
 import core.interfaces.repository.IPorcaoDeAlimentoRepository;
 import core.interfaces.service.IPorcaoDeAlimentoService;
 import core.ioc.Container;
+import infrastructure.dao.DAOFactory;
 import infrastructure.dao.PorcaoDeAlimentoDAO;
 import infrastructure.repository.PorcaoDeAlimentoRepository;
+import infrastructure.repository.RepositoryFactory;
 import junit.framework.TestCase;
 import services.PorcaoDeAlimentoService;
+import services.ServicesFactory;
 import testes.DAOConnectionTest;
 
 public class PorcaoDeAlimentoServiceTest extends TestCase {
@@ -23,23 +26,15 @@ public class PorcaoDeAlimentoServiceTest extends TestCase {
 	private UUID uuid;
 	private Container container;
 	private PorcaoDeAlimento porcaoDeAlimento;
-	private PorcaoDeAlimentoDAO porcaoDeAlimentoDao;
 	private PorcaoDeAlimentoService porcaoDeAlimentoService;
-	private PorcaoDeAlimentoRepository porcaoDeAlimentoRepository;
 	
 	@Override
 	protected void setUp() throws Exception {
 		uuid = UUID.randomUUID();
 		porcaoDeAlimento = new PorcaoDeAlimento();
-		container = new Startup(DAOConnectionTest.getConnection()).getContainer();
-		porcaoDeAlimentoDao = (PorcaoDeAlimentoDAO)container.resolveSingleton(IPorcaoDeAlimentoDAO.class);
-		porcaoDeAlimentoRepository = (PorcaoDeAlimentoRepository)container.resolveSingleton(IPorcaoDeAlimentoRepository.class);
-		porcaoDeAlimentoService = (PorcaoDeAlimentoService)container.resolveSingleton(IPorcaoDeAlimentoService.class);
-	}
-	
-	@Override
-	protected void tearDown() throws Exception {
-		porcaoDeAlimentoDao.closeConn();
+		container = new Startup(DAOConnectionTest.getConnection(), new DAOFactory(), 
+				new RepositoryFactory(), new ServicesFactory()).getContainer();
+		porcaoDeAlimentoService = (PorcaoDeAlimentoService)container.resolve(IPorcaoDeAlimentoService.class);
 	}
 	
 	public void testAssociarPorcaoDeAlimentoDiasDaSemanaDietaRefeicao(){

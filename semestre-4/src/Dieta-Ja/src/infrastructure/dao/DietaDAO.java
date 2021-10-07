@@ -16,13 +16,13 @@ import core.entities.PorcaoDeAlimento;
 import core.exception.InvalidTypeException;
 import core.interfaces.dao.IDietaDAO;
 import infrastructure.dao.base.DAOConnection;
-import infrastructure.dao.base.DefaultDAO;
-import infrastructure.dao.base.BaseDAO;
+import infrastructure.dao.base.DefaultDAOTemplateMethod;
+import infrastructure.dao.base.BaseDAOTemplateMethod;
 import infrastructure.dao.helper.HelperExecuteStatementChain;
 import infrastructure.dao.helper.HelperHashMap;
 import infrastructure.dao.helper.StrBuilderHelper;
 
-public class DietaDAO extends DefaultDAO<Dieta> implements IDietaDAO{
+public class DietaDAO extends DefaultDAOTemplateMethod<Dieta> implements IDietaDAO{
 
 	public DietaDAO(Connection conn) {
 		super(conn);

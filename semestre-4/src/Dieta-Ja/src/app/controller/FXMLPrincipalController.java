@@ -109,9 +109,9 @@ public class FXMLPrincipalController extends BaseController{
 	
 	public FXMLPrincipalController(Container container, Usuario usuario){
 		super(container, usuario);
-		usuarioService = (UsuarioService)super.getContainer().resolveSingleton(IUsuarioService.class);
-		porcaoDeAlimentoService = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
-		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
+		usuarioService = (UsuarioService)super.getContainer().resolve(IUsuarioService.class);
+		porcaoDeAlimentoService = (PorcaoDeAlimentoService)super.getContainer().resolve(IPorcaoDeAlimentoService.class);
+		dietaService = (DietaService)super.getContainer().resolve(IDietaService.class);
 	}
 	
 	public void carregaPorcaoDeAlimentoForm(Integer idDieta){

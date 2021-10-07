@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import app.controller.base.DefaultController;
+import app.controller.base.DefaultControllerTemplateMethod;
 import app.controller.helper.AlertHelper;
 import app.controller.helper.GridPaneHelper;
 import app.model.PorcaoDeAlimentoDTO;
@@ -30,7 +30,7 @@ import javafx.scene.layout.GridPane;
 import services.DietaService;
 import services.PorcaoDeAlimentoService;
 
-public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeAlimentoDTO, PorcaoDeAlimento> {
+public class FXMLPorcaoDeAlimentosController extends DefaultControllerTemplateMethod<PorcaoDeAlimentoDTO, PorcaoDeAlimento> {
 	
 	@FXML
 	private GridPane gpDiasDaSemana;
@@ -50,8 +50,8 @@ public class FXMLPorcaoDeAlimentosController extends DefaultController<PorcaoDeA
 	
 	public FXMLPorcaoDeAlimentosController(Container container, Usuario usuario){
 		super(container, usuario);
-		service = (PorcaoDeAlimentoService)super.getContainer().resolveSingleton(IPorcaoDeAlimentoService.class);
-		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
+		service = (PorcaoDeAlimentoService)super.getContainer().resolve(IPorcaoDeAlimentoService.class);
+		dietaService = (DietaService)super.getContainer().resolve(IDietaService.class);
 	}
 	
 	private void carregarDiasDaSemana(){

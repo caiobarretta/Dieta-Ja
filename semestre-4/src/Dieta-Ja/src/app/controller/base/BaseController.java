@@ -1,14 +1,18 @@
 package app.controller.base;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 
-import app.enums.FXMLState;
 import core.Startup;
 import core.entities.Usuario;
 import core.ioc.Container;
+import infrastructure.dao.DAOFactory;
+import infrastructure.dao.base.DAOConnection;
+import infrastructure.repository.RepositoryFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import services.ServicesFactory;
 
 public abstract class BaseController implements Initializable {
 
@@ -31,7 +35,12 @@ public abstract class BaseController implements Initializable {
 	}
 
 	public Container getContainer() {
-		return new Startup().getContainer();
+		Connection conn = DAOConnection.getConnection();
+		DAOFactory daoFactory = new DAOFactory();
+		RepositoryFactory repositoryFactory = new RepositoryFactory();
+		ServicesFactory servicesFactory = new ServicesFactory();
+		Container container = new Startup(conn, daoFactory, repositoryFactory, servicesFactory).getContainer();
+		return container;
 	}
 
 	public Usuario getUsuario() {

@@ -14,8 +14,8 @@ import infrastructure.dao.helper.HelperExecuteStatementChain;
 import infrastructure.dao.helper.HelperHashMap;
 import infrastructure.dao.helper.StrBuilderHelper;
 
-public abstract class DefaultDAO<TEntity extends Entity> extends BaseDAO<TEntity> {
-	public DefaultDAO(Connection conn) {
+public abstract class DefaultDAOTemplateMethod<TEntity extends Entity> extends BaseDAOTemplateMethod<TEntity> {
+	public DefaultDAOTemplateMethod(Connection conn) {
 		super(conn);
 	}
 	

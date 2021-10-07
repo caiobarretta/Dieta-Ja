@@ -7,7 +7,7 @@ import core.entities.RegistroDeAtividade;
 import core.interfaces.dao.IRegistroDeAtividadeDAO;
 import core.interfaces.dao.base.IDAO;
 import core.interfaces.repository.IRegistroDeAtividadeRepository;
-import infrastructure.repository.base.DefaultRepository;
+import infrastructure.repository.base.DefaultRepositoryTemplateMethod;
 
 public class RegistroDeAtividadeRepository implements IRegistroDeAtividadeRepository {
 	

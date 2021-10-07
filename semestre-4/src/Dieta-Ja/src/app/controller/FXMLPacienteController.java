@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import app.controller.base.DefaultController;
+import app.controller.base.DefaultControllerTemplateMethod;
 import app.controller.helper.AlertHelper;
 import app.model.DietaDTO;
 import app.model.PacienteDTO;
@@ -29,7 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import services.DietaService;
 import services.UsuarioService;
 
-public class FXMLPacienteController extends DefaultController<PacienteDTO, Usuario>{
+public class FXMLPacienteController extends DefaultControllerTemplateMethod<PacienteDTO, Usuario>{
 
 	@FXML
 	protected TextField txtUsuario;
@@ -46,8 +46,8 @@ public class FXMLPacienteController extends DefaultController<PacienteDTO, Usuar
 	final DietaService dietaService;
 	public FXMLPacienteController(Container container, Usuario usuario){
 		super(container, usuario);
-		service = (UsuarioService)super.getContainer().resolveSingleton(IUsuarioService.class);
-		dietaService = (DietaService)super.getContainer().resolveSingleton(IDietaService.class);
+		service = (UsuarioService)super.getContainer().resolve(IUsuarioService.class);
+		dietaService = (DietaService)super.getContainer().resolve(IDietaService.class);
 	}
 	
 	private void carregaDietas(){

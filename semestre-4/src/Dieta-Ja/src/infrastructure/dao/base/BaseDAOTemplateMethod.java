@@ -17,12 +17,12 @@ import infrastructure.dao.helper.HelperExecuteStatementChain;
 import infrastructure.dao.helper.HelperHashMap;
 import infrastructure.dao.helper.StrBuilderHelper;
 
-public abstract class BaseDAO<TEntity extends Entity> {
+public abstract class BaseDAOTemplateMethod<TEntity extends Entity> {
 	
 	protected Connection conn;
 	private Integer lastIdInserted;
 	
-	public BaseDAO(Connection conn) {
+	public BaseDAOTemplateMethod(Connection conn) {
 		this.conn = conn;
 	}
 	

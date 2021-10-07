@@ -13,10 +13,10 @@ import core.entities.TipoUsuarioEnum;
 import core.entities.Usuario;
 import core.interfaces.dao.IUsuarioDAO;
 import infrastructure.dao.base.DAOConnection;
-import infrastructure.dao.base.DefaultDAO;
+import infrastructure.dao.base.DefaultDAOTemplateMethod;
 import infrastructure.dao.helper.HelperHashMap;
 
-public class UsuarioDAO extends DefaultDAO<Usuario> implements IUsuarioDAO{
+public class UsuarioDAO extends DefaultDAOTemplateMethod<Usuario> implements IUsuarioDAO{
 
 	public UsuarioDAO(Connection conn) {
 		super(conn);
