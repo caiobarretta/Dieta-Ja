@@ -1,52 +1,86 @@
 # DietaJá - Projeto do IFSP
 
-## 1. Entrega Parcial - Maio/21
-### AOO
-1. Lista dos requisitos funcionais :white_check_mark:
-2. Versão inicial do diagrama dos casos de uso que serão implementados (primeira iteração). :white_check_mark:
-3. Detalhamento de 4 casos de uso importantes para o projeto e suas respectivas descrições. :white_check_mark:
-4. Diagrama de classes (a mesma versão que está sendo pedida em linguagem de programação III também precisa ser entregue aqui). :white_check_mark:
-5. 2 diagramas de atividades relevantes no projeto
-6. 2 diagramas de sequência
-7. Revisão
+# Sobre
+O projeto interdisciplinar faz parte do ciclo de finalização do 4  semestre do curso de Análise e Desenvolvimento de Sistemas do IFSP - campus Campinas. O projeto interdisciplinar integra sempre 2 ou mais disciplinas a fim de desenvolver o conhecimento teórico de maneira prática. Neste semestre as disciplinas Programação Orientada a Objetos e Arquitetura de Software foram as escolhidas para compor a grade.
 
-### BD
-1. ER ou MER (imagem ou pdf) :white_check_mark:
-2. Scripts de criação do banco de dados :white_check_mark:
-3. Consultas simples :white_check_mark:
-4. Procedures/Funções :white_check_mark:
-5.  Visões :white_check_mark: (Incluir mais 3 visões no projeto entrega final)
-6. Cursores
-7. Controle de Acesso :white_check_mark:
-8. Funções de agregação 
-9.  Triggers (Extra)
-10. Todos os scripts .sql utilizados no trabalho. :white_check_mark:
-11. Revisão
+# Programação Orientada a Objetos / Arquitetura de Software
+#### Requisitos
+- Descrição do Projeto
+- Requisitos Obrigatórios:
+    - O sistema deverá incluir no mínimo 3 DesignPatterns: Factory, Strategy ou State, Pattern a ser escolhido pelo time;
+- CRUD: Devem ser implementadas e testadas, por isso deve ser utilizado um framework de MAP, API JDBC ou DAO para a camada de persistência;
+- O sistema deve utilizar o máximo de conceitos de POO, tais como: herança, agregação, composição, classes abstratas e concretas, SOLID e Clean Code;
+- Deve ser modelado nos diagramas de UML e C4Model;
+- Documento de arquitetura de Software (C4) a ser disponibilizado no GitHub; **ASW**
+- Documento de modelagem utilizando UML (diagrama de classes e casos de uso); **POO**
+- Código Fonte; **POO**
+- Demo do sistema funcionando (execução de código); **ASW**
+- Apresentação explicitando tudo o que foi utilizado de conceitos no projeto **POO**
 
-### LP3
-1. Implementar protótipos UI Desktop Java
-2. Implementar classes do diagrama 
-3. Implementar persistência de banco
-4. Pasta src contendo toda estrutura de pacotes e arquivos .java.
-5. Revisão
-6. Teste De usuário.
-- Até agora vimos os principais conceitos da programação orientada a objetos. Abaixo, listamos os principais conceitos abordados:
-- Representação de classes, com atributos e métodos. Instanciação de objetos. Controle acesso, através dos modificadores public, private e protected. Herança. Interfaces. Polimorfismo. Agora chegou a hora de aplicar esses conceitos no projeto interdisciplinar!
-A atividade consiste em elaborar um diagrama UML que represente os relacionamentos entre as classes definidas no projeto. Além disso, requeremos também a implementação inicial do projeto, ou seja, a implementação parcial. Neste contexto, vocês terão que submeter, juntamente com o diagrama de classes, os arquivos .java que representam a aplicação desenvolvida até o momento.
+- [Miro Infos]()
 
-## Entrega Final
-###  IHC
-1.  Protótipo das telas da aplicação (Revisar o atual do semestre passado.)
-2. Propostas de evolução das interfaces.
-3. Arquivo de texto (.pdf) especificando os princípios de design utilizados no projeto.
-4. o Arquivo de texto (.pdf) contendo: Storytelling, Personas, Stackholders, Future Press Release, Blueprints, Benchmark, Taxonomia/Sitemaps e Moodboard;
-5. Sketches (rabiscoframes)
-6. Wireframes
-7. Arquivo de texto (.pdf) especificando os princípios de design
-utilizados no projeto.
+# ASW
 
-### Slides da apresentação
-- AOO
-- IHC
-- BD
-- LP3
+- [Diagrama de Contexto](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/ASW/C4%20Model%20System%20Context%20Diagram%20for%20Dieta-J%C3%A1.vpd.png)
+- [Diagrama de Containers](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/ASW/C4%20Model%20Container%20Diagram%20for%20Dieta-J%C3%A1.vpd.png)
+- [Diagrama de Componentes](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/ASW/C4%20Model%20Component%20Diagram%20for%20Dieta-J%C3%A1.vpd.png)
+- [Diagrama de Código]()
+
+
+# POO
+
+- [Diagrama UML](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/Diagramas/DiagramaClasses-DietaJ%C3%A1.png)
+- [Diagrama Casos de Uso](https://github.com/caiobarretta/Dieta-Ja/blob/master/semestre-4/Diagramas/DietaJ%C3%A1%20-%20Diagrams%20-%20Diagrama%20Casos%20de%20Uso%20-%20DietaJ%C3%A1.jpg)
+- [Código Fonte](https://github.com/caiobarretta/Dieta-Ja/tree/master/src)
+
+# Apresentação
+[Slides]()
+
+
+# Colaboração
+
+<div align="center">
+
+<a href="https://github.com/caiobarretta">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/7398046?v=4" width="100px;" alt="Foto de Perfil Caio Augusto Barretta"/>
+ <br />
+  <p>
+ <sub><b>Caio Barretta</b></sub></a>
+<p>
+
+
+[![Github Badge](https://img.shields.io/badge/-Caio_Barretta-000?style=flat-square&logo=Github&logoColor=white)](https://github.com/caiobarretta)
+[![Gmail Badge](https://img.shields.io/badge/-caio.barretta@aluno.ifsp.edu.br-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:caio.barretta@aluno.ifsp.edu.br)](mailto:caio.barretta@aluno.ifsp.edu.br)
+
+<div align="center">
+
+
+<div align="center">
+
+<a href="https://github.com/gabrieleleonel">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/42439114?v=4" width="100px;" alt="Foto de Perfil Gabriele Leonel"/>
+ <br />
+  <p>
+ <sub><b>Gabriele Leonel</b></sub></a>
+<p>
+
+
+[![Github Badge](https://img.shields.io/badge/-Gabriele_Leonel-000?style=flat-square&logo=Github&logoColor=white)](https://github.com/gabrieleleonel)
+[![Gmail Badge](https://img.shields.io/badge/-gabriele.leonel@aluno.ifsp.edu.br-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gabriele.leonel@aluno.ifsp.edu.br)](mailto:gabriele.leonel@aluno.ifsp.edu.br)
+
+<div align="center">
+
+<div align="center">
+
+<a href="https://github.com/miziaalmeida">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/42849855?s=400&u=f2dfc70f52e7c272e7865b3582e6cc09fea8f576&v=4" width="100px;" alt="Foto de Mízia Lima"/>
+ <br />
+  <p>
+ <sub><b>Mízia Lima</b></sub></a>
+<p>
+
+[![Github Badge](https://img.shields.io/badge/-Mízia_Lima-000?style=flat-square&logo=Github&logoColor=white)](https://github.com/miziaalmeida)
+[![Gmail Badge](https://img.shields.io/badge/-mizia.lima@aluno.ifsp.edu.br-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:mizia.lima@aluno.ifsp.edu.br)](mailto:mizia.lima@aluno.ifsp.edu.br)
+
+</div>
+</div>
