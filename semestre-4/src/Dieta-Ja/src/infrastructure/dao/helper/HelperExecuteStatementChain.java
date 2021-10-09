@@ -14,7 +14,7 @@ import infrastructure.dao.helper.statementchain.StatementStringChain;
 import infrastructure.dao.helper.statementchain.base.StatementBaseChain;
 
 public class HelperExecuteStatementChain {
-	//Padrão de Singleton
+	
 	protected static HelperExecuteStatementChain instance = new HelperExecuteStatementChain();
 	
 	private static StatementBaseChain chain;
